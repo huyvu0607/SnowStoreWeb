@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "_AdminLayout";
+    var hotProducts = ViewBag.HotProducts as List<SnowStoreWeb.Models.Product>;
+}
+
+<h2>📊 Admin Dashboard</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Tổng sản phẩm</h5>
+                <p class="card-text fs-4">@ViewBag.ProductCount</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Tổng người dùng</h5>
+                <p class="card-text fs-4">@ViewBag.UserCount</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3>Sản phẩm HOT</h3>
+@if (hotProducts != null && hotProducts.Any())
+{
+    <ul class="list-group">
+        @foreach (var p in hotProducts)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                @p.Name
+                <span class="badge bg-danger">HOT</span>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Chưa có sản phẩm HOT nào</p>
+}

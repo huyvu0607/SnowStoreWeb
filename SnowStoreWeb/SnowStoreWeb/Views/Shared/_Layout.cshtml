@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SnowStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SnowStoreWeb.styles.css" asp-append-version="true" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg snow-navbar">
+            <div class="container">
+                <a class="navbar-brand snow-brand" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-snowflake brand-icon"></i>
+                    SnowStore
+                </a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")" 
+                               asp-controller="Home" asp-action="Index">
+                               <i class="fas fa-home"></i> Trang chủ
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Product" ? "active" : "")" 
+                               asp-controller="Product" asp-action="Index">
+                               <i class="fas fa-shopping-bag"></i> Sản phẩm
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() == "Contact" ? "active" : "")" 
+                               asp-controller="Home" asp-action="Contact">
+                               <i class="fas fa-phone"></i> Liên hệ
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-custom @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() == "About" ? "active" : "")" 
+                               asp-controller="Home" asp-action="About">
+                               <i class="fas fa-info-circle"></i> Giới thiệu
+                            </a>
+                        </li>
+                        
+                        @* Admin Panel - Only show if user role is Admin *@
+                        @if (Context.Session.GetString("UserRole") == "Admin")
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle nav-link-custom admin-link" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-cogs"></i> Quản trị
+                                </a>
+                                <ul class="dropdown-menu snow-dropdown" aria-labelledby="adminDropdown">
+                                    <li><a class="dropdown-item" asp-controller="Admin" asp-action="Index"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                                    <li><a class="dropdown-item" asp-controller="AdminProducts" asp-action="Index"><i class="fas fa-box"></i> Quản lý sản phẩm</a></li>
+                                    <li><a class="dropdown-item" asp-controller="AdminUsers" asp-action="Index"><i class="fas fa-users"></i> Quản lý người dùng</a></li>
+                                    <li><a class="dropdown-item" asp-controller="AdminCategories" asp-action="Index"><i class="fas fa-receipt"></i> Loại hàng</a></li>
+                                </ul>
+                            </li>
+                        }
+                    </ul>
+                    
+                    <!-- Search Bar -->
+                    <form class="d-flex search-form me-3" asp-controller="Product" asp-action="Search" method="get">
+                        <div class="input-group">
+                            <input class="form-control search-input" type="search" name="query" placeholder="Tìm kiếm sản phẩm..." 
+                                   aria-label="Search" value="@ViewBag.SearchQuery">
+                            <button class="btn search-btn" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <!-- User Menu -->
+                    <ul class="navbar-nav">
+                        @if (Context.Session.GetString("UserId") != null)
+                        {
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle nav-link-custom user-menu" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-circle"></i> @Context.Session.GetString("UserName")
+                                </a>
+                                <ul class="dropdown-menu snow-dropdown dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" asp-controller="Account" asp-action="Profile"><i class="fas fa-user"></i> Hồ sơ</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item text-danger" asp-controller="Account" asp-action="Logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom" asp-controller="Account" asp-action="Login">
+                                    <i class="fas fa-sign-in-alt"></i> Đăng nhập
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav-link-custom btn-register" asp-controller="Account" asp-action="Register">
+                                    <i class="fas fa-user-plus"></i> Đăng ký
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container-fluid main-container">
+        <main role="main" class="pb-4">
+            @RenderBody()
+        </main>
+    </div>
+    
+    <footer class="snow-footer" style="margin-bottom: -100px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="footer-brand">
+                        <i class="fas fa-snowflake"></i> SnowStore
+                    </div>
+                    <p class="footer-text">Cửa hàng trực tuyến uy tín, chất lượng hàng đầu</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <div class="footer-links">
+                        <a asp-controller="Home" asp-action="Privacy">Chính sách bảo mật</a>
+                        <span class="mx-2">|</span>
+                        <a asp-controller="Home" asp-action="Terms">Điều khoản</a>
+                    </div>
+                    <div class="footer-copyright">
+                        &copy; @DateTime.Now.Year - SnowStore. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Snowflake Animation -->
+        <div class="snowflakes" aria-hidden="true">
+            <div class="snowflake">❅</div>
+            <div class="snowflake">❅</div>
+            <div class="snowflake">❆</div>
+            <div class="snowflake">❄</div>
+            <div class="snowflake">❅</div>
+            <div class="snowflake">❆</div>
+            <div class="snowflake">❄</div>
+            <div class="snowflake">❅</div>
+            <div class="snowflake">❆</div>
+            <div class="snowflake">❄</div>
+        </div>
+    </footer>
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

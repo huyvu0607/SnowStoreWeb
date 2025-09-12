@@ -1,0 +1,1177 @@
+﻿@model SnowStoreWeb.Models.Product
+
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+
+<style>
+    :root {
+    /* Bảng màu chính hài hòa với layout xanh dương */
+    --primary-color: #1890ff;        /* Xanh dương chính - khớp với header */
+    --secondary-color: #40a9ff;      /* Xanh dương phụ */
+    --accent-color: #36cfc9;         /* Xanh ngọc - từ gradient header */
+    --success-color: #52c41a;        /* Xanh lá */
+    --danger-color: #ff7875;         /* Đỏ nhạt hơn - dịu mắt */
+    --warning-color: #ffa940;        /* Cam nhạt */
+    --snow-white: #ffffff;
+    --light-gray: #f0f5ff;           /* Xám xanh nhạt thay vì #f5f5f5 */
+    --border-color: #d9e8ff;         /* Viền xanh nhạt thay vì #e8e8e8 */
+    --text-dark: #2c3e50;            /* Xám xanh đậm thay vì #222 */
+    --text-light: #8c8c8c;           /* Giữ nguyên */
+    --shadow-light: rgba(24, 144, 255, 0.08);   /* Shadow xanh nhạt */
+    --shadow-medium: rgba(24, 144, 255, 0.15);  /* Shadow xanh đậm hơn */
+}
+
+
+.product-detail-wrapper {
+    background: var(--snow-white);
+    border-radius: 12px;                    /* Bo tròn nhiều hơn */
+    overflow: hidden;
+    box-shadow: 0 4px 20px var(--shadow-light);  /* Shadow xanh nhạt */
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);  /* Viền xanh nhạt */
+}
+
+.product-header {
+        background: linear-gradient(135deg, rgba(74, 144, 226, 0.95), rgba(127, 179, 211, 0.95)) !important; /* Gradient xanh */
+    color: white;
+    padding: 24px;                          /* Padding lớn hơn */
+    text-align: center;
+}
+
+.product-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.product-content {
+    padding: 24px;                          /* Padding lớn hơn */
+}
+
+.product-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+/* Image Section */
+.image-section {
+    display: flex;
+    flex-direction: column;
+}
+
+    .main-image-container {
+        margin-bottom: 20px;
+        cursor: pointer;
+        /* Tạo container hình vuông */
+        position: relative;
+        width: 100%;
+        padding-top: 100%; /* Tạo tỷ lệ 1:1 (hình vuông) */
+        border: 2px solid var(--border-color);
+        border-radius: 12px;
+        background: #ffffff; /* Background trắng */
+        overflow: hidden;
+    }
+
+    .main-image {
+        /* Đặt ảnh absolute để fit vào container hình vuông */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain; /* Giữ tỷ lệ ảnh, có background trắng nếu cần */
+        border: none; /* Bỏ border của ảnh vì container đã có */
+        border-radius: 10px; /* Nhỏ hơn border-radius của container */
+        transition: all 0.3s ease;
+    }
+
+        .main-image:hover {
+            transform: scale(1.02); /* Giảm scale để tránh vỡ layout */
+            box-shadow: none; /* Bỏ shadow của ảnh */
+        }
+
+    /* Container sẽ có hover effect thay vì ảnh */
+    .main-image-container:hover {
+        box-shadow: 0 8px 24px var(--shadow-medium);
+        transform: scale(1.01);
+    }
+
+.thumbnail-section h5 {
+    font-size: 14px;
+    color: var(--primary-color);           /* Màu xanh thay vì đen */
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    font-weight: 600;                      /* Font đậm hơn */
+}
+
+.thumbnail-grid {
+    display: flex;
+    gap: 10px;                             /* Gap lớn hơn */
+    flex-wrap: wrap;
+}
+
+.thumbnail-item {
+    width: 65px;                           /* Kích thước lớn hơn */
+    height: 65px;
+    border: 2px solid var(--border-color); /* Viền xanh nhạt */
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.thumbnail-item:hover {
+    border-color: var(--secondary-color);   /* Hover xanh */
+    transform: translateY(-2px);            /* Hiệu ứng nâng lên */
+    box-shadow: 0 4px 12px var(--shadow-light);
+}
+
+.thumbnail-item.active {
+    border-color: var(--primary-color);     /* Active xanh */
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.3);
+}
+
+.thumbnail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Product Info Section */
+.product-info {
+    padding-left: 20px;
+}
+
+.product-title {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.price-section {
+    background: linear-gradient(135deg, #e6f7ff, #f0f9ff);  /* Gradient xanh nhạt */
+    padding: 24px;                          /* Padding lớn hơn */
+    border-radius: 12px;                    /* Bo tròn nhiều hơn */
+    margin-bottom: 20px;
+    border: 1px solid var(--border-color);  /* Viền xanh nhạt */
+}
+
+.price-current {
+    font-size: 32px;                        /* Font lớn hơn */
+        color: #ee4d2d; /* Màu xanh thay vì đỏ */
+    font-weight: 600;                       /* Font đậm hơn */
+    margin-right: 15px;
+}
+
+.price-original {
+    font-size: 16px;
+    color: var(--text-light);
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
+.discount-badge {
+    background: linear-gradient(135deg, var(--danger-color), #ff9c6e);  /* Gradient đỏ cam */
+    color: white;
+    padding: 4px 12px;                      /* Padding lớn hơn */
+    border-radius: 20px;                    /* Bo tròn nhiều hơn */
+    font-size: 12px;
+    font-weight: 600;                       /* Font đậm hơn */
+}
+
+.product-specs {
+    margin-bottom: 25px;
+    background: #fafcff;                    /* Nền xanh rất nhạt */
+    border-radius: 12px;                    /* Bo tròn */
+    padding: 16px;                          /* Padding */
+    border: 1px solid var(--border-color); /* Viền xanh nhạt */
+}
+
+.spec-row {
+    display: flex;
+    align-items: center;
+    padding: 14px 0;                        /* Padding lớn hơn */
+    border-bottom: 1px solid var(--border-color);  /* Viền xanh nhạt */
+}
+
+.spec-row:last-child {
+    border-bottom: none;
+}
+
+.spec-icon {
+    width: 42px;                            /* Kích thước lớn hơn */
+    height: 42px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));  /* Gradient xanh */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 16px;                     /* Margin lớn hơn */
+    font-size: 16px;
+    box-shadow: 0 4px 12px var(--shadow-light);  /* Shadow xanh */
+}
+
+.spec-label {
+    font-weight: 600;                       /* Font đậm hơn */
+    color: var(--text-dark);
+    min-width: 120px;
+}
+
+.spec-value {
+    color: var(--secondary-color);          /* Màu xanh */
+    font-weight: 500;                       /* Font đậm hơn */
+}
+
+.spec-value.in-stock {
+    color: var(--success-color);
+    font-weight: 600;                       /* Font đậm hơn */
+}
+
+.spec-value.out-of-stock {
+    color: var(--danger-color);
+    font-weight: 600;                       /* Font đậm hơn */
+}
+
+.spec-value.low-stock {
+    color: var(--warning-color);
+    font-weight: 600;                       /* Font đậm hơn */
+}
+
+.product-badges {
+    display: flex;
+    gap: 10px;                              /* Gap lớn hơn */
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.product-badge {
+    padding: 8px 16px;                      /* Padding lớn hơn */
+    border-radius: 25px;                    /* Bo tròn nhiều hơn */
+    font-size: 12px;
+    font-weight: 600;                       /* Font đậm hơn */
+    display: flex;
+    align-items: center;
+    gap: 6px;                               /* Gap lớn hơn */
+    transition: all 0.3s ease;
+}
+
+.badge-hot {
+    background: linear-gradient(135deg, var(--danger-color), #ff9c6e);  /* Gradient đỏ cam */
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 120, 117, 0.3);
+}
+
+.badge-bestseller {
+    background: linear-gradient(135deg, var(--success-color), #73d13d);  /* Gradient xanh lá */
+    color: white;
+    box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+}
+
+.badge-instock {
+    background: #e6f7ff;                    /* Nền xanh nhạt */
+    color: var(--primary-color);            /* Màu xanh */
+    border: 1px solid #91d5ff;              /* Viền xanh nhạt */
+}
+
+.badge-outstock {
+    background: #fff2f0;
+    color: var(--danger-color);
+    border: 1px solid #ffccc7;
+}
+
+.description-section {
+    background: linear-gradient(135deg, #e6f7ff, #f0f9ff);  /* Gradient xanh nhạt */
+    padding: 20px;                          /* Padding lớn hơn */
+    border-radius: 12px;                    /* Bo tròn nhiều hơn */
+    border-left: 4px solid var(--primary-color);  /* Viền trái xanh */
+    margin-bottom: 25px;
+    box-shadow: 0 2px 8px var(--shadow-light);  /* Shadow xanh nhạt */
+}
+
+.description-section .desc-icon {
+    color: var(--primary-color);            /* Màu xanh */
+    margin-right: 8px;
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 28px;                     /* Padding lớn hơn */
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));  /* Gradient xanh */
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;                    /* Bo tròn nhiều hơn */
+    font-weight: 600;                       /* Font đậm hơn */
+    transition: all 0.3s ease;
+    gap: 10px;                              /* Gap lớn hơn */
+    box-shadow: 0 4px 16px var(--shadow-light);  /* Shadow xanh */
+}
+
+.back-button:hover {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));  /* Gradient hover */
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);            /* Hiệu ứng nâng lên */
+    box-shadow: 0 6px 20px var(--shadow-medium);
+}
+
+/* Other Products Section */
+.other-products-section {
+    background: var(--snow-white);
+    border-radius: 12px;                    /* Bo tròn nhiều hơn */
+    padding: 24px;                          /* Padding lớn hơn */
+    box-shadow: 0 4px 20px var(--shadow-light);  /* Shadow xanh */
+    border: 1px solid var(--border-color);  /* Viền xanh nhạt */
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;                    /* Margin lớn hơn */
+    padding-bottom: 16px;                   /* Padding lớn hơn */
+    border-bottom: 2px solid var(--border-color);  /* Viền xanh nhạt */
+}
+
+.section-header .icon {
+    color: var(--primary-color);            /* Màu xanh */
+    font-size: 22px;                        /* Font lớn hơn */
+    margin-right: 12px;                     /* Margin lớn hơn */
+}
+
+.section-header h3 {
+    color: var(--text-dark);
+    font-size: 20px;                        /* Font lớn hơn */
+    font-weight: 600;                       /* Font đậm hơn */
+    margin: 0;
+    margin-right: 10px;
+}
+
+.section-header .subtitle {
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid var(--border-color);  /* Viền xanh nhạt */
+    border-radius: 12px;                    /* Bo tròn nhiều hơn */
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: var(--snow-white);
+    box-shadow: 0 2px 8px var(--shadow-light);  /* Shadow xanh nhạt */
+}
+
+.product-card:hover {
+    transform: translateY(-6px);            /* Hiệu ứng nâng lên nhiều hơn */
+    box-shadow: 0 12px 32px var(--shadow-medium);  /* Shadow đậm hơn */
+    border-color: var(--primary-color);     /* Viền xanh khi hover */
+}
+
+.product-card-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain; /* Hiển thị toàn bộ ảnh, có thể có khoảng trống */
+        border-bottom: 1px solid var(--border-color);
+        display: block;
+        background: #f8f9fa; /* Viền xanh nhạt */
+}
+
+.product-card-info {
+    padding: 16px;                          /* Padding lớn hơn */
+}
+
+.product-card-name {
+    font-size: 14px;
+    color: var(--text-dark);
+    margin-bottom: 10px;                    /* Margin lớn hơn */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+    font-weight: 500;                       /* Font đậm hơn */
+}
+
+.product-card-price {
+    font-size: 16px;
+    color: var(--primary-color);            /* Màu xanh thay vì đỏ */
+    font-weight: 600;                       /* Font đậm hơn */
+    margin-bottom: 12px;                    /* Margin lớn hơn */
+}
+
+.product-card-badges {
+    display: flex;
+    gap: 6px;                               /* Gap lớn hơn */
+    flex-wrap: wrap;
+}
+
+.product-card-badges .product-badge {
+    font-size: 10px;
+    padding: 4px 8px;                       /* Padding lớn hơn */
+}
+
+/* Lightbox Gallery Styles */
+.lightbox {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+.lightbox.show {
+    display: block;
+}
+
+@@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.lightbox-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.lightbox-main-image {
+    max-width: 80%;
+    max-height: 70%;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-thumbnails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    max-width: 80%;
+    overflow-x: auto;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-thumbnail {
+    width: 60px;
+    height: 60px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.lightbox-thumbnail:hover {
+    border-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.lightbox-thumbnail.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.5);
+}
+
+.lightbox-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 10000;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev {
+    left: 30px;
+}
+
+.lightbox-next {
+    right: 30px;
+}
+
+.lightbox-info {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+}
+
+/* Responsive */
+@@media (max-width: 768px) {
+    .product-main {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .product-info {
+        padding-left: 0;
+    }
+    
+    .price-current {
+        font-size: 26px;                    /* Giảm font size trên mobile */
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+    }
+    
+    .container {
+        padding: 12px;                      /* Padding lớn hơn */
+    }
+
+    .lightbox-main-image {
+        max-width: 95%;
+        max-height: 60%;
+    }
+
+    .lightbox-thumbnails {
+        max-width: 95%;
+    }
+
+    .lightbox-thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+
+    .lightbox-close {
+        top: 10px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 30px;
+    }
+
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .lightbox-prev {
+        left: 15px;
+    }
+
+    .lightbox-next {
+        right: 15px;
+    }
+}
+
+@@media (max-width: 480px) {
+    .product-header h1 {
+        font-size: 1.5rem;                  /* Font lớn hơn */
+    }
+    
+    .price-current {
+        font-size: 22px;                    /* Font lớn hơn */
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}
+
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.fade-transition {
+    opacity: 0.5;
+    transition: opacity 0.3s ease;          /* Transition mượt hơn */
+}
+</style>
+
+<!-- Lightbox Gallery HTML -->
+<div id="lightbox" class="lightbox">
+    <div class="lightbox-content">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img id="lightboxImage" class="lightbox-main-image" src="" alt="">
+        <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <div class="lightbox-thumbnails" id="lightboxThumbnails">
+            <!-- Thumbnails will be generated here -->
+        </div>
+        <div class="lightbox-info" id="lightboxInfo">
+            <span id="imageCounter">1 / 1</span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="product-detail-wrapper">
+        <div class="product-header">
+            <h1>@Model.Name</h1>
+        </div>
+        
+        <div class="product-content">
+            <div class="product-main">
+                <!-- Image Section -->
+                <div class="image-section">
+                    <div class="main-image-container" onclick="openLightbox(0)">
+                        <img src="@Model.ImageUrl" alt="@Model.Name" class="main-image" id="mainImage" />
+                    </div>
+
+                    @if (Model.ProductImages != null && Model.ProductImages.Any())
+                    {
+                        <div class="thumbnail-section">
+                            <h5><i class="fas fa-images"></i> Ảnh sản phẩm:</h5>
+                            <div class="thumbnail-grid">
+                                <!-- Main image thumbnail -->
+                                <div class="thumbnail-item active" onclick="changeMainImage('@Model.ImageUrl', this)" data-lightbox-index="0">
+                                    <img src="@Model.ImageUrl" alt="@Model.Name" />
+                                </div>
+                                
+                                @{int index = 1;}
+                                @foreach (var img in Model.ProductImages.OrderBy(i => i.SortOrder))
+                                {
+                                    <div class="thumbnail-item" onclick="changeMainImage('@img.ImageUrl', this)" data-lightbox-index="@index">
+                                        <img src="@img.ImageUrl" alt="@Model.Name" />
+                                    </div>
+                                    index++;
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Product Info Section -->
+                <div class="product-info">
+                    <div class="price-section">
+                        <span class="price-current">@Model.Price.ToString("N0") đ</span>
+                        @* Có thể thêm giá gốc và discount nếu có *@
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(Model.Description))
+                    {
+                        <div class="description-section">
+                            <i class="spec-label">Mô tả:</i>
+                            @Model.Description
+                        </div>
+                    }
+
+                    <div class="product-specs">
+                        <div class="spec-row">
+                            <div class="spec-icon">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <div class="spec-label">Số lượng còn:</div>
+                            <div class="spec-value @(Model.StockQuantity > 0 ? (Model.StockQuantity < 10 ? "low-stock" : "in-stock") : "out-of-stock")">
+                                @Model.StockQuantity
+                                @if (Model.StockQuantity <= 0)
+                                {
+                                    <span>(Hết hàng)</span>
+                                }
+                                else if (Model.StockQuantity < 10)
+                                {
+                                    <span>(Sắp hết)</span>
+                                }
+                            </div>
+                        </div>
+                        
+                        <div class="spec-row">
+                            <div class="spec-icon">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div class="spec-label">Danh mục:</div>
+                            <div class="spec-value">@(Model.Category?.Name ?? "Không phân loại")</div>
+                        </div>
+                        
+                        <div class="spec-row">
+                            <div class="spec-icon">
+                                <i class="fas fa-barcode"></i>
+                            </div>
+                            <div class="spec-label">Mã sản phẩm:</div>
+                            <div class="spec-value">#@Model.ProductId.ToString("D6")</div>
+                        </div>
+                    </div>
+
+                    <div class="product-badges">
+                        @if (Model.IsHot == true)
+                        {
+                            <span class="product-badge badge-hot">
+                                <i class="fas fa-fire"></i>HOT
+                            </span>
+                        }
+                        @if (Model.IsBestSeller == true)
+                        {
+                            <span class="product-badge badge-bestseller">
+                                <i class="fas fa-star"></i>Bán chạy
+                            </span>
+                        }
+                        @if (Model.StockQuantity > 0)
+                        {
+                            <span class="product-badge badge-instock">
+                                <i class="fas fa-check"></i>Còn hàng
+                            </span>
+                        }
+                        else
+                        {
+                            <span class="product-badge badge-outstock">
+                                <i class="fas fa-times"></i>Hết hàng
+                            </span>
+                        }
+                    </div>
+
+                    <div>
+                        <a asp-action="Index" class="back-button">
+                            <i class="fas fa-arrow-left"></i>Quay lại danh sách
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Other Products Section -->
+    @if (ViewBag.RelatedProducts != null && ((List<SnowStoreWeb.Models.Product>)ViewBag.RelatedProducts).Any())
+    {
+        <div class="other-products-section">
+            <div class="section-header">
+                <i class="fas fa-star icon"></i>
+                <h3>Những sản phẩm khác</h3>
+                <span class="subtitle">Khám phá thêm những sản phẩm tuyệt vời khác</span>
+            </div>
+            
+            <div class="products-grid">
+                @foreach (var product in (List<SnowStoreWeb.Models.Product>)ViewBag.RelatedProducts)
+                {
+                    <div class="product-card" onclick="viewProduct(@product.ProductId)">
+                        <img src="@product.ImageUrl" alt="@product.Name" class="product-card-image" />
+                        <div class="product-card-info">
+                            <div class="product-card-name">@product.Name</div>
+                            <div class="product-card-price">@product.Price.ToString("N0") đ</div>
+                            <div class="product-card-badges">
+                                @if (product.IsHot == true)
+                                {
+                                    <span class="product-badge badge-hot">
+                                        <i class="fas fa-fire"></i>HOT
+                                    </span>
+                                }
+                                @if (product.IsBestSeller == true)
+                                {
+                                    <span class="product-badge badge-bestseller">
+                                        <i class="fas fa-star"></i>Bán chạy
+                                    </span>
+                                }
+                                @if (product.StockQuantity > 0)
+                                {
+                                    <span class="product-badge badge-instock">
+                                        <i class="fas fa-check"></i>Còn hàng
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="product-badge badge-outstock">
+                                        <i class="fas fa-times"></i>Hết hàng
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Lightbox Gallery Variables
+        let currentImageIndex = 0;
+        let allImages = [];
+
+        // Initialize gallery when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGallery();
+            initializeOtherFeatures();
+        });
+
+        function initializeGallery() {
+            // Collect all images for lightbox
+            allImages = [];
+            
+            // Add main image
+            allImages.push({
+                src: '@Model.ImageUrl',
+                alt: '@Model.Name'
+            });
+
+            // Add additional images if any
+            @if (Model.ProductImages != null && Model.ProductImages.Any())
+            {
+                @foreach (var img in Model.ProductImages.OrderBy(i => i.SortOrder))
+                {
+                    <text>
+                    allImages.push({
+                        src: '@img.ImageUrl',
+                        alt: '@Model.Name'
+                    });
+                    </text>
+                }
+            }
+
+            // Generate lightbox thumbnails
+            generateLightboxThumbnails();
+        }
+
+        function generateLightboxThumbnails() {
+            const thumbnailsContainer = document.getElementById('lightboxThumbnails');
+            thumbnailsContainer.innerHTML = '';
+
+            allImages.forEach((image, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = 'lightbox-thumbnail';
+                if (index === 0) thumbnail.classList.add('active');
+                
+                thumbnail.innerHTML = `<img src="${image.src}" alt="${image.alt}">`;
+                thumbnail.onclick = () => goToImage(index);
+                
+                thumbnailsContainer.appendChild(thumbnail);
+            });
+        }
+
+        function openLightbox(imageIndex = 0) {
+            currentImageIndex = imageIndex;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            const imageCounter = document.getElementById('imageCounter');
+
+            // Set image and info
+            lightboxImage.src = allImages[currentImageIndex].src;
+            lightboxImage.alt = allImages[currentImageIndex].alt;
+            imageCounter.textContent = `${currentImageIndex + 1} / ${allImages.length}`;
+
+            // Update active thumbnail
+            updateActiveThumbnail();
+
+            // Show lightbox with animation
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+
+            // Add keyboard event listener
+            document.addEventListener('keydown', handleKeyPress);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Restore scroll
+
+            // Remove keyboard event listener
+            document.removeEventListener('keydown', handleKeyPress);
+        }
+
+        function changeImage(direction) {
+            currentImageIndex += direction;
+
+            // Loop around if at beginning/end
+            if (currentImageIndex >= allImages.length) {
+                currentImageIndex = 0;
+            } else if (currentImageIndex < 0) {
+                currentImageIndex = allImages.length - 1;
+            }
+
+            // Update lightbox
+            const lightboxImage = document.getElementById('lightboxImage');
+            const imageCounter = document.getElementById('imageCounter');
+
+            // Add fade effect
+            lightboxImage.style.opacity = '0.3';
+            
+            setTimeout(() => {
+                lightboxImage.src = allImages[currentImageIndex].src;
+                lightboxImage.alt = allImages[currentImageIndex].alt;
+                imageCounter.textContent = `${currentImageIndex + 1} / ${allImages.length}`;
+                lightboxImage.style.opacity = '1';
+            }, 150);
+
+            updateActiveThumbnail();
+        }
+
+        function goToImage(index) {
+            currentImageIndex = index;
+            
+            const lightboxImage = document.getElementById('lightboxImage');
+            const imageCounter = document.getElementById('imageCounter');
+
+            // Add fade effect
+            lightboxImage.style.opacity = '0.3';
+            
+            setTimeout(() => {
+                lightboxImage.src = allImages[currentImageIndex].src;
+                lightboxImage.alt = allImages[currentImageIndex].alt;
+                imageCounter.textContent = `${currentImageIndex + 1} / ${allImages.length}`;
+                lightboxImage.style.opacity = '1';
+            }, 150);
+
+            updateActiveThumbnail();
+        }
+
+        function updateActiveThumbnail() {
+            const thumbnails = document.querySelectorAll('.lightbox-thumbnail');
+            thumbnails.forEach((thumb, index) => {
+                if (index === currentImageIndex) {
+                    thumb.classList.add('active');
+                } else {
+                    thumb.classList.remove('active');
+                }
+            });
+        }
+
+        function handleKeyPress(e) {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    changeImage(-1);
+                    break;
+                case 'ArrowRight':
+                    changeImage(1);
+                    break;
+                case 'Escape':
+                    closeLightbox();
+                    break;
+            }
+        }
+
+        // Original functions (updated to work with lightbox)
+        function changeMainImage(newImageSrc, thumbnailElement) {
+            const mainImage = document.getElementById('mainImage');
+            const allThumbnails = document.querySelectorAll('.thumbnail-item');
+            
+            // Add fade effect
+            mainImage.classList.add('fade-transition');
+            
+            // Remove active class from all thumbnails
+            allThumbnails.forEach(thumb => thumb.classList.remove('active'));
+            
+            // Add active class to clicked thumbnail
+            thumbnailElement.classList.add('active');
+
+            // Update current index for lightbox
+            const lightboxIndex = parseInt(thumbnailElement.getAttribute('data-lightbox-index'));
+            currentImageIndex = lightboxIndex;
+
+            setTimeout(() => {
+                mainImage.src = newImageSrc;
+                mainImage.classList.remove('fade-transition');
+            }, 100);
+
+            // Update main image container click handler
+            const mainImageContainer = document.querySelector('.main-image-container');
+            mainImageContainer.onclick = () => openLightbox(currentImageIndex);
+        }
+
+        // function viewProduct(productId) {
+        //     Add loading effect
+        //     const card = event.currentTarget;
+        //     card.classList.add('loading');
+            
+        //     Navigate to product detail
+        //     window.location.href = `@Url.Action("Details", "Product")?id=${productId}`;
+        // }
+        function viewProduct(productId) {
+            try {
+                console.log('Navigating to product ID:', productId);
+
+                // Tạo URL mới hoàn toàn thay vì append
+                const baseUrl = window.location.origin; // https://localhost:7239
+                const newUrl = `${baseUrl}/Product/Details/${productId}`;
+
+                console.log('New URL:', newUrl);
+                window.location.href = newUrl;
+
+            } catch (error) {
+                console.error('Error navigating to product:', error);
+                alert('Có lỗi xảy ra khi chuyển trang. Vui lòng thử lại!');
+            }
+        }
+        function initializeOtherFeatures() {
+            // Add loading effect for back button
+            const backButton = document.querySelector('.back-button');
+            if (backButton) {
+                backButton.addEventListener('click', function(e) {
+                    this.classList.add('loading');
+                });
+            }
+
+            // Initialize lazy loading for images
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('load', function() {
+                    this.style.opacity = '1';
+                });
+            });
+
+            // Smooth scroll animation for other products
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe product cards for animation
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        }
+
+        // Close lightbox when clicking outside image
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+
+        // Prevent lightbox from closing when clicking on image or controls
+        document.querySelector('.lightbox-content').addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isZoomed = false;
+
+        document.getElementById('lightbox').addEventListener('touchstart', function(e) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        });
+
+        document.getElementById('lightbox').addEventListener('touchend', function(e) {
+            if (!touchStartX || !touchStartY) return;
+
+            let touchEndX = e.changedTouches[0].clientX;
+            let touchEndY = e.changedTouches[0].clientY;
+
+            let deltaX = touchStartX - touchEndX;
+            let deltaY = touchStartY - touchEndY;
+
+            // Only consider horizontal swipes (ignore vertical)
+            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                if (deltaX > 0) {
+                    // Swipe left - next image
+                    changeImage(1);
+                } else {
+                    // Swipe right - previous image
+                    changeImage(-1);
+                }
+            }
+
+            touchStartX = 0;
+            touchStartY = 0;
+        });
+
+        // Double click to zoom
+        document.getElementById('lightboxImage').addEventListener('dblclick', function() {
+            toggleZoom();
+        });
+
+        function toggleZoom() {
+            const lightboxImage = document.getElementById('lightboxImage');
+            
+            if (!isZoomed) {
+                lightboxImage.style.maxWidth = '100%';
+                lightboxImage.style.maxHeight = '100%';
+                lightboxImage.style.cursor = 'zoom-out';
+                isZoomed = true;
+            } else {
+                lightboxImage.style.maxWidth = '90%';
+                lightboxImage.style.maxHeight = '85%';
+                lightboxImage.style.cursor = 'zoom-in';
+                isZoomed = false;
+            }
+        }
+    </script>
+}

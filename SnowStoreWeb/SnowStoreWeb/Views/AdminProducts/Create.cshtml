@@ -1,0 +1,125 @@
+﻿@model SnowStoreWeb.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "_AdminLayout";
+}
+
+<h1>Tạo mới</h1>
+
+<h4>Sản phẩm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <input name="__RequestVerificationToken" type="hidden" value="@Html.AntiForgeryToken()" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="MainImageFile" class="control-label">Ảnh chính sản phẩm</label>
+                <input type="file" name="MainImageFile" id="MainImageFile" class="form-control" accept="image/*" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                <div class="mt-2">
+                    <img id="mainImagePreview" src="#" alt="Xem trước ảnh chính" style="max-width: 200px; display: none;" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="AdditionalImageFiles" class="control-label">Ảnh phụ sản phẩm (chọn nhiều ảnh)</label>
+                <input type="file" name="AdditionalImageFiles" id="AdditionalImageFiles" class="form-control" accept="image/*" multiple />
+                <span class="text-danger" id="additionalImageFilesError"></span>
+                <div class="mt-2" id="additionalImagePreviewContainer" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Tạo mới" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Quay lại danh sách</a>
+</div>
+
+@section Scripts {
+    <script>
+        // Xem trước ảnh chính
+        document.getElementById('MainImageFile').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const mainImagePreview = document.getElementById('mainImagePreview');
+
+            if (file) {
+                if (!file.type.startsWith('image/') || file.size > 5 * 1024 * 1024) {
+                    alert('Vui lòng chọn một tệp ảnh (jpg, jpeg, png, gif) dưới 5MB.');
+                    event.target.value = '';
+                    mainImagePreview.src = '#';
+                    mainImagePreview.style.display = 'none';
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    mainImagePreview.src = e.target.result;
+                    mainImagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                mainImagePreview.src = '#';
+                mainImagePreview.style.display = 'none';
+            }
+        });
+
+        // Xem trước ảnh phụ
+        document.getElementById('AdditionalImageFiles').addEventListener('change', function (event) {
+            const files = event.target.files;
+            const additionalImagePreviewContainer = document.getElementById('additionalImagePreviewContainer');
+            additionalImagePreviewContainer.innerHTML = ''; // Xóa các ảnh xem trước cũ
+
+            if (files.length > 5) {
+                alert('Chỉ được tải lên tối đa 5 ảnh phụ.');
+                event.target.value = '';
+                return;
+            }
+
+            if (files.length > 0) {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    if (!file.type.startsWith('image/') || file.size > 5 * 1024 * 1024) {
+                        alert('Vui lòng chỉ chọn các tệp ảnh (jpg, jpeg, png, gif) dưới 5MB.');
+                        event.target.value = '';
+                        additionalImagePreviewContainer.innerHTML = '';
+                        return;
+                    }
+
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.style.maxWidth = '100px';
+                        img.style.border = '1px solid #ccc';
+                        img.style.borderRadius = '5px';
+                        additionalImagePreviewContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+    </script>
+}

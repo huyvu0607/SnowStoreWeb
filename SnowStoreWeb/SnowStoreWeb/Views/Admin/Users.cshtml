@@ -1,0 +1,28 @@
+﻿@model IEnumerable<SnowStoreWeb.Models.User>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Quản lý người dùng";
+}
+<h2>👥 Quản lý người dùng</h2>
+
+<table class="table table-bordered">
+    <thead class="table-light">
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.UserId</td>
+                <td>@u.Name</td>
+                <td>@u.Email</td>
+                <td>@u.Role</td>
+            </tr>
+        }
+    </tbody>
+</table>
