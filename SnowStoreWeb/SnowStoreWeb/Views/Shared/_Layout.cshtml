@@ -3,19 +3,254 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SnowStore</title>
+    <title>@ViewData["Title"]  SnowStore</title>
+    <link rel="icon" type="image/png" href="~/images/snowstore-logo.png" />
+
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SnowStoreWeb.styles.css" asp-append-version="true" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+
+/* SnowStore Preloader CSS */
+
+/* Preloader Container */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(245, 245, 245, 0.95);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+}
+
+#preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Preloader Content */
+.preloader-content {
+    text-align: center;
+    color: #333;
+}
+
+.snowstore-logo {
+    margin-bottom: 30px;
+    animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    display: block;
+    animation: snowflakeColorChange 1.2s ease-in-out infinite, rotate 2s linear infinite;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.snowstore-logo h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 2px;
+    color: #333;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Loading Animation */
+.loading-animation {
+    margin: 20px 0;
+}
+
+.loading-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    background: #4A9CE8;
+    border-radius: 50%;
+    animation: bounce 1.4s ease-in-out infinite both;
+    box-shadow: 0 2px 4px rgba(74, 156, 232, 0.3);
+}
+
+.dot1 {
+    animation-delay: -0.32s;
+}
+
+.dot2 {
+    animation-delay: -0.16s;
+}
+
+.dot3 {
+    animation-delay: 0s;
+}
+
+/* Progress Bar */
+.progress-container {
+    width: 200px;
+    height: 4px;
+    background: rgba(74, 156, 232, 0.2);
+    border-radius: 2px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #4A9CE8, #6BB3F0);
+    border-radius: 2px;
+    animation: loadProgress 3s ease-in-out infinite;
+}
+
+/* Loading Text */
+.loading-text {
+    font-size: 1.1rem;
+    margin: 15px 0 0 0;
+    color: #4A9CE8;
+    font-weight: 600;
+    animation: pulse 2s ease-in-out infinite;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Content Control */
+.main-content {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.main-content.show {
+    opacity: 1;
+}
+
+/* Animations */
+@@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@@keyframes snowflakeColorChange {
+    0% {
+        color: #ffffff;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    }
+    30% {
+        color: #e3f2fd;
+        filter: drop-shadow(0 4px 8px rgba(74, 156, 232, 0.2));
+    }
+    60% {
+        color: #90caf9;
+        filter: drop-shadow(0 4px 8px rgba(74, 156, 232, 0.3));
+    }
+    80% {
+        color: #64b5f6;
+        filter: drop-shadow(0 4px 8px rgba(74, 156, 232, 0.4));
+    }
+    100% {
+        color: #4A9CE8;
+        filter: drop-shadow(0 4px 8px rgba(74, 156, 232, 0.5));
+    }
+}
+
+@@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0) translateY(0);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1) translateY(-10px);
+        opacity: 1;
+        box-shadow: 0 4px 8px rgba(74, 156, 232, 0.4);
+    }
+}
+
+@@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+@@keyframes loadProgress {
+    0% {
+        width: 0%;
+    }
+    70% {
+        width: 85%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* Responsive Design */
+@@media (max-width: 768px) {
+    .logo-icon {
+        font-size: 3rem;
+    }
+    
+    .snowstore-logo h2 {
+        font-size: 2rem;
+    }
+    
+    .loading-text {
+        font-size: 1rem;
+    }
+    
+    .progress-container {
+        width: 150px;
+    }
+}
+
+@@media (max-width: 480px) {
+    .logo-icon {
+        font-size: 2.5rem;
+    }
+    
+    .snowstore-logo h2 {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+}
+    </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg snow-navbar">
             <div class="container">
                 <a class="navbar-brand snow-brand" asp-controller="Home" asp-action="Index">
-                    <i class="fas fa-snowflake brand-icon"></i>
-                    SnowStore
+                    Snow
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
@@ -38,14 +273,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-link-custom @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() == "Contact" ? "active" : "")" 
-                               asp-controller="Home" asp-action="Contact">
-                               <i class="fas fa-phone"></i> Liên hệ
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() == "About" ? "active" : "")" 
-                               asp-controller="Home" asp-action="About">
+                            <a class="nav-link nav-link-custom @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" && ViewContext.RouteData.Values["Action"]?.ToString() == "Privacy" ? "active" : "")"
+                               asp-controller="Home" asp-action="Privacy">
                                <i class="fas fa-info-circle"></i> Giới thiệu
                             </a>
                         </li>
@@ -68,7 +297,7 @@
                     </ul>
                     
                     <!-- Search Bar -->
-                    <form class="d-flex search-form me-3" asp-controller="Product" asp-action="Search" method="get">
+                    @* <form class="d-flex search-form me-3" asp-controller="Product" asp-action="Search" method="get">
                         <div class="input-group">
                             <input class="form-control search-input" type="search" name="query" placeholder="Tìm kiếm sản phẩm..." 
                                    aria-label="Search" value="@ViewBag.SearchQuery">
@@ -76,7 +305,7 @@
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
-                    </form>
+                    </form> *@
                     
                     <!-- User Menu -->
                     <ul class="navbar-nav">
@@ -93,7 +322,7 @@
                                 </ul>
                             </li>
                         }
-                        else
+                        @* else
                         {
                             <li class="nav-item">
                                 <a class="nav-link nav-link-custom" asp-controller="Account" asp-action="Login">
@@ -105,7 +334,7 @@
                                     <i class="fas fa-user-plus"></i> Đăng ký
                                 </a>
                             </li>
-                        }
+                        } *@
                     </ul>
                 </div>
             </div>
@@ -116,8 +345,55 @@
         <main role="main" class="pb-4">
             @RenderBody()
         </main>
+        
     </div>
-    
+    @RenderSection("MobileSidebars", required: false)
+    <!-- Lightbox Gallery HTML -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-content">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img id="lightboxImage" class="lightbox-main-image" src="" alt="">
+            <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-thumbnails" id="lightboxThumbnails">
+                <!-- Thumbnails will be generated here -->
+            </div>
+            <div class="lightbox-info" id="lightboxInfo">
+                <span id="imageCounter">1 / 1</span>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="snowstore-logo">
+                <i class="fas fa-snowflake logo-icon"></i>
+                <h2>SnowStore</h2>
+            </div>
+            <div class="loading-animation">
+                <div class="loading-dots">
+                    <div class="dot dot1"></div>
+                    <div class="dot dot2"></div>
+                    <div class="dot dot3"></div>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <p class="loading-text">Đang tải trang...</p>
+        </div>
+    </div>
+    <!-- Popup Banner Container -->
+    @if (ViewBag.ActiveBanners != null && ((List<SnowStoreWeb.Models.PopupBanner>)ViewBag.ActiveBanners).Any())
+    {
+        <div id="popup-overlay" class="popup-overlay">
+            <!-- Popup content sẽ được tạo bởi JavaScript -->
+        </div>
+    }
     <footer class="snow-footer" style="margin-bottom: -100px;">
         <div class="container">
             <div class="row">
@@ -154,10 +430,149 @@
             <div class="snowflake">❄</div>
         </div>
     </footer>
-    
+    <a href="#" class="back-to-top" style=" color: white;">
+        <i class="fas fa-chevron-up"></i>
+    </a>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        class SnowStorePreloader {
+            constructor(options = {}) {
+                this.options = {
+                    minLoadTime: options.minLoadTime || 800, // Minimum loading time in ms (dưới 1 giây)
+                    fadeOutDuration: options.fadeOutDuration || 300, // Fade out animation nhanh hơn
+                    autoHide: options.autoHide !== false, // Auto hide when page loads
+                    ...options
+                };
+
+                this.preloader = null;
+                this.mainContent = null;
+                this.isLoading = false;
+
+                this.init();
+            }
+
+            init() {
+                // Wait for DOM to be ready
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', () => this.setup());
+                } else {
+                    this.setup();
+                }
+            }
+
+            setup() {
+                this.preloader = document.getElementById('preloader');
+                this.mainContent = document.querySelector('.main-content');
+
+                if (!this.preloader) {
+                    console.warn('SnowStore Preloader: #preloader element not found');
+                    return;
+                }
+
+                if (this.options.autoHide) {
+                    this.startAutoHideTimer();
+                }
+
+                // Also hide when window is fully loaded
+                window.addEventListener('load', () => {
+                    setTimeout(() => {
+                        if (this.isLoading) {
+                            this.hide();
+                        }
+                    }, 300); // Giảm delay xuống 300ms
+                });
+            }
+
+            startAutoHideTimer() {
+                this.isLoading = true;
+
+                setTimeout(() => {
+                    this.hide();
+                }, this.options.minLoadTime);
+            }
+
+            show() {
+                if (!this.preloader) return;
+
+                this.isLoading = true;
+                this.preloader.style.display = 'flex';
+                this.preloader.classList.remove('fade-out');
+
+                if (this.mainContent) {
+                    this.mainContent.classList.remove('show');
+                }
+
+                // Trigger reflow for smooth animation
+                this.preloader.offsetHeight;
+            }
+
+            hide() {
+                if (!this.preloader || !this.isLoading) return;
+
+                this.isLoading = false;
+
+                // Add fade out class
+                this.preloader.classList.add('fade-out');
+
+                // Show main content
+                if (this.mainContent) {
+                    this.mainContent.classList.add('show');
+                }
+
+                // Remove from DOM after animation
+                setTimeout(() => {
+                    if (this.preloader && !this.isLoading) {
+                        this.preloader.style.display = 'none';
+                    }
+                }, this.options.fadeOutDuration);
+
+                // Trigger custom event
+                this.triggerEvent('preloaderHidden');
+            }
+
+            isVisible() {
+                return this.isLoading && this.preloader &&
+                    !this.preloader.classList.contains('fade-out');
+            }
+
+            triggerEvent(eventName, detail = {}) {
+                const event = new CustomEvent(eventName, {
+                    detail: { preloader: this, ...detail }
+                });
+                document.dispatchEvent(event);
+            }
+
+            // Static methods for easy access
+            static show() {
+                if (window.snowStorePreloader) {
+                    window.snowStorePreloader.show();
+                }
+            }
+
+            static hide() {
+                if (window.snowStorePreloader) {
+                    window.snowStorePreloader.hide();
+                }
+            }
+        }
+
+        // Auto-initialize when script loads
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create global instance
+            window.snowStorePreloader = new SnowStorePreloader();
+
+            // Add global functions for backward compatibility
+            window.showPreloader = function () {
+                SnowStorePreloader.show();
+            };
+
+            window.hidePreloader = function () {
+                SnowStorePreloader.hide();
+            };
+        });
+    </script>
 </body>
 </html>

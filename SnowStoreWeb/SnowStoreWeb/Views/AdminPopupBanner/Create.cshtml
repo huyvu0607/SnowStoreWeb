@@ -1,0 +1,145 @@
+﻿@model SnowStoreWeb.Models.PopupBanner
+@{
+    ViewData["Title"] = "Thêm mới Popup Banner";
+    Layout = "_AdminLayout";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"]</h3>
+                </div>
+                <form asp-action="Create" method="post" enctype="multipart/form-data">
+                    <!-- Hidden field for ImageUrl to avoid validation error -->
+                    <input asp-for="ImageUrl" type="hidden" />
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Title" class="form-label"></label>
+                                    <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề popup banner" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="imageFile" class="form-label">Hình ảnh <span class="text-danger">*</span></label>
+                                    <input type="file" id="imageFile" name="imageFile" class="form-control"
+                                           accept="image/*" />
+                                    <div class="form-text">
+                                        Chấp nhận: JPG, JPEG, PNG, GIF, WEBP. Tối đa 5MB.
+                                    </div>
+                                    @if (ViewData.ModelState["imageFile"]?.Errors.Any() == true)
+                                    {
+                                        <div class="text-danger">
+                                            @foreach (var error in ViewData.ModelState["imageFile"].Errors)
+                                            {
+                                                <div>@error.ErrorMessage</div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Thứ tự hiển thị</label>
+                                    <input type="text" class="form-control" value="Tự động tăng" disabled />
+                                    <div class="form-text">
+                                        Thứ tự sẽ được tự động gán theo số thứ tự tiếp theo
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Status" class="form-label"></label>
+                                    <select asp-for="Status" class="form-select" asp-items="Html.GetEnumSelectList<PopupStatus>()"></select>
+                                    <span asp-validation-for="Status" class="text-danger"></span>
+                                    <div class="form-text">
+                                        Mặc định khi tạo mới sẽ là <b>Chưa được hiển thị</b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label"></label>
+                            <textarea asp-for="Description" class="form-control" rows="4"
+                                      placeholder="Nhập mô tả popup banner (tùy chọn)"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <!-- Preview hình ảnh -->
+                        <div class="mb-3" id="image-preview-section" style="display: none;">
+                            <label class="form-label">Xem trước hình ảnh:</label>
+                            <div class="border rounded p-3 text-center" style="max-height: 300px; overflow: hidden;">
+                                <img id="image-preview" src="" alt="Preview" class="img-fluid"
+                                     style="max-height: 280px; max-width: 100%; object-fit: contain;" />
+                            </div>
+                            <div class="mt-2">
+                                <small id="image-info" class="text-muted"></small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("Index")" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Quay lại
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Lưu
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            // Handle file input change
+            $('#imageFile').on('change', function () {
+                const file = this.files[0];
+                const previewSection = $('#image-preview-section');
+                const previewImg = $('#image-preview');
+                const imageInfo = $('#image-info');
+                if (file) {
+                    // Validate file type
+                    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+                    if (!allowedTypes.includes(file.type)) {
+                        alert('Vui lòng chọn file hình ảnh hợp lệ (JPG, PNG, GIF, WEBP)');
+                        this.value = '';
+                        previewSection.hide();
+                        return;
+                    }
+                    // Validate file size (5MB = 5 * 1024 * 1024 bytes)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Kích thước file không được vượt quá 5MB');
+                        this.value = '';
+                        previewSection.hide();
+                        return;
+                    }
+                    // Create FileReader to preview image
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        previewImg.attr('src', e.target.result);
+                        previewSection.show();
+                        // Show file info
+                        const sizeKB = Math.round(file.size / 1024);
+                        const sizeText = sizeKB < 1024 ? sizeKB + ' KB' : Math.round(sizeKB / 1024 * 10) / 10 + ' MB';
+                        imageInfo.text(`File: ${file.name} | Kích thước: ${sizeText}`);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    previewSection.hide();
+                }
+            });
+        });
+    </script>
+}

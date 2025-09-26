@@ -1,49 +1,283 @@
 @model SnowStoreWeb.Models.User
 
 @{
+    ViewData["Title"] = "User Details";
     Layout = "_AdminLayout";
-    ViewData["Title"] = "Details";
+    var currentUserEmail = User.Identity.Name;
+    var isCurrentUser = Model.Email == currentUserEmail;
 }
 
-<h1>Details</h1>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-user-circle"></i> User Details
+                        @if (isCurrentUser)
+                        {
+                            <span class="badge bg-info ms-2">Your Account</span>
+                        }
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <dl class="row">
+                                <dt class="col-sm-4">User ID:</dt>
+                                <dd class="col-sm-8">
+                                    <span class="badge bg-secondary">#@Html.DisplayFor(model => model.UserId)</span>
+                                </dd>
 
-<div>
-    <h4>User</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PasswordHash)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Role)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Role)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-    </dl>
+                                <dt class="col-sm-4">Full Name:</dt>
+                                <dd class="col-sm-8">
+                                    <strong>@Html.DisplayFor(model => model.Name)</strong>
+                                </dd>
+
+                                <dt class="col-sm-4">Email Address:</dt>
+                                <dd class="col-sm-8">
+                                    <i class="fas fa-envelope me-1"></i>
+                                    @Html.DisplayFor(model => model.Email)
+                                    @if (isCurrentUser)
+                                    {
+                                        <span class="badge bg-success ms-2">You</span>
+                                    }
+                                </dd>
+
+                                <dt class="col-sm-4">Role:</dt>
+                                <dd class="col-sm-8">
+                                    @if (Model.Role == "Admin")
+                                    {
+                                        <span class="badge bg-danger fs-6">
+                                            <i class="fas fa-shield-alt me-1"></i>
+                                            @Model.Role
+                                        </span>
+                                    }
+                                    else if (Model.Role == "Manager")
+                                    {
+                                        <span class="badge bg-warning fs-6">
+                                            <i class="fas fa-users-cog me-1"></i>
+                                            @Model.Role
+                                        </span>
+                                    }
+                                    else if (Model.Role == "Editor")
+                                    {
+                                        <span class="badge bg-info fs-6">
+                                            <i class="fas fa-edit me-1"></i>
+                                            @Model.Role
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-success fs-6">
+                                            <i class="fas fa-user me-1"></i>
+                                            @Model.Role
+                                        </span>
+                                    }
+                                </dd>
+
+                                <dt class="col-sm-4">Created Date:</dt>
+                                <dd class="col-sm-8">
+                                    @if (Model.CreatedDate.HasValue)
+                                    {
+                                        <i class="fas fa-calendar-plus me-1"></i>
+                                        @Model.CreatedDate.Value.ToString("MMMM dd, yyyy")
+                                        <small class="text-muted">(@Model.CreatedDate.Value.ToString("hh:mm tt"))</small>
+                                        <br />
+                                        <small class="text-muted">
+                                            @{
+                                                var timeSpan = DateTime.UtcNow - Model.CreatedDate.Value;
+                                                var daysAgo = (int)timeSpan.TotalDays;
+                                            }
+                                            @if (daysAgo == 0)
+                                            {
+                                                <span>Today</span>
+                                            }
+                                            else if (daysAgo == 1)
+                                            {
+                                                <span>1 day ago</span>
+                                            }
+                                            else if (daysAgo < 30)
+                                            {
+                                                <span>@daysAgo days ago</span>
+                                            }
+                                            else if (daysAgo < 365)
+                                            {
+                                                var monthsAgo = daysAgo / 30;
+                                                <span>@monthsAgo month@(monthsAgo > 1 ? "s" : "") ago</span>
+                                            }
+                                            else
+                                            {
+                                                var yearsAgo = daysAgo / 365;
+                                                <span>@yearsAgo year@(yearsAgo > 1 ? "s" : "") ago</span>
+                                            }
+                                        </small>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">
+                                            <i class="fas fa-question-circle me-1"></i>
+                                            Not available
+                                        </span>
+                                    }
+                                </dd>
+                            </dl>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <div class="mb-3">
+                                    @if (Model.Role == "Admin")
+                                    {
+                                        <i class="fas fa-user-shield fa-5x text-danger"></i>
+                                    }
+                                    else if (Model.Role == "Manager")
+                                    {
+                                        <i class="fas fa-user-tie fa-5x text-warning"></i>
+                                    }
+                                    else if (Model.Role == "Editor")
+                                    {
+                                        <i class="fas fa-user-edit fa-5x text-info"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fas fa-user fa-5x text-success"></i>
+                                    }
+                                </div>
+                                <h5 class="card-title">@Model.Name</h5>
+                                <p class="card-text text-muted">@Model.Role</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <!-- Account Status Information -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="fw-bold mb-3">
+                                <i class="fas fa-info-circle me-2"></i>Account Information
+                            </h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-check-circle fa-2x text-success mb-2"></i>
+                                            <h6 class="card-title">Account Status</h6>
+                                            <span class="badge bg-success">Active</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-key fa-2x text-primary mb-2"></i>
+                                            <h6 class="card-title">Password</h6>
+                                            <small class="text-muted">Protected by hash</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-light h-100">
+                                        <div class="card-body text-center">
+                                            <i class="fas fa-user-cog fa-2x text-info mb-2"></i>
+                                            <h6 class="card-title">Permissions</h6>
+                                            <small class="text-muted">Based on @Model.Role role</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to List
+                        </a>
+
+                        <div>
+                            @{
+                                var isTargetUser = Model.Role == "User";
+                                var canEdit = isCurrentUser || isTargetUser;
+                            }
+
+                            @if (canEdit)
+                            {
+                                <a asp-action="Edit" asp-route-id="@Model.UserId" class="btn btn-warning">
+                                    <i class="fas fa-edit"></i> Edit User
+                                </a>
+                            }
+
+                            @if (!isCurrentUser && isTargetUser)
+                            {
+                                <a asp-action="Delete" asp-route-id="@Model.UserId" class="btn btn-danger ms-2">
+                                    <i class="fas fa-trash"></i> Delete User
+                                </a>
+                            }
+
+                            @if (!canEdit)
+                            {
+                                <div class="text-muted small">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Limited actions available for admin accounts
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.UserId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+
+<!-- Toast Notification -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fas fa-check-circle me-2"></i>
+                    @TempData["SuccessMessage"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    @TempData["ErrorMessage"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    }
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Show toasts
+            if ($('#successToast').length) {
+                var successToast = new bootstrap.Toast(document.getElementById('successToast'), {
+                    delay: 4000
+                });
+                successToast.show();
+            }
+
+            if ($('#errorToast').length) {
+                var errorToast = new bootstrap.Toast(document.getElementById('errorToast'), {
+                    delay: 5000
+                });
+                errorToast.show();
+            }
+        });
+    </script>
+}

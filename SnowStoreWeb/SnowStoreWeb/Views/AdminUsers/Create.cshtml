@@ -1,41 +1,255 @@
-@model SnowStoreWeb.Models.User
+@model SnowStoreWeb.ViewModels.admin.AdminCreateUserViewModel
 
 @{
+    ViewData["Title"] = "Create User";
     Layout = "_AdminLayout";
-    ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-user-plus"></i> Create New User
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post" id="createUserForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Name" class="form-label">
+                                        Full Name <span class="text-danger">*</span>
+                                    </label>
+                                    <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Email" class="form-label">
+                                        Email Address <span class="text-danger">*</span>
+                                    </label>
+                                    <input asp-for="Email" class="form-control" type="email" placeholder="Enter email address" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Password" class="form-label">
+                                        Password <span class="text-danger">*</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" id="passwordInput" />
+                                        <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                            <i class="fas fa-eye" id="togglePasswordIcon"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-success" id="generatePassword">
+                                            <i class="fas fa-key"></i> Generate
+                                        </button>
+                                    </div>
+                                    <div class="form-text">
+                                        Password must be at least 8 characters with uppercase, lowercase, number, and special character.
+                                    </div>
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Role" class="form-label">
+                                        Role <span class="text-danger">*</span>
+                                    </label>
+                                    <select asp-for="Role" class="form-select" asp-items="@ViewBag.RoleOptions">
+                                    </select>
+                                    <span asp-validation-for="Role" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="card-title">Password Requirements</h6>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <ul class="list-unstyled mb-0">
+                                                <li id="lengthCheck"><i class="fas fa-times text-danger"></i> At least 8 characters</li>
+                                                <li id="uppercaseCheck"><i class="fas fa-times text-danger"></i> One uppercase letter</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <ul class="list-unstyled mb-0">
+                                                <li id="lowercaseCheck"><i class="fas fa-times text-danger"></i> One lowercase letter</li>
+                                                <li id="numberCheck"><i class="fas fa-times text-danger"></i> One number</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <li id="specialCheck"><i class="fas fa-times text-danger"></i> One special character</li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Back to List
+                            </a>
+                            <button type="submit" class="btn btn-primary" id="submitBtn">
+                                <i class="fas fa-save"></i> Create User
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PasswordHash" class="control-label"></label>
-                <input asp-for="PasswordHash" class="form-control" />
-                <span asp-validation-for="PasswordHash" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<!-- Toast Notification -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fas fa-check-circle me-2"></i>
+                    @TempData["SuccessMessage"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    @TempData["ErrorMessage"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    }
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            // Show toasts
+            if ($('#successToast').length) {
+                var successToast = new bootstrap.Toast(document.getElementById('successToast'), {
+                    delay: 4000
+                });
+                successToast.show();
+            }
+
+            if ($('#errorToast').length) {
+                var errorToast = new bootstrap.Toast(document.getElementById('errorToast'), {
+                    delay: 5000
+                });
+                errorToast.show();
+            }
+
+            // Password visibility toggle
+            $('#togglePassword').click(function () {
+                var passwordInput = $('#passwordInput');
+                var passwordIcon = $('#togglePasswordIcon');
+
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    passwordIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    passwordIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+
+            // Generate password
+            $('#generatePassword').click(function () {
+                var btn = $(this);
+                btn.prop('disabled', true);
+                btn.html('<i class="fas fa-spinner fa-spin"></i> Generating...');
+
+                $.post('@Url.Action("GeneratePassword", "AdminUsers")', function (data) {
+                    $('#passwordInput').val(data.password);
+                    $('#passwordInput').attr('type', 'text');
+                    $('#togglePasswordIcon').removeClass('fa-eye').addClass('fa-eye-slash');
+                    checkPasswordStrength(data.password);
+                })
+                    .fail(function () {
+                        alert('Error generating password. Please try again.');
+                    })
+                    .always(function () {
+                        btn.prop('disabled', false);
+                        btn.html('<i class="fas fa-key"></i> Generate');
+                    });
+            });
+
+            // Password strength checker
+            $('#passwordInput').on('input', function () {
+                checkPasswordStrength($(this).val());
+            });
+
+            function checkPasswordStrength(password) {
+                var checks = {
+                    length: password.length >= 8,
+                    uppercase: /[A-Z]/.test(password),
+                    lowercase: /[a-z]/.test(password),
+                    number: /[0-9]/.test(password),
+                    special: /[^A-Za-z0-9]/.test(password)
+                };
+
+                updateCheck('#lengthCheck', checks.length);
+                updateCheck('#uppercaseCheck', checks.uppercase);
+                updateCheck('#lowercaseCheck', checks.lowercase);
+                updateCheck('#numberCheck', checks.number);
+                updateCheck('#specialCheck', checks.special);
+
+                var allChecked = Object.values(checks).every(check => check);
+                $('#submitBtn').prop('disabled', !allChecked);
+            }
+
+            function updateCheck(selector, isValid) {
+                var element = $(selector);
+                var icon = element.find('i');
+
+                if (isValid) {
+                    icon.removeClass('fa-times text-danger').addClass('fa-check text-success');
+                } else {
+                    icon.removeClass('fa-check text-success').addClass('fa-times text-danger');
+                }
+            }
+
+            // Initial password check
+            checkPasswordStrength($('#passwordInput').val());
+
+            // Form validation
+            $('#createUserForm').submit(function (e) {
+                var isValid = true;
+                var password = $('#passwordInput').val();
+
+                if (!password || password.length < 8) {
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    e.preventDefault();
+                    alert('Please ensure all password requirements are met.');
+                }
+            });
+        });
+    </script>
+}

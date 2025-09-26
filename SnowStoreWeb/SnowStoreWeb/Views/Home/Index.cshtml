@@ -2,7 +2,730 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    :root {
+        --primary-blue: #4A9CE8;
+        --secondary-blue: #6BB3F0;
+        --light-blue: #E3F2FD;
+        --dark-blue: #2E7BC6;
+        --accent-blue: #64B5F6;
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+        color: white;
+        padding: 60px 0;
+        margin-bottom: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(74, 156, 232, 0.3);
+    }
+
+    .content-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        height: 100%;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+    .btn-chat {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+    }
+    .btn-chat:hover {
+            box-shadow: 0 8px 25px rgb(74 232 110 / 60%) !important;
+    }
+    .product-image {
+        width: 90%;
+        height: 90%;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease;
+    }
+
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #EEEEEE;
+        border-radius: 10px;
+        transition: background 0.3s ease;
+    }
+
+        .contact-item:hover {
+            background: var(--accent-blue);
+            color: white;
+        }
+
+    .contact-icon {
+        width: 45px;
+        height: 45px;
+        background: black;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        margin-right: 15px;
+        font-size: 18px;
+    }
+
+    .btn-custom {
+        background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+        border: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(74, 156, 232, 0.4);
+    }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(74, 156, 232, 0.6);
+            color: white;
+        }
+
+    .section-title {
+        color: black;
+        font-weight: 700;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: black;
+            border-radius: 2px;
+        }
+
+    .welcome-text {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #666;
+        margin-bottom: 25px;
+    }
+
+    .stats-container {
+        background: var(--light-blue);
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .stat-item {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+        display: block;
+    }
+
+    .stat-label {
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    /* Updated Popup Banner Styles */
+    .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        backdrop-filter: blur(2px);
+    }
+
+    .popup-banner {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        position: relative;
+        max-width: 600px;
+        max-height: 80vh;
+        overflow: hidden;
+        margin: 20px;
+    }
+
+    .popup-slider-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+    }
+
+    .popup-slide {
+        width: 100%;
+        height: auto;
+        max-height: 70vh;
+        object-fit: cover;
+        display: none;
+        border-radius: 15px;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .popup-slide.active {
+        display: block;
+        animation: slideIn 0.5s ease-in-out;
+    }
+
+    @@keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .popup-close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        font-size: 16px;
+        z-index: 10001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+        .popup-close:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: scale(1.1);
+        }
+
+    .popup-indicators {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 8px;
+        z-index: 10000;
+    }
+
+    .popup-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+        .popup-dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.2);
+        }
+
+        .popup-dot.active {
+            background: white;
+            border-color: white;
+            transform: scale(1.3);
+        }
+
+    /* Navigation Arrows */
+    .popup-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 15px 12px;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 10000;
+        transition: all 0.3s ease;
+        border-radius: 0;
+    }
+
+        .popup-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+    .popup-prev {
+        left: 0;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .popup-next {
+        right: 0;
+        border-radius: 8px 0 0 8px;
+    }
+
+    /* Counter Display */
+    .popup-counter {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size: 12px;
+        z-index: 10000;
+    }
+
+    @@media (max-width: 768px) {
+        .hero-section {
+            padding: 40px 0;
+        }
+
+        .content-card {
+            margin-bottom: 30px;
+        }
+
+        .product-image {
+            height: 90%;
+            width: 90%;
+        }
+
+        .popup-banner {
+            max-width: 85%;
+            max-height: 60vh;
+            margin: 10px;
+        }
+
+        .popup-slide {
+            max-height: 45vh;
+            border-radius: 10px;
+        }
+
+        .popup-close {
+            top: 5px;
+            right: 5px;
+            width: 30px;
+            height: 30px;
+            font-size: 14px;
+        }
+
+        .popup-nav {
+            padding: 10px 6px;
+            font-size: 14px;
+        }
+
+        .popup-indicators {
+            bottom: 8px;
+            gap: 5px;
+        }
+
+        .popup-dot {
+            width: 8px;
+            height: 8px;
+        }
+
+        .button-container {
+            padding: 0 15px;
+        }
+
+        .button-row-mobile-horizontal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+            .button-row-mobile-horizontal .btn-custom {
+                flex: 1;
+                text-align: center;
+                padding: 12px 15px;
+                font-size: 14px;
+                min-width: 0;
+            }
+    }
+
+    @@media (max-width: 480px) {
+        .popup-banner {
+            max-width: 80%;
+            max-height: 50vh;
+            margin: 15px;
+        }
+
+        .popup-slide {
+            max-height: 35vh;
+            border-radius: 8px;
+        }
+
+        .popup-nav {
+            padding: 8px 5px;
+            font-size: 12px;
+        }
+
+        .popup-indicators {
+            bottom: 5px;
+            gap: 4px;
+        }
+
+        .popup-dot {
+            width: 6px;
+            height: 6px;
+        }
+
+        .popup-close {
+            width: 25px;
+            height: 25px;
+            font-size: 12px;
+        }
+    }
+
+    /* Touch support for mobile */
+    @@media (hover: none) and (pointer: coarse) {
+        .popup-nav {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 15px;
+        }
+        
+        .popup-dot {
+            width: 15px;
+            height: 15px;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <!-- Cột trái - Hình ảnh sản phẩm -->
+        <div class="col-lg-6">
+            <div class="content-card">
+                <h2 class="section-title" style="color: darkblue;">
+                    <i class="fas fa-star me-2"></i>
+                    Some notes for you
+                </h2>
+                <div class="text-center">
+                    <img src="~/images/nengt2.jpg"
+                         alt="Sản phẩm Size"
+                         class="product-image"
+                         onerror="this.src='https://via.placeholder.com/400x400/4A9CE8/ffffff?text=SnowStore+Product'">
+                </div>
+            </div>
+        </div>
+
+        <!-- Cột phải - Thông tin liên lạc -->
+        <div class="col-lg-6">
+            <div class="content-card">
+                <h2 class="section-title">
+                    <i class="fas fa-phone me-2" ></i>
+                    Thông tin liên lạc
+                </h2>
+
+                <p class="welcome-text">
+                    SnowStore cam kết mang đến cho bạn những sản phẩm thời trang chất lượng cao với dịch vụ tận tâm.
+                    Hãy liên hệ với chúng tôi để được tư vấn và hỗ trợ tốt nhất!
+                </p>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <strong>Địa chỉ</strong><br>
+                        Bình Thạnh, TP.Hồ Chí Minh, Việt Nam
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <strong>Order</strong><br>
+                        Liên hệ Instagram:
+                        <a href="https://www.instagram.com/snowstore.005/" style="color: blue; text-decoration: none;">
+                            Tại đây
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:snowstore.005@gmail.com" style="color: inherit; text-decoration: none;">
+                            snowstore.005@gmail.com
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <strong>Giờ nhận Order</strong><br>
+                        <span style="color: orangered;"><strong>T7 Đến T2:</strong> 7:00 - 22:00</span> <br>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <div class="button-row button-row-mobile-horizontal">
+                        <a href="@Url.Action("Index", "Product")" class="btn-custom">
+                            <i class="fas fa-shopping-bag me-2"></i>
+                            Sản phẩm
+                        </a>
+                        <a href="https://www.instagram.com/snowstore.005/" class="btn-custom btn-chat">
+                            <i class="fab fa-whatsapp me-2"></i>
+                            Chat ngay
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần giới thiệu thêm -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="content-card text-center">
+                <h2 class="section-title text-center">
+                    <i class="fas fa-heart me-2" style="color: red;"></i>
+                    Tại sao chọn SnowStore?
+                </h2>
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-3">
+                        <i class="fas fa-shipping-fast" style="font-size: 3rem; color: black; margin-bottom: 15px;"></i>
+                        <h5>Giao hàng toàn tỉnh</h5>
+                        <p class="text-muted">Hàng Handmade đặt trước 8-10 ngày</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <i class="fas fa-award" style="font-size: 3rem; color: black; margin-bottom: 15px;"></i>
+                        <h5>Chất lượng đảm bảo</h5>
+                        <p class="text-muted">Sản phẩm Handmade, bảo hành chu đáo</p>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <i class="fas fa-headset" style="font-size: 3rem; color: black; margin-bottom: 15px;"></i>
+                        <h5>Hỗ trợ 24/7</h5>
+                        <p class="text-muted">Đội ngũ tư vấn nhiệt tình, chuyên nghiệp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            @if (ViewBag.ActiveBanners != null)
+            {
+                <text>
+                    try {
+                        // Kiểm tra xem popup đã hiện chưa trong session này
+                        const hasShownPopup = sessionStorage.getItem('snowstore_popup_shown');
+                        
+                        if (!hasShownPopup) {
+                            var banners = @Html.Raw(System.Text.Json.JsonSerializer.Serialize((List<SnowStoreWeb.Models.PopupBanner>)ViewBag.ActiveBanners));
+                            console.log('Banners loaded:', banners);
+                            if (banners && Array.isArray(banners) && banners.length > 0) {
+                                setTimeout(function () {
+                                    showPopupSlider(banners);
+                                    // Đánh dấu đã hiển thị popup trong session này
+                                    sessionStorage.setItem('snowstore_popup_shown', 'true');
+                                }, 500);
+                            } else {
+                                console.warn('No valid banners found');
+                            }
+                        } else {
+                            console.log('Popup already shown in this session');
+                        }
+                    } catch (error) {
+                        console.error('Error loading banners:', error);
+                    }
+                </text>
+            }
+        });
+
+        function showPopupSlider(banners) {
+            let currentBannerIndex = 0;
+            let slideInterval = null;
+
+            // Tạo HTML cho tất cả ảnh
+            function createPopupSlider() {
+                let imagesHtml = '';
+                let indicatorsHtml = '';
+                
+                // Tạo container cho tất cả ảnh
+                banners.forEach((banner, index) => {
+                    if (banner && banner.ImageUrl) {
+                        imagesHtml += `
+                            <img src="${banner.ImageUrl}" 
+                                 alt="Banner ${index + 1}" 
+                                 class="popup-slide ${index === 0 ? 'active' : ''}"
+                                 data-index="${index}"
+                                 onerror="console.error('Image load failed:', this.src); this.src='https://via.placeholder.com/600x400/4A9CE8/ffffff?text=SnowStore+Banner';">
+                        `;
+                    }
+                });
+
+                // Tạo indicators nếu có nhiều hơn 1 ảnh
+                if (banners.length > 1) {
+                    indicatorsHtml = '<div class="popup-indicators">';
+                    for (let i = 0; i < banners.length; i++) {
+                        indicatorsHtml += `<span class="popup-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></span>`;
+                    }
+                    indicatorsHtml += '</div>';
+                    
+                    // Thêm navigation arrows nếu có nhiều ảnh
+                    indicatorsHtml += `
+                        <button class="popup-nav popup-prev" onclick="previousSlide()">❮</button>
+                        <button class="popup-nav popup-next" onclick="nextSlide()">❯</button>
+                    `;
+                }
+
+                const popupHtml = `
+                    <div class="popup-banner">
+                        <button class="popup-close" onclick="closePopupSlider()">×</button>
+                        <div class="popup-slider-container">
+                            ${imagesHtml}
+                        </div>
+                        ${indicatorsHtml}
+                    </div>`;
+
+                $('#popup-overlay').html(popupHtml).css('display', 'flex').hide().fadeIn(300);
+            }
+
+            // Chuyển đến slide cụ thể
+            function goToSlide(index) {
+                if (index >= banners.length) index = 0;
+                if (index < 0) index = banners.length - 1;
+                
+                currentBannerIndex = index;
+                
+                // Ẩn tất cả slides
+                $('.popup-slide').removeClass('active');
+                $('.popup-dot').removeClass('active');
+                
+                // Hiện slide hiện tại
+                $(`.popup-slide[data-index="${index}"]`).addClass('active');
+                $(`.popup-dot[data-index="${index}"]`).addClass('active');
+            }
+
+            // Slide tiếp theo
+            window.nextSlide = function() {
+                if (slideInterval) clearInterval(slideInterval);
+                goToSlide(currentBannerIndex + 1);
+                startAutoSlide();
+            };
+
+            // Slide trước
+            window.previousSlide = function() {
+                if (slideInterval) clearInterval(slideInterval);
+                goToSlide(currentBannerIndex - 1);
+                startAutoSlide();
+            };
+
+            // Bắt đầu auto slide
+            function startAutoSlide() {
+                if (banners.length > 1) {
+                    slideInterval = setInterval(() => {
+                        goToSlide(currentBannerIndex + 1);
+                    }, 3000); // 3 giây mỗi slide
+                }
+            }
+
+            // Tạo popup slider
+            createPopupSlider();
+            
+            // Bắt đầu auto slide
+            startAutoSlide();
+
+            // Xử lý click vào indicators
+            $(document).off('click.popup-dot').on('click.popup-dot', '.popup-dot', function () {
+                if (slideInterval) clearInterval(slideInterval);
+                const index = parseInt($(this).data('index'));
+                goToSlide(index);
+                startAutoSlide();
+            });
+
+            // Xử lý click đóng popup
+            $(document).off('click.popup-overlay').on('click.popup-overlay', '#popup-overlay', function (e) {
+                if (e.target === this) {
+                    closePopupSlider();
+                }
+            });
+
+            // Xử lý phím ESC
+            $(document).off('keyup.popup').on('keyup.popup', function (e) {
+                if (e.key === 'Escape') {
+                    closePopupSlider();
+                }
+            });
+
+            // Ngăn click vào popup đóng overlay
+            $(document).off('click.popup-banner').on('click.popup-banner', '.popup-banner', function (e) {
+                e.stopPropagation();
+            });
+
+            // Xử lý keyboard navigation
+            $(document).off('keyup.popup-nav').on('keyup.popup-nav', function (e) {
+                if (e.key === 'ArrowLeft') {
+                    previousSlide();
+                } else if (e.key === 'ArrowRight') {
+                    nextSlide();
+                }
+            });
+
+            window.closePopupSlider = function () {
+                if (slideInterval) {
+                    clearInterval(slideInterval);
+                    slideInterval = null;
+                }
+                $(document).off('.popup-overlay').off('.popup-dot').off('.popup-banner').off('.popup').off('.popup-nav');
+                $('#popup-overlay').fadeOut(300, function () {
+                    $(this).html('');
+                });
+            };
+        }
+
+        // Cleanup function
+        function closePopupSlider() {
+            // Placeholder, sẽ được override
+        }
+    </script>
+}

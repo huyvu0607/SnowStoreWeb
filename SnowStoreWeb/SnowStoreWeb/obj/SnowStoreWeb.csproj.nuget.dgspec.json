@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dự Án riêng\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj": {}
+    "D:\\Dự Án riêng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj": {}
   },
   "projects": {
-    "D:\\Dự Án riêng\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj": {
+    "D:\\Dự Án riêng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dự Án riêng\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj",
+        "projectUniqueName": "D:\\Dự Án riêng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj",
         "projectName": "SnowStoreWeb",
-        "projectPath": "D:\\Dự Án riêng\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj",
+        "projectPath": "D:\\Dự Án riêng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj",
         "packagesPath": "C:\\Users\\Huywill\\.nuget\\packages\\",
-        "outputPath": "D:\\Dự Án riêng\\SnowStoreWeb\\SnowStoreWeb\\obj\\",
+        "outputPath": "D:\\Dự Án riêng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Huywill\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -48,17 +48,17 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.8, )"
+              "version": "[8.0.8, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.8, )"
+              "version": "[8.0.11, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[9.0.0, )"
+              "version": "[8.0.7, )"
             }
           },
           "imports": [

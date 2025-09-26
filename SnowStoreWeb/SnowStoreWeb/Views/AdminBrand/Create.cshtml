@@ -1,0 +1,365 @@
+﻿@model SnowStoreWeb.Models.Brand
+
+@{
+    ViewData["Title"] = "Tạo Thương Hiệu Mới";
+    Layout = "_AdminLayout";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+    .drag-drop-area {
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+    }
+
+        .drag-drop-area:hover {
+            border-color: #007bff;
+            background: #e7f3ff;
+        }
+
+        .drag-drop-area.dragover {
+            border-color: #28a745;
+            background: #d4edda;
+        }
+
+    .logo-preview-img {
+        max-width: 100%;
+        max-height: 200px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .upload-progress {
+        display: none;
+    }
+
+    .file-input-hidden {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .image-actions {
+        margin-top: 15px;
+    }
+
+        .image-actions .btn {
+            margin: 0 5px;
+        }
+</style>
+
+<div class="container-fluid py-4">
+    <!-- Header Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm bg-primary text-white">
+                <div class="card-body py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="mb-1">
+                                <i class="fas fa-plus-circle me-2"></i>
+                                Tạo Thương Hiệu Mới
+                            </h4>
+                            <small class="opacity-75">Thêm thương hiệu mới vào hệ thống</small>
+                        </div>
+                        <div>
+                            <a asp-action="Index" class="btn btn-light btn-sm">
+                                <i class="fas fa-arrow-left me-1"></i>
+                                Danh sách
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Create Form -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h6 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Thông Tin Thương Hiệu
+                    </h6>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data" id="createForm">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- Brand Name -->
+                        <div class="mb-4">
+                            <label asp-for="Name" class="form-label fw-semibold">
+                                <i class="fas fa-tag text-primary me-2"></i>
+                                Tên Thương Hiệu <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Name" class="form-control form-control-lg"
+                                   placeholder="Nhập tên thương hiệu..."
+                                   maxlength="100" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Logo Upload Section -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                <i class="fas fa-image text-info me-2"></i>
+                                Logo Thương Hiệu
+                            </label>
+
+                            <!-- Drag & Drop Area -->
+                            <div class="drag-drop-area" id="dragDropArea">
+                                <div id="uploadPrompt">
+                                    <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                    <h6 class="text-muted">Kéo thả ảnh vào đây</h6>
+                                    <p class="text-muted mb-3">hoặc</p>
+                                    <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('logoFile').click()">
+                                        <i class="fas fa-folder-open me-2"></i>Chọn file
+                                    </button>
+                                    <div class="mt-2">
+                                        <small class="text-muted">
+                                            Hỗ trợ: JPG, PNG, GIF (Max: 5MB)
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <!-- Progress Bar -->
+                                <div class="upload-progress" id="uploadProgress">
+                                    <div class="progress mb-2">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                    <small class="text-muted">Đang tải lên...</small>
+                                </div>
+                            </div>
+
+                            <!-- Hidden File Input -->
+                            <input type="file" id="logoFile" name="logoFile" accept="image/*" class="file-input-hidden" />
+
+                            <!-- Logo URL Input (Alternative) -->
+                            <div class="mt-3">
+                                <label class="form-label">Hoặc nhập URL logo:</label>
+                                <input asp-for="LogoUrl" class="form-control"
+                                       placeholder="https://example.com/logo.png"
+                                       onkeyup="previewLogoFromUrl(this.value)" />
+                                <span asp-validation-for="LogoUrl" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="d-flex gap-2 pt-3 border-top">
+                            <button type="submit" class="btn btn-success" id="submitBtn">
+                                <i class="fas fa-save me-2"></i>Tạo thương hiệu
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-times me-2"></i>Hủy
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo Preview -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h6 class="mb-0">
+                        <i class="fas fa-eye me-2"></i>Xem Trước Logo
+                    </h6>
+                </div>
+                <div class="card-body p-4">
+                    <div id="logoPreviewContainer" class="text-center">
+                        <div id="noLogoPreview" class="no-logo-preview">
+                            <i class="fas fa-image fa-3x text-muted opacity-25 mb-3"></i>
+                            <h6 class="text-muted">Chưa có logo</h6>
+                            <p class="text-muted mb-0 small">
+                                Upload hoặc nhập URL logo để xem trước
+                            </p>
+                        </div>
+
+                        <div id="logoPreview" class="logo-preview" style="display: none;">
+                            <img id="previewImage" src="" alt="Logo Preview" class="logo-preview-img" />
+                            <div class="logo-preview-info mt-3">
+                                <small class="text-success">
+                                    <i class="fas fa-check-circle me-1"></i>
+                                    Logo đã tải
+                                </small>
+                                <div class="image-actions">
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeLogo()">
+                                        <i class="fas fa-trash me-1"></i>Xóa
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Info Card -->
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-body p-3">
+                    <h6 class="text-muted mb-2">
+                        <i class="fas fa-info-circle me-2"></i>Thông tin
+                    </h6>
+                    <div class="small text-muted">
+                        <div class="mb-2">
+                            <strong>Kích thước khuyến nghị:</strong> 200x200px
+                        </div>
+                        <div class="mb-2">
+                            <strong>Định dạng hỗ trợ:</strong> JPG, PNG, GIF
+                        </div>
+                        <div>
+                            <strong>Kích thước tối đa:</strong> 5MB
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let uploadedFile = null;
+
+    // Drag and Drop functionality
+    const dragDropArea = document.getElementById('dragDropArea');
+    const fileInput = document.getElementById('logoFile');
+
+    // Prevent default drag behaviors
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dragDropArea.addEventListener(eventName, preventDefaults, false);
+        document.body.addEventListener(eventName, preventDefaults, false);
+    });
+
+    // Highlight drop area when item is dragged over it
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dragDropArea.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dragDropArea.addEventListener(eventName, unhighlight, false);
+    });
+
+    // Handle dropped files
+    dragDropArea.addEventListener('drop', handleDrop, false);
+
+    // Handle file input change
+    fileInput.addEventListener('change', function (e) {
+        handleFiles(e.target.files);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function highlight(e) {
+        dragDropArea.classList.add('dragover');
+    }
+
+    function unhighlight(e) {
+        dragDropArea.classList.remove('dragover');
+    }
+
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        handleFiles(files);
+    }
+
+    function handleFiles(files) {
+        if (files.length > 0) {
+            const file = files[0];
+
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                alert('Vui lòng chọn file ảnh!');
+                return;
+            }
+
+            // Validate file size (5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('File quá lớn! Vui lòng chọn file nhỏ hơn 5MB.');
+                return;
+            }
+
+            uploadedFile = file;
+            previewFile(file);
+
+            // Clear URL input when file is uploaded
+            document.querySelector('input[name="LogoUrl"]').value = '';
+        }
+    }
+
+    function previewFile(file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            showPreview(e.target.result);
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function previewLogoFromUrl(url) {
+        if (url && url.trim() !== '') {
+            // Clear uploaded file when URL is entered
+            uploadedFile = null;
+            fileInput.value = '';
+
+            showPreview(url);
+        } else {
+            hidePreview();
+        }
+    }
+
+    function showPreview(src) {
+        document.getElementById('noLogoPreview').style.display = 'none';
+        document.getElementById('logoPreview').style.display = 'block';
+        document.getElementById('previewImage').src = src;
+    }
+
+    function hidePreview() {
+        document.getElementById('noLogoPreview').style.display = 'block';
+        document.getElementById('logoPreview').style.display = 'none';
+    }
+
+    function removeLogo() {
+        uploadedFile = null;
+        fileInput.value = '';
+        document.querySelector('input[name="LogoUrl"]').value = '';
+        hidePreview();
+    }
+
+    // Form submission
+    document.getElementById('createForm').addEventListener('submit', function (e) {
+        // If there's an uploaded file, we need to handle it
+        if (uploadedFile) {
+            // You can add file upload logic here
+            // For now, we'll just show a loading state
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang tạo...';
+            submitBtn.disabled = true;
+        }
+    });
+
+    // Form validation
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

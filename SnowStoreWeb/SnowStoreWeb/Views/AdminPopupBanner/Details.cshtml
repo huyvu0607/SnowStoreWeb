@@ -1,0 +1,85 @@
+﻿@model SnowStoreWeb.Models.PopupBanner
+
+@{
+    ViewData["Title"] = "Chi tiết Popup Banner";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"] #@Model.Id</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Tiêu đề</label>
+                                <input type="text" class="form-control" value="@Model.Title" readonly />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Hình ảnh</label>
+                                <div class="border rounded p-3 text-center bg-light">
+                                    <img src="@Model.ImageUrl" alt="@Model.Title" class="img-fluid"
+                                         style="max-height: 200px; max-width: 100%; object-fit: contain;"
+                                         onerror="this.src='/images/no-image.png';" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Thứ tự hiển thị</label>
+                                <input type="text" class="form-control" value="@Model.DisplayOrder" readonly />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Trạng thái</label>
+                                <input type="text" class="form-control" value="@Model.Status" readonly />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Mô tả</label>
+                        <textarea class="form-control" rows="4" readonly>@Model.Description</textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Ngày tạo</label>
+                                <input type="text" class="form-control" value="@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm:ss")" readonly />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">Ngày cập nhật gần nhất</label>
+                                <input type="text" class="form-control" value="@(Model.UpdatedAt?.ToString("dd/MM/yyyy HH:mm:ss") ?? "Chưa cập nhật")" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="d-flex justify-content-between">
+                        <a href="@Url.Action("Index")" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Quay lại
+                        </a>
+                        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Chỉnh sửa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

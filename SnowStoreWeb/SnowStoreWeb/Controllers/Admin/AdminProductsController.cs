@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using SnowStoreWeb.Attributes;
 using SnowStoreWeb.Models;
 using Microsoft.AspNetCore.Http;
+using SnowStoreWeb.ViewModels.admin;
 
 namespace SnowStoreWeb.Controllers_Admin
 {
@@ -33,10 +34,147 @@ namespace SnowStoreWeb.Controllers_Admin
         }
 
         // GET: AdminProducts
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchTerm, int? productId, int? categoryId, int? brandId, string priceRange,
+           string status, string sortBy = "name", int page = 1, int pageSize = 10)
         {
-            var snowStoreContext = _context.Products.Include(p => p.Category);
-            return View(await snowStoreContext.ToListAsync());
+            var query = _context.Products.Include(p => p.Category).Include(p => p.Brand).AsQueryable();
+
+            // Search by Product ID (specific search)
+            if (productId.HasValue && productId > 0)
+            {
+                query = query.Where(p => p.ProductId == productId);
+            }
+            // Search by name or description (only if not searching by ID)
+            else if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query = query.Where(p => p.Name.Contains(searchTerm) || p.Description.Contains(searchTerm));
+            }
+
+            // Filter by category
+            if (categoryId.HasValue && categoryId > 0)
+            {
+                query = query.Where(p => p.CategoryId == categoryId);
+            }
+
+            // Filter by brand
+            if (brandId.HasValue && brandId > 0)
+            {
+                query = query.Where(p => p.BrandId == brandId);
+            }
+
+            // Filter by price range
+            if (!string.IsNullOrEmpty(priceRange))
+            {
+                var priceRangeParts = priceRange.Split('-');
+                if (priceRangeParts.Length == 2)
+                {
+                    if (decimal.TryParse(priceRangeParts[0], out decimal minPrice))
+                    {
+                        query = query.Where(p => p.Price >= minPrice);
+                    }
+
+                    if (decimal.TryParse(priceRangeParts[1], out decimal maxPrice))
+                    {
+                        query = query.Where(p => p.Price <= maxPrice);
+                    }
+                    else if (priceRangeParts[1] == "") // For "1000000-" case
+                    {
+                        // Already filtered by minPrice
+                    }
+                }
+            }
+
+            // Filter by status
+            switch (status?.ToLower())
+            {
+                case "instock":
+                    query = query.Where(p => p.StockQuantity > 0);
+                    break;
+                case "outofstock":
+                    query = query.Where(p => p.StockQuantity == 0);
+                    break;
+                case "hot":
+                    query = query.Where(p => p.IsHot == true);
+                    break;
+                case "bestseller":
+                    query = query.Where(p => p.IsBestSeller == true);
+                    break;
+            }
+
+            // Sorting
+            query = sortBy?.ToLower() switch
+            {
+                "name" => query.OrderBy(p => p.Name),
+                "name_desc" => query.OrderByDescending(p => p.Name),
+                "price" => query.OrderBy(p => p.Price),
+                "price_desc" => query.OrderByDescending(p => p.Price),
+                "date" => query.OrderByDescending(p => p.CreatedDate),
+                "date_desc" => query.OrderBy(p => p.CreatedDate),
+                "stock" => query.OrderBy(p => p.StockQuantity),
+                "stock_desc" => query.OrderByDescending(p => p.StockQuantity),
+                "id" => query.OrderBy(p => p.ProductId),
+                "id_desc" => query.OrderByDescending(p => p.ProductId),
+                _ => query.OrderBy(p => p.Name)
+            };
+
+            // Get total count before pagination
+            var totalCount = await query.CountAsync();
+
+            // Apply pagination
+            var products = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            // Prepare categories and brands for dropdown
+            var categories = await _context.Categories
+                .OrderBy(c => c.Name)
+                .Select(c => new SelectListItem
+                {
+                    Value = c.CategoryId.ToString(),
+                    Text = c.Name,
+                    Selected = c.CategoryId == categoryId
+                })
+                .ToListAsync();
+
+            var brands = await _context.Brands
+                .OrderBy(b => b.Name)
+                .Select(b => new SelectListItem
+                {
+                    Value = b.BrandId.ToString(),
+                    Text = b.Name,
+                    Selected = b.BrandId == brandId
+                })
+                .ToListAsync();
+
+            // Create view model
+            var viewModel = new ProductListViewModel
+            {
+                Products = products,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalCount = totalCount,
+                SearchTerm = searchTerm ?? "",
+                ProductId = productId,
+                CategoryId = categoryId,
+                BrandId = brandId,
+                PriceRange = priceRange ?? "",
+                Status = status ?? "",
+                SortBy = sortBy ?? "name"
+            };
+
+            // Set ViewBag for form values
+            ViewBag.SearchTerm = searchTerm;
+            ViewBag.ProductId = productId;
+            ViewBag.CategoryId = categoryId;
+            ViewBag.BrandId = brandId;
+            ViewBag.PriceRange = priceRange;
+            ViewBag.Status = status;
+            ViewBag.SortBy = sortBy;
+            ViewBag.Categories = categories;
+            ViewBag.Brands = brands;
+
+            return View(viewModel);
         }
 
         // GET: AdminProducts/Details/5
@@ -49,6 +187,7 @@ namespace SnowStoreWeb.Controllers_Admin
 
             var product = await _context.Products
                 .Include(p => p.Category)
+                .Include(p => p.Brand)
                 .Include(p => p.ProductImages)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
@@ -63,13 +202,14 @@ namespace SnowStoreWeb.Controllers_Admin
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name");
+            ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name");
             return View();
         }
 
         // POST: AdminProducts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,Name,Description,Price,StockQuantity,IsHot,IsBestSeller")] Product product, IFormFile MainImageFile, IFormFile[] AdditionalImageFiles)
+        public async Task<IActionResult> Create([Bind("CategoryId,BrandId,Name,Description,Price,StockQuantity,IsHot,IsBestSeller")] Product product, IFormFile MainImageFile, IFormFile[] AdditionalImageFiles)
         {
             if (ModelState.IsValid)
             {
@@ -82,6 +222,7 @@ namespace SnowStoreWeb.Controllers_Admin
                     {
                         ModelState.AddModelError("MainImageFile", "Ảnh chính không được lớn hơn 5MB.");
                         ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                        ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                         return View(product);
                     }
 
@@ -90,6 +231,7 @@ namespace SnowStoreWeb.Controllers_Admin
                     {
                         ModelState.AddModelError("MainImageFile", "Chỉ chấp nhận các định dạng ảnh: .jpg, .jpeg, .png, .gif");
                         ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                        ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                         return View(product);
                     }
 
@@ -109,12 +251,14 @@ namespace SnowStoreWeb.Controllers_Admin
                         System.Diagnostics.Debug.WriteLine($"Lỗi khi lưu ảnh chính: {ex.Message}");
                         ModelState.AddModelError("MainImageFile", "Không thể lưu ảnh chính.");
                         ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                        ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                         return View(product);
                     }
                 }
 
                 product.CreatedDate = DateTime.Now;
                 _context.Add(product);
+                TempData["SuccessMessage"] = "Tạo sản phẩm thành công!";
                 try
                 {
                     await _context.SaveChangesAsync(); // Lưu product để lấy ProductId
@@ -124,6 +268,7 @@ namespace SnowStoreWeb.Controllers_Admin
                     System.Diagnostics.Debug.WriteLine($"Lỗi khi lưu sản phẩm: {ex.Message}");
                     ModelState.AddModelError("", "Lỗi khi lưu sản phẩm.");
                     ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                    ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                     return View(product);
                 }
 
@@ -134,6 +279,7 @@ namespace SnowStoreWeb.Controllers_Admin
                     {
                         ModelState.AddModelError("AdditionalImageFiles", "Chỉ được tải lên tối đa 5 ảnh phụ.");
                         ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                        ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                         return View(product);
                     }
 
@@ -146,6 +292,7 @@ namespace SnowStoreWeb.Controllers_Admin
                             {
                                 ModelState.AddModelError("AdditionalImageFiles", "Ảnh phụ không được lớn hơn 5MB.");
                                 ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                                ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                                 return View(product);
                             }
 
@@ -154,6 +301,7 @@ namespace SnowStoreWeb.Controllers_Admin
                             {
                                 ModelState.AddModelError("AdditionalImageFiles", "Chỉ chấp nhận các định dạng ảnh: .jpg, .jpeg, .png, .gif");
                                 ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                                ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                                 return View(product);
                             }
 
@@ -180,6 +328,7 @@ namespace SnowStoreWeb.Controllers_Admin
                                 System.Diagnostics.Debug.WriteLine($"Lỗi khi lưu ảnh phụ: {ex.Message}");
                                 ModelState.AddModelError("AdditionalImageFiles", "Không thể lưu ảnh phụ.");
                                 ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                                ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                                 return View(product);
                             }
                         }
@@ -193,6 +342,7 @@ namespace SnowStoreWeb.Controllers_Admin
                         System.Diagnostics.Debug.WriteLine($"Lỗi khi lưu ảnh phụ: {ex.Message}");
                         ModelState.AddModelError("", "Lỗi khi lưu ảnh phụ.");
                         ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                        ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                         return View(product);
                     }
                 }
@@ -200,6 +350,7 @@ namespace SnowStoreWeb.Controllers_Admin
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+            ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
             return View(product);
         }
 
@@ -221,6 +372,7 @@ namespace SnowStoreWeb.Controllers_Admin
             }
 
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+            ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
             return View(product);
         }
 
@@ -277,6 +429,7 @@ namespace SnowStoreWeb.Controllers_Admin
 
                 // Cập nhật thông tin sản phẩm
                 existingProduct.CategoryId = product.CategoryId;
+                existingProduct.BrandId = product.BrandId;
                 existingProduct.Name = product.Name;
                 existingProduct.Description = product.Description;
                 existingProduct.Price = product.Price;
@@ -294,6 +447,7 @@ namespace SnowStoreWeb.Controllers_Admin
                     {
                         TempData["ErrorMessage"] = "Ảnh chính không được lớn hơn 5MB.";
                         ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                        ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                         return View(existingProduct);
                     }
 
@@ -302,6 +456,7 @@ namespace SnowStoreWeb.Controllers_Admin
                     {
                         TempData["ErrorMessage"] = "Chỉ chấp nhận các định dạng ảnh: .jpg, .jpeg, .png, .gif";
                         ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                        ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                         return View(existingProduct);
                     }
 
@@ -341,6 +496,7 @@ namespace SnowStoreWeb.Controllers_Admin
                     {
                         TempData["ErrorMessage"] = $"Tổng số ảnh phụ không được vượt quá 5. Hiện tại: {currentImageCount}";
                         ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                        ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                         return View(existingProduct);
                     }
 
@@ -357,6 +513,7 @@ namespace SnowStoreWeb.Controllers_Admin
                             {
                                 TempData["ErrorMessage"] = "Ảnh phụ không được lớn hơn 5MB.";
                                 ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                                ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                                 return View(existingProduct);
                             }
 
@@ -365,6 +522,7 @@ namespace SnowStoreWeb.Controllers_Admin
                             {
                                 TempData["ErrorMessage"] = "Chỉ chấp nhận các định dạng ảnh: .jpg, .jpeg, .png, .gif";
                                 ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                                ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                                 return View(existingProduct);
                             }
 
@@ -397,6 +555,7 @@ namespace SnowStoreWeb.Controllers_Admin
                 System.Diagnostics.Debug.WriteLine($"Lỗi khi cập nhật sản phẩm: {ex.Message}");
                 TempData["ErrorMessage"] = "Có lỗi xảy ra khi cập nhật sản phẩm.";
                 ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "Name", product.CategoryId);
+                ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "Name", product.BrandId);
                 return View(product);
             }
         }
@@ -506,8 +665,6 @@ namespace SnowStoreWeb.Controllers_Admin
             }
         }
 
-
-
         // POST: AdminProducts/SetMainImage
         [HttpPost]
         public async Task<IActionResult> SetMainImage([FromBody] SetMainImageModel model)
@@ -571,6 +728,7 @@ namespace SnowStoreWeb.Controllers_Admin
 
             var product = await _context.Products
                 .Include(p => p.Category)
+                .Include(p => p.Brand)
                 .Include(p => p.ProductImages)
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
@@ -662,8 +820,8 @@ namespace SnowStoreWeb.Controllers_Admin
 
                 // Lưu thay đổi
                 await _context.SaveChangesAsync();
-                System.Diagnostics.Debug.WriteLine("✓ ĐÃ LỮU THAY ĐỔI - XÓA SẢN PHẨM THÀNH CÔNG");
-
+                System.Diagnostics.Debug.WriteLine("✓ ĐÃ LƯU THAY ĐỔI - XÓA SẢN PHẨM THÀNH CÔNG");
+                TempData["SuccessMessage"] = "Đã xóa sản phẩm thành công!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -675,6 +833,165 @@ namespace SnowStoreWeb.Controllers_Admin
                 TempData["ErrorMessage"] = "Không thể xóa sản phẩm: " + ex.Message;
                 return RedirectToAction(nameof(Index));
             }
+        }
+
+        // Bulk operations
+        [HttpPost]
+        public async Task<IActionResult> BulkDelete(int[] selectedIds)
+        {
+            if (selectedIds != null && selectedIds.Length > 0)
+            {
+                // Lấy product kèm hình ảnh con
+                var products = await _context.Products
+                    .Include(p => p.ProductImages) // load ảnh con
+                    .Where(p => selectedIds.Contains(p.ProductId))
+                    .ToListAsync();
+
+                foreach (var product in products)
+                {
+                    // Xóa file ảnh chính nếu có
+                    if (!string.IsNullOrEmpty(product.ImageUrl))
+                    {
+                        var imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot" + product.ImageUrl);
+                        if (System.IO.File.Exists(imagePath))
+                        {
+                            System.IO.File.Delete(imagePath);
+                        }
+                    }
+
+                    // Xóa file ảnh trong ProductImages nếu có
+                    if (product.ProductImages != null && product.ProductImages.Any())
+                    {
+                        foreach (var img in product.ProductImages)
+                        {
+                            if (!string.IsNullOrEmpty(img.ImageUrl))
+                            {
+                                var imgPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot" + img.ImageUrl);
+                                if (System.IO.File.Exists(imgPath))
+                                {
+                                    System.IO.File.Delete(imgPath);
+                                }
+                            }
+                        }
+
+                        // Xóa dữ liệu con trước
+                        _context.ProductImages.RemoveRange(product.ProductImages);
+                    }
+                }
+
+                // Sau khi xóa ảnh con thì xóa product cha
+                _context.Products.RemoveRange(products);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> BulkUpdateStatus(int[] selectedIds, string action)
+        {
+            if (selectedIds != null && selectedIds.Length > 0)
+            {
+                var products = await _context.Products
+                    .Where(p => selectedIds.Contains(p.ProductId))
+                    .ToListAsync();
+
+                foreach (var product in products)
+                {
+                    switch (action?.ToLower())
+                    {
+                        case "sethot":
+                            product.IsHot = true;
+                            break;
+                        case "unsethot":
+                            product.IsHot = false;
+                            break;
+                        case "setbestseller":
+                            product.IsBestSeller = true;
+                            break;
+                        case "unsetbestseller":
+                            product.IsBestSeller = false;
+                            break;
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // Export to Excel
+        [HttpGet]
+        public async Task<IActionResult> ExportToExcel(string searchTerm, int? categoryId, int? brandId,
+            string priceRange, string status)
+        {
+            var query = _context.Products.Include(p => p.Category).Include(p => p.Brand).AsQueryable();
+
+            // Apply same filters as Index action
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                query = query.Where(p => p.Name.Contains(searchTerm) || p.Description.Contains(searchTerm));
+            }
+
+            if (categoryId.HasValue && categoryId > 0)
+            {
+                query = query.Where(p => p.CategoryId == categoryId);
+            }
+
+            if (brandId.HasValue && brandId > 0)
+            {
+                query = query.Where(p => p.BrandId == brandId);
+            }
+
+            if (!string.IsNullOrEmpty(priceRange))
+            {
+                var priceRangeParts = priceRange.Split('-');
+                if (priceRangeParts.Length == 2)
+                {
+                    if (decimal.TryParse(priceRangeParts[0], out decimal minPrice))
+                    {
+                        query = query.Where(p => p.Price >= minPrice);
+                    }
+
+                    if (decimal.TryParse(priceRangeParts[1], out decimal maxPrice))
+                    {
+                        query = query.Where(p => p.Price <= maxPrice);
+                    }
+                }
+            }
+
+            switch (status?.ToLower())
+            {
+                case "instock":
+                    query = query.Where(p => p.StockQuantity > 0);
+                    break;
+                case "outofstock":
+                    query = query.Where(p => p.StockQuantity == 0);
+                    break;
+                case "hot":
+                    query = query.Where(p => (bool)p.IsHot);
+                    break;
+                case "bestseller":
+                    query = query.Where(p => (bool)p.IsBestSeller);
+                    break;
+            }
+
+            var products = await query.OrderBy(p => p.Name).ToListAsync();
+
+            // Here you would implement Excel export logic
+            // For now, return CSV format
+            var csv = "Tên sản phẩm,Mô tả,Giá,Tồn kho,Danh mục,Thương hiệu,Sản phẩm Hot,Bán chạy,Ngày tạo\n";
+            foreach (var product in products)
+            {
+                csv += $"\"{product.Name}\",\"{product.Description}\",\"{product.Price:N0}\",\"{product.StockQuantity}\"," +
+                       $"\"{product.Category?.Name}\",\"{product.Brand?.Name}\",\"{((bool)product.IsHot ? "Có" : "Không")}\"," +
+                       $"\"{((bool)product.IsBestSeller ? "Có" : "Không")}\",\"{product.CreatedDate:dd/MM/yyyy}\"\n";
+            }
+
+            var bytes = System.Text.Encoding.UTF8.GetBytes(csv);
+            return File(bytes, "text/csv", $"products_{DateTime.Now:yyyyMMdd_HHmmss}.csv");
         }
 
         // Helper method để xóa file ảnh an toàn

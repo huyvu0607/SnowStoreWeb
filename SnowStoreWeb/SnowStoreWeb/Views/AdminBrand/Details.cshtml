@@ -1,0 +1,420 @@
+﻿@model SnowStoreWeb.Models.Brand
+
+@{
+    ViewData["Title"] = "Chi Tiết Thương Hiệu";
+    Layout = "_AdminLayout";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<div class="container-fluid py-4">
+    <!-- Header Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm bg-primary text-white">
+                <div class="card-body py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="mb-1">
+                                <i class="fas fa-tag me-2"></i>
+                                Chi Tiết Thương Hiệu #@Model.BrandId
+                            </h4>
+                            <small class="opacity-75">Thông tin chi tiết thương hiệu</small>
+                        </div>
+                        <div>
+                            <a asp-action="Index" class="btn btn-light btn-sm me-2">
+                                <i class="fas fa-arrow-left me-1"></i>
+                                Danh sách
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@Model.BrandId" class="btn btn-warning btn-sm">
+                                <i class="fas fa-edit me-1"></i>
+                                Chỉnh sửa
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Brand Logo -->
+        <div class="col-lg-4 mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h6 class="mb-0 ">
+                        <i class="fas fa-image me-2"></i>Logo Thương Hiệu
+                    </h6>
+                </div>
+                <div class="card-body text-center p-4">
+                    @if (!string.IsNullOrEmpty(Model.LogoUrl))
+                    {
+                        <div class="logo-display-container mb-3">
+                            <img src="@Model.LogoUrl" alt="@Model.Name Logo" 
+                                 class="brand-logo-large" 
+                                 onclick="openLogoModal('@Model.LogoUrl')" />
+                        </div>
+                        <div class="logo-info">
+                            <p class="text-muted mb-2">Click để xem ảnh lớn</p>
+                            <small class="text-muted">URL: @Model.LogoUrl</small>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="no-logo-display">
+                            <i class="fas fa-image fa-4x text-muted opacity-25 mb-3"></i>
+                            <h6 class="text-muted">Chưa có logo</h6>
+                            <p class="text-muted mb-0">Thương hiệu chưa được thiết lập logo</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Brand Information -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h6 class="mb-0 ">
+                        <i class="fas fa-info-circle me-2"></i>Thông Tin Thương Hiệu
+                    </h6>
+                </div>
+                <div class="card-body p-4">
+                    <!-- Brand Details Grid -->
+                    <div class="brand-info-grid">
+                        <div class="info-item mb-4">
+                            <div class="info-label">
+                                <i class="fas fa-hashtag text-primary me-2"></i>
+                                ID Thương Hiệu
+                            </div>
+                            <div class="info-value">
+                                <span class="badge bg-primary">#@Model.BrandId</span>
+                            </div>
+                        </div>
+
+                        <div class="info-item mb-4">
+                            <div class="info-label">
+                                <i class="fas fa-tag text-success me-2"></i>
+                                Tên Thương Hiệu
+                            </div>
+                            <div class="info-value">
+                                <h5 class="text-dark mb-0">@Model.Name</h5>
+                            </div>
+                        </div>
+
+                        <div class="info-item mb-4">
+                            <div class="info-label">
+                                <i class="fas fa-link text-info me-2"></i>
+                                URL Logo
+                            </div>
+                            <div class="info-value">
+                                @if (!string.IsNullOrEmpty(Model.LogoUrl))
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <span class="text-break me-2">@Model.LogoUrl</span>
+                                        <button class="btn btn-outline-secondary btn-sm" 
+                                                onclick="copyToClipboard('@Model.LogoUrl')" 
+                                                title="Copy URL">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <span class="text-muted fst-italic">Chưa có URL logo</span>
+                                }
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-label">
+                                <i class="fas fa-check-circle text-success me-2"></i>
+                                Trạng Thái Logo
+                            </div>
+                            <div class="info-value">
+                                @if (!string.IsNullOrEmpty(Model.LogoUrl))
+                                {
+                                    <span class="badge bg-success">
+                                        <i class="fas fa-check me-1"></i>Có logo
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>Chưa có logo
+                                    </span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-body p-4">
+                    <h6 class="mb-3 text-secondary">
+                        <i class="fas fa-tools me-2"></i>Thao Tác
+                    </h6>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <a asp-action="Edit" asp-route-id="@Model.BrandId" class="btn btn-warning">
+                            <i class="fas fa-edit me-2"></i>Chỉnh sửa thương hiệu
+                        </a>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-list me-2"></i>Quay lại danh sách
+                        </a>
+                        <form asp-action="Delete" asp-route-id="@Model.BrandId" 
+                              method="post" class="d-inline" 
+                              onsubmit="return confirmDelete('@Model.Name')">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash me-2"></i>Xóa thương hiệu
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Logo Modal -->
+<div id="logoModal" class="logo-modal-overlay">
+    <div class="logo-modal-content">
+        <button class="logo-modal-close" onclick="closeLogoModal()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="logo-modal-main">
+            <img id="modalLogo" src="" alt="Brand Logo" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function confirmDelete(brandName) {
+            return confirm(`Bạn có chắc chắn muốn xóa thương hiệu "${brandName}"?\n\nHành động này không thể hoàn tác!`);
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                // Show success message
+                const toast = document.createElement('div');
+                toast.className = 'toast-message';
+                toast.innerHTML = '<i class="fas fa-check me-2"></i>Đã copy URL!';
+                document.body.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.classList.add('show');
+                }, 100);
+                
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 300);
+                }, 2000);
+            });
+        }
+
+        function openLogoModal(logoUrl) {
+            const modal = document.getElementById('logoModal');
+            const modalImg = document.getElementById('modalLogo');
+            
+            modal.style.display = 'flex';
+            modalImg.src = logoUrl;
+            document.body.style.overflow = 'hidden';
+            
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        function closeLogoModal() {
+            const modal = document.getElementById('logoModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('logoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLogoModal();
+            }
+        });
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('logoModal');
+            if (modal.style.display === 'flex' && e.key === 'Escape') {
+                closeLogoModal();
+            }
+        });
+    </script>
+
+    <style>
+        .brand-logo-large {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            border-radius: 8px;
+            border: 2px solid #dee2e6;
+            background: #f8f9fa;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .brand-logo-large:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .no-logo-display {
+            padding: 40px 0;
+        }
+
+        .brand-info-grid {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .info-item {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 15px;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-value {
+            color: #2c3e50;
+        }
+
+        /* Logo Modal */
+        .logo-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-modal-overlay.show {
+            opacity: 1;
+        }
+
+        .logo-modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+
+        .logo-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo-modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.1);
+        }
+
+        .logo-modal-main img {
+            max-width: 80vw;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Toast Message */
+        .toast-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            z-index: 10000;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .toast-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @@media (max-width: 768px) {
+            .info-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                text-align: left;
+            }
+            
+            .info-label {
+                justify-content: flex-start;
+                font-size: 0.9rem;
+            }
+            
+            .d-flex.gap-2 {
+                flex-direction: column;
+            }
+            
+            .brand-info-grid {
+                padding: 15px;
+            }
+        }
+
+        .card {
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+}

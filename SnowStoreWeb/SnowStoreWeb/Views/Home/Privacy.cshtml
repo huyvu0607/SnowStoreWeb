@@ -1,6 +1,627 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Title"] = "Giới thiệu";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<style>
+    @@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+        --primary-blue: #3b82f6;
+        --light-blue: #dbeafe;
+        --pale-blue: #f0f9ff;
+        --navy-blue: #1e40af;
+        --text-dark: #1f2937;
+        --text-gray: #6b7280;
+        --white: #ffffff;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .hero-section {
+        background: linear-gradient(135deg, var(--light-blue) 0%, var(--pale-blue) 100%);
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        padding: 4rem 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        margin-top: -23px;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('/images/nengt.jpg');
+        background-size: cover;
+        background-position: center;
+        opacity: 0.5;
+        z-index: 1;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .hero-title {
+        font-size: 3rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+        color: white;
+        margin-bottom: 2rem;
+        font-weight: 400;
+    }
+
+    .container-custom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        width: 100%;
+    }
+
+    .section {
+        background: var(--white);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 2rem 0;
+        padding: 3rem;
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: black;
+        text-align: center;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background-color: black;
+        margin: 1rem auto 0;
+        border-radius: 2px;
+    }
+
+    .about-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-dark);
+        margin-bottom: 1.5rem;
+        text-align: justify;
+        word-wrap: break-word;
+    }
+
+    .about-text strong {
+        color: var(--navy-blue);
+        font-weight: 600;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+        width: 100%;
+    }
+
+    .stat-card {
+        background: var(--pale-blue);
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid var(--light-blue);
+        min-width: 0;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-blue);
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: var(--text-gray);
+        font-weight: 500;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+        width: 100%;
+    }
+
+    .feature-card {
+        background: var(--white);
+        border: 2px solid var(--light-blue);
+        border-radius: 12px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.3s ease;
+        min-width: 0;
+    }
+
+    .feature-card:hover {
+        border-color: var(--primary-blue);
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        display: block;
+    }
+
+    .feature-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #555555;
+        margin-bottom: 1rem;
+    }
+
+    .feature-text {
+        color: var(--text-gray);
+        line-height: 1.6;
+        word-wrap: break-word;
+    }
+
+    .cta-section {
+        text-align: center;
+        margin: 3rem 0;
+    }
+
+    .btn-primary-custom {
+        background-color: var(--primary-blue);
+        color: var(--white);
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow);
+        min-width: 200px;
+    }
+
+    .btn-primary-custom:hover {
+        background-color: var(--navy-blue);
+        color: var(--white);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .contact-section {
+        background: linear-gradient(135deg, #f1f1f1 0%, #d0d0d0 100%);
+        border-radius: 12px;
+        padding: 3rem;
+        margin: 3rem 0;
+        width: 100%;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+
+    .contact-item {
+        background: var(--white);
+        padding: 1.5rem;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: var(--shadow);
+        transition: all 0.3s ease;
+        min-width: 0;
+    }
+
+    .contact-item:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        background-color: black;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--white);
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+
+    .contact-text {
+        color: #555555;
+        font-weight: 500;
+        word-wrap: break-word;
+        min-width: 0;
+        flex: 1;
+    }
+
+    .contact-text strong {
+        color: black;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+
+    .social-section {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: var(--shadow);
+        width: 100%;
+    }
+
+    .social-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: black;
+        margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .social-link {
+        background-color: var(--primary-blue);
+        color: var(--white);
+        padding: 0.8rem 1.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow);
+        min-width: 150px;
+        white-space: nowrap;
+    }
+
+    .social-link:hover {
+        background-color: var(--navy-blue);
+        color: var(--white);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .social-link i {
+        font-size: 1.1rem;
+    }
+
+    /* Instagram gradient */
+    .social-link.instagram {
+        background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    }
+
+    .social-link.instagram:hover {
+        background: linear-gradient(45deg, #d4822a 0%,#c55a33 25%,#b91f3a 50%,#a91d5b 75%,#9a1579 100%);
+    }
+
+    /* TikTok gradient */
+    .social-link.tiktok {
+        background: linear-gradient(45deg, #ff0050 0%, #000000 100%);
+    }
+
+    .social-link.tiktok:hover {
+        background: linear-gradient(45deg, #e00048 0%, #1a1a1a 100%);
+    }
+
+    /* Responsive Design */
+    @@media (max-width: 768px) {
+        .hero-section {
+            padding: 3rem 0;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        .section {
+            padding: 2rem 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .container-custom {
+            padding: 0 1rem;
+        }
+        
+        .features-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .feature-card {
+            padding: 1.5rem;
+        }
+
+        .contact-section {
+            padding: 2rem 1.5rem;
+        }
+
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-item {
+            padding: 1.2rem;
+        }
+        
+        .social-links {
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .social-link {
+            width: 200px;
+            justify-content: center;
+        }
+
+        .btn-primary-custom {
+            width: 100%;
+            max-width: 300px;
+            padding: 1rem;
+        }
+
+        .about-text {
+            font-size: 1rem;
+            text-align: left;
+        }
+    }
+
+    @@media (max-width: 480px) {
+        .hero-content {
+            padding: 0 1rem;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+        }
+
+        .hero-subtitle {
+            font-size: 0.9rem;
+        }
+
+        .section {
+            padding: 1.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+        }
+        
+        .stats-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .stat-card {
+            padding: 1.5rem;
+        }
+
+        .feature-card {
+            padding: 1.2rem;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+        }
+
+        .contact-section {
+            padding: 1.5rem 1rem;
+        }
+
+        .contact-item {
+            padding: 1rem;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .contact-text {
+            text-align: center;
+        }
+
+        .social-section {
+            padding: 1.5rem;
+        }
+
+        .social-link {
+            width: 180px;
+            padding: 0.7rem 1rem;
+        }
+    }
+
+    @@media (max-width: 320px) {
+        .container-custom {
+            padding: 0 0.5rem;
+        }
+
+        .hero-title {
+            font-size: 1.5rem;
+        }
+
+        .section {
+            padding: 1rem 0.8rem;
+        }
+
+        .social-link {
+            width: 160px;
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Giới thiệu về SnowStore</h1>
+        <p class="hero-subtitle">Cửa hàng thời trang uy tín - Chất lượng cao - Giá cả hợp lý</p>
+    </div>
+</div>
+
+<div class="container-custom">
+    <!-- About Content -->
+    <div class="section">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <p class="about-text">
+                    <strong>SnowStore</strong> là thương hiệu mua sắm trực tuyến chuyên cung cấp đa dạng các sản phẩm
+                    thời trang và phụ kiện hiện đại. Chúng tôi luôn chú trọng đến chất lượng, thiết kế tinh tế
+                    và sự tiện lợi trong trải nghiệm mua sắm của khách hàng.
+                </p>
+                <p class="about-text">
+                    Với phương châm <em>"Khách hàng là trung tâm"</em>, SnowStore cam kết mang đến những sản phẩm
+                    tốt nhất từ các thương hiệu uy tín, cùng với đội ngũ nhân viên thân thiện, sẵn sàng hỗ trợ
+                    khách hàng trong suốt quá trình mua sắm.
+                </p>
+                <p class="about-text">
+                    <strong>Tầm nhìn:</strong> Trở thành một trong những nền tảng thương mại điện tử được yêu thích
+                    tại Việt Nam, nơi khách hàng có thể tìm thấy sản phẩm phù hợp với phong cách sống,
+                    cùng dịch vụ nhanh chóng và đáng tin cậy.
+                </p>
+
+                <div class="cta-section">
+                    <a asp-controller="Product" asp-action="Index" class="btn-primary-custom">
+                        <i class="fas fa-shopping-bag"></i>
+                        Xem sản phẩm
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="section">
+        <h2 class="section-title">Tại sao chọn SnowStore?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎁</div>
+                <h5 class="feature-title">Sản phẩm chất lượng</h5>
+                <p class="feature-text">
+                    Tất cả sản phẩm được chọn lọc kỹ lưỡng từ các thương hiệu uy tín, 
+                    đảm bảo chất lượng và độ bền cao cho mùa đông Việt Nam.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">❤️</div>
+                <h5 class="feature-title">Dịch vụ tận tâm</h5>
+                <p class="feature-text">
+                    Đội ngũ chăm sóc khách hàng chuyên nghiệp, luôn sẵn sàng tư vấn 
+                    và hỗ trợ khách hàng chọn lựa sản phẩm phù hợp nhất.
+                </p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚚</div>
+                <h5 class="feature-title">Giao hàng nhanh chóng</h5>
+                <p class="feature-text">
+                    Hệ thống giao hàng toàn quốc với tốc độ nhanh chóng, 
+                    đảm bảo sản phẩm đến tay khách hàng an toàn và đúng thời gian.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="contact-section">
+        <h2 class="section-title" style="color: black;">Thông tin liên hệ</h2>
+        
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-text">
+                    <strong>Địa chỉ</strong>
+                    Binh Thạnh, TP.Hồ Chí Minh, Việt Nam
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-text">
+                    <strong>Email</strong>
+                    snowstore.005@gmail.com
+                </div>
+            </div>
+        </div>
+        
+        <div class="social-section">
+            <h4 class="social-title">Theo dõi chúng tôi</h4>
+            <div class="social-links">
+                <a href="https://www.instagram.com/snowstore.005/" class="social-link instagram" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                    Instagram
+                </a>
+                <a href="https://www.tiktok.com/@@snowstore.005" class="social-link tiktok" target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                    TikTok
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">

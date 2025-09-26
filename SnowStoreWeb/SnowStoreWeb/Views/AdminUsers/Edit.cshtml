@@ -1,52 +1,333 @@
-@model SnowStoreWeb.Models.User
+﻿@model SnowStoreWeb.ViewModels.admin.AdminEditUserViewModel
 
 @{
+    ViewData["Title"] = "Edit User";
     Layout = "_AdminLayout";
-    ViewData["Title"] = "Edit";
+
+    // ✅ Sửa logic kiểm tra quyền - sử dụng UserId
+    var currentUserId = Context.Session.GetString("UserId");
+    var isEditingSelf = Model.UserId.ToString() == currentUserId;
+    var isTargetUser = Model.Role == "User";
+    var canEdit = isEditingSelf || isTargetUser;
 }
 
-<h1>Edit</h1>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-user-edit"></i> Edit User
+                        @if (isEditingSelf)
+                        {
+                            <span class="badge bg-info ms-2">Your Account</span>
+                        }
+                    </h3>
+                </div>
+                <div class="card-body">
+                    @if (!canEdit)
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            You can only edit User accounts or your own account.
+                        </div>
 
-<h4>User</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="UserId" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Full Name</label>
+                                    <input class="form-control" value="@Model.Name" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Email Address</label>
+                                    <input class="form-control" value="@Model.Email" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Role</label>
+                                    <input class="form-control" value="@Model.Role" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Created Date</label>
+                                    <input class="form-control" value="@Model.CreatedDate.ToString("MMM dd, yyyy")" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-start">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Back to List
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <form asp-action="Edit" method="post" id="editUserForm">
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <input asp-for="UserId" type="hidden" />
+                            <input asp-for="CreatedDate" type="hidden" />
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label asp-for="Name" class="form-label">
+                                            Full Name <span class="text-danger">*</span>
+                                        </label>
+                                        <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label asp-for="Email" class="form-label">
+                                            Email Address <span class="text-danger">*</span>
+                                        </label>
+                                        <input asp-for="Email" class="form-control" type="email" placeholder="Enter email address" />
+                                        <span asp-validation-for="Email" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label asp-for="Role" class="form-label">
+                                            Role <span class="text-danger">*</span>
+                                        </label>
+                                        @if (isEditingSelf)
+                                        {
+                                            <input asp-for="Role" class="form-control" readonly />
+                                            <div class="form-text">You cannot change your own role.</div>
+                                        }
+                                        else
+                                        {
+                                            <select asp-for="Role" class="form-select" asp-items="@ViewBag.RoleOptions">
+                                            </select>
+                                        }
+                                        <span asp-validation-for="Role" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label">Created Date</label>
+                                        <input class="form-control" value="@Model.CreatedDate.ToString("MMM dd, yyyy")" readonly />
+                                        <div class="form-text">Account creation date cannot be modified.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="NewPassword" class="form-label">
+                                    New Password (Leave blank to keep current)
+                                </label>
+                                <div class="input-group">
+                                    <input asp-for="NewPassword" type="password" class="form-control" placeholder="Enter new password (optional)" id="passwordInput" />
+                                    <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                                        <i class="fas fa-eye" id="togglePasswordIcon"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-success" id="generatePassword">
+                                        <i class="fas fa-key"></i> Generate
+                                    </button>
+                                </div>
+                                <div class="form-text">
+                                    If provided, password must be at least 8 characters with uppercase, lowercase, number, and special character.
+                                </div>
+                                <span asp-validation-for="NewPassword" class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3" id="passwordRequirements" style="display: none;">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h6 class="card-title">Password Requirements</h6>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <ul class="list-unstyled mb-0">
+                                                    <li id="lengthCheck"><i class="fas fa-times text-danger"></i> At least 8 characters</li>
+                                                    <li id="uppercaseCheck"><i class="fas fa-times text-danger"></i> One uppercase letter</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <ul class="list-unstyled mb-0">
+                                                    <li id="lowercaseCheck"><i class="fas fa-times text-danger"></i> One lowercase letter</li>
+                                                    <li id="numberCheck"><i class="fas fa-times text-danger"></i> One number</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <li id="specialCheck"><i class="fas fa-times text-danger"></i> One special character</li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+                                <a asp-action="Index" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left"></i> Back to List
+                                </a>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <i class="fas fa-save"></i> Update User
+                                </button>
+                            </div>
+                        </form>
+                    }
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PasswordHash" class="control-label"></label>
-                <input asp-for="PasswordHash" class="form-control" />
-                <span asp-validation-for="PasswordHash" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<!-- Toast Notification -->
+<div class="toast-container position-fixed top-0 end-0 p-3">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true" id="successToast">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fas fa-check-circle me-2"></i>
+                    @TempData["SuccessMessage"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true" id="errorToast">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    @TempData["ErrorMessage"]
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    }
 </div>
 
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function () {
+            // Show toasts
+            if ($('#successToast').length) {
+                var successToast = new bootstrap.Toast(document.getElementById('successToast'), {
+                    delay: 4000
+                });
+                successToast.show();
+            }
+
+            if ($('#errorToast').length) {
+                var errorToast = new bootstrap.Toast(document.getElementById('errorToast'), {
+                    delay: 5000
+                });
+                errorToast.show();
+            }
+
+            // Password visibility toggle
+            $('#togglePassword').click(function () {
+                var passwordInput = $('#passwordInput');
+                var passwordIcon = $('#togglePasswordIcon');
+
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    passwordIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    passwordIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+
+            // Generate password
+            $('#generatePassword').click(function () {
+                var btn = $(this);
+                btn.prop('disabled', true);
+                btn.html('<i class="fas fa-spinner fa-spin"></i> Generating...');
+
+                $.post('@Url.Action("GeneratePassword", "AdminUsers")', function (data) {
+                    $('#passwordInput').val(data.password);
+                    $('#passwordInput').attr('type', 'text');
+                    $('#togglePasswordIcon').removeClass('fa-eye').addClass('fa-eye-slash');
+                    $('#passwordRequirements').show();
+                    checkPasswordStrength(data.password);
+                })
+                    .fail(function () {
+                        alert('Error generating password. Please try again.');
+                    })
+                    .always(function () {
+                        btn.prop('disabled', false);
+                        btn.html('<i class="fas fa-key"></i> Generate');
+                    });
+            });
+
+            // Password strength checker
+            $('#passwordInput').on('input', function () {
+                var password = $(this).val();
+                if (password.length > 0) {
+                    $('#passwordRequirements').show();
+                    checkPasswordStrength(password);
+                } else {
+                    $('#passwordRequirements').hide();
+                }
+            });
+
+            function checkPasswordStrength(password) {
+                var checks = {
+                    length: password.length >= 8,
+                    uppercase: /[A-Z]/.test(password),
+                    lowercase: /[a-z]/.test(password),
+                    number: /[0-9]/.test(password),
+                    special: /[^A-Za-z0-9]/.test(password)
+                };
+
+                updateCheck('#lengthCheck', checks.length);
+                updateCheck('#uppercaseCheck', checks.uppercase);
+                updateCheck('#lowercaseCheck', checks.lowercase);
+                updateCheck('#numberCheck', checks.number);
+                updateCheck('#specialCheck', checks.special);
+            }
+
+            function updateCheck(selector, isValid) {
+                var element = $(selector);
+                var icon = element.find('i');
+
+                if (isValid) {
+                    icon.removeClass('fa-times text-danger').addClass('fa-check text-success');
+                } else {
+                    icon.removeClass('fa-check text-success').addClass('fa-times text-danger');
+                }
+            }
+
+            // Form validation
+            $('#editUserForm').submit(function (e) {
+                var password = $('#passwordInput').val();
+
+                if (password && password.length > 0) {
+                    var isValid = password.length >= 8 &&
+                        /[A-Z]/.test(password) &&
+                        /[a-z]/.test(password) &&
+                        /[0-9]/.test(password) &&
+                        /[^A-Za-z0-9]/.test(password);
+
+                    if (!isValid) {
+                        e.preventDefault();
+                        alert('Please ensure all password requirements are met.');
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,197 @@
+﻿@model SnowStoreWeb.Models.PopupBanner
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Popup Banner";
+    Layout = "_AdminLayout";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">@ViewData["Title"] #@Model.Id</h3>
+                </div>
+
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                    <input asp-for="Id" type="hidden" />
+                    <input asp-for="CreatedAt" type="hidden" />
+                    <input asp-for="ImageUrl" type="hidden" />
+
+                    <div class="card-body">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Title" class="form-label"></label>
+                                    <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề popup banner" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="imageFile" class="form-label">Thay đổi hình ảnh (tùy chọn)</label>
+                                    <input type="file" id="imageFile" name="imageFile" class="form-control"
+                                           accept="image/*" />
+                                    <div class="form-text">
+                                        Chấp nhận: JPG, JPEG, PNG, GIF, WEBP. Tối đa 5MB. Để trống nếu không muốn thay đổi.
+                                    </div>
+                                    @if (ViewData.ModelState["imageFile"]?.Errors.Any() == true)
+                                    {
+                                        <div class="text-danger">
+                                            @foreach (var error in ViewData.ModelState["imageFile"].Errors)
+                                            {
+                                                <div>@error.ErrorMessage</div>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="DisplayOrder" class="form-label"></label>
+                                    <input asp-for="DisplayOrder" class="form-control" type="number" min="1" max="999" />
+                                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Status" class="form-label"></label>
+                                    <select asp-for="Status" class="form-select" asp-items="Html.GetEnumSelectList<PopupStatus>()">
+                                        <option value="">-- Chọn trạng thái --</option>
+                                    </select>
+                                    <span asp-validation-for="Status" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label"></label>
+                            <textarea asp-for="Description" class="form-control" rows="4"
+                                      placeholder="Nhập mô tả popup banner (tùy chọn)"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <!-- Thông tin ngày tạo/cập nhật -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Ngày tạo</label>
+                                    <input type="text" class="form-control" value="@Model.CreatedAt.ToString("dd/MM/yyyy HH:mm:ss")" readonly />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Ngày cập nhật gần nhất</label>
+                                    <input type="text" class="form-control" value="@Model.UpdatedAt?.ToString("dd/MM/yyyy HH:mm:ss")" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Hình ảnh hiện tại -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Hình ảnh hiện tại:</label>
+                                    <div class="border rounded p-3 text-center bg-light">
+                                        <img id="current-image" src="@Model.ImageUrl" alt="@Model.Title" class="img-fluid"
+                                             style="max-height: 200px; max-width: 100%; object-fit: contain;"
+                                             onerror="this.src='/images/no-image.png';" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Preview hình ảnh mới -->
+                            <div class="col-md-6">
+                                <div class="mb-3" id="new-image-preview-section" style="display: none;">
+                                    <label class="form-label">Hình ảnh mới:</label>
+                                    <div class="border rounded p-3 text-center bg-info bg-opacity-10">
+                                        <img id="new-image-preview" src="" alt="New Preview" class="img-fluid"
+                                             style="max-height: 200px; max-width: 100%; object-fit: contain;" />
+                                    </div>
+                                    <div class="mt-2">
+                                        <small id="new-image-info" class="text-muted"></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="d-flex justify-content-between">
+                            <a href="@Url.Action("Index")" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Quay lại
+                            </a>
+                            <div>
+                                <a href="@Url.Action("Details", new { id = Model.Id })" class="btn btn-info me-2">
+                                    <i class="fas fa-eye"></i> Chi tiết
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Cập nhật
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function() {
+            // Handle file input change for new image
+            $('#imageFile').on('change', function() {
+                const file = this.files[0];
+                const previewSection = $('#new-image-preview-section');
+                const previewImg = $('#new-image-preview');
+                const imageInfo = $('#new-image-info');
+
+                if (file) {
+                    // Validate file type
+                    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+                    if (!allowedTypes.includes(file.type)) {
+                        alert('Vui lòng chọn file hình ảnh hợp lệ (JPG, PNG, GIF, WEBP)');
+                        this.value = '';
+                        previewSection.hide();
+                        return;
+                    }
+
+                    // Validate file size (5MB = 5 * 1024 * 1024 bytes)
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('Kích thước file không được vượt quá 5MB');
+                        this.value = '';
+                        previewSection.hide();
+                        return;
+                    }
+
+                    // Create FileReader to preview image
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.attr('src', e.target.result);
+                        previewSection.show();
+
+                        // Show file info
+                        const sizeKB = Math.round(file.size / 1024);
+                        const sizeText = sizeKB < 1024 ? sizeKB + ' KB' : Math.round(sizeKB / 1024 * 10) / 10 + ' MB';
+                        imageInfo.text(`File mới: ${file.name} | Kích thước: ${sizeText}`);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    previewSection.hide();
+                }
+            });
+        });
+    </script>
+}

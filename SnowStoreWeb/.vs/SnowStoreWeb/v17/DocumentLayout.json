@@ -1,190 +1,317 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\",
+  "WorkspaceRootPath": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\product\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\product\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\adminproducts\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminproducts\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\product\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\product\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\models\\productimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\productimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\wwwroot\\js\\admin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\js\\admin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\controllers\\admin\\adminproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admin\\adminproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\controllers\\admin\\admincategoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admin\\admincategoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\wwwroot\\css\\admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\css\\admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\admincategories\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admincategories\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\admin\\products.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admin\\products.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\admincategories\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admincategories\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\adminproducts\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminproducts\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\adminproducts\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminproducts\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\adminusers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminusers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\adminproducts\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminproducts\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\admincategories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admincategories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\admincategories\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admincategories\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\admincategories\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admincategories\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\controllers\\admin\\adminuserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admin\\adminuserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\adminusers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminusers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\adminusers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminusers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\adminusers\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminusers\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\adminusers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminusers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\adminproducts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminproducts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\admin\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admin\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\viewmodels\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\viewmodels\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\attributes\\authorizeuserattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\attributes\\authorizeuserattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\snowstoreweb\\snowstoreweb\\models\\snowstorecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminbrand\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminbrand\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\controllers\\admin\\adminbrandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admin\\adminbrandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admin\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\models\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\brand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\models\\snowstorecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\snowstorecontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\wwwroot\\css\\productindex.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\css\\productindex.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\product\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\product\\search.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\product\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\product\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\snowstoreweb.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\snowstoreweb.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminpopupbanner\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminpopupbanner\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminusers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminusers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminpopupbanner\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminpopupbanner\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\controllers\\admin\\adminproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admin\\adminproductscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\controllers\\admin\\adminpopupbannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admin\\adminpopupbannercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\wwwroot\\js\\productindex.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\js\\productindex.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\models\\popupbanner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\popupbanner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminpopupbanner\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminpopupbanner\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\controllers\\admin\\adminedituserviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admin\\adminedituserviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminusers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminusers\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminpopupbanner\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminpopupbanner\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminbrand\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminbrand\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\controllers\\admin\\admincategoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admin\\admincategoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminpopupbanner\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminpopupbanner\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\shared\\_adminlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminbrand\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminbrand\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\pages\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\pages\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\controllers\\admin\\adminuserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\controllers\\admin\\adminuserscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\admincategories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admincategories\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\admincategories\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admincategories\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminbrand\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminbrand\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminusers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminusers\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\wwwroot\\js\\admin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\js\\admin.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\admincategories\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admincategories\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\admincategories\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admincategories\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminproducts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminproducts\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\wwwroot\\css\\admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\css\\admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminproducts\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminproducts\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\wwwroot\\js\\productadmin\\product-list-enhanced.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\js\\productadmin\\product-list-enhanced.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\wwwroot\\js\\productadmin\\create-product-enhanced.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\js\\productadmin\\create-product-enhanced.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\extensions\\htmlextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\extensions\\htmlextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminproducts\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminproducts\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminproducts\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminproducts\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\dto\\branddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\dto\\branddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\wwwroot\\css\\productadmin\\create-product-enhanced.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\css\\productadmin\\create-product-enhanced.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminbrand\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminbrand\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\wwwroot\\css\\productadmin\\product-list-enhanced.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\wwwroot\\css\\productadmin\\product-list-enhanced.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\viewmodels\\admin\\productlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\viewmodels\\admin\\productlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\admincategories\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admincategories\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminproducts\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminproducts\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\admin\\products.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admin\\products.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminusers\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminusers\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\adminusers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\adminusers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\viewmodels\\admin\\adminedituserviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\viewmodels\\admin\\adminedituserviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\viewmodels\\admin\\admincreateuserviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\viewmodels\\admin\\admincreateuserviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\attributes\\authorizeuserattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\attributes\\authorizeuserattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Migrations\\20250917140139_AddBrandTable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\models\\productimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\models\\productimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\admin\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\admin\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\viewmodels\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\viewmodels\\registerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|d:\\d\u1EF1 \u00E1n ri\u00EAng\\github\\snowstoreweb\\snowstoreweb\\snowstoreweb\\migrations\\20250924080416_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C16FEC8A-52E8-4A1B-AAD9-7CD1146F849C}|SnowStoreWeb\\SnowStoreWeb.csproj|solutionrelative:snowstoreweb\\migrations\\20250924080416_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -194,7 +321,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 214,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -210,161 +337,564 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AdminProductsController.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminProductsController.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\Admin\\AdminProductsController.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminProductsController.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Controllers\\Admin\\AdminProductsController.cs",
-              "ViewState": "AgIAAIgAAAAAAAAAAAApwKIAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T17:14:37.107Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-05T10:06:01.381Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Search.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Search.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Product\\Search.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Search.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\Product\\Search.cshtml",
-              "ViewState": "AgIAAE8CAAAAAAAAAAAjwGYCAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-05T14:15:27.224Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "site.css",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\site.css",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\css\\site.css",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\site.css",
-              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAABIAAAAAAAAAAAAcwCoAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-09-05T13:25:57.548Z",
-              "EditorCaption": ""
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Index.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Admin\\Index.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Index.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\Admin\\Index.cshtml",
+              "ViewState": "AgIAAJoAAAAAAAAAAAAkwLgAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T17:09:49.061Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Details.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Product\\Details.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Details.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\Product\\Details.cshtml",
-              "ViewState": "AgIAAJgDAAAAAAAAAAAAwKYDAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T16:44:28.227Z",
-              "EditorCaption": ""
+              "DocumentIndex": 9,
+              "Title": "SnowStoreContext.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\SnowStoreContext.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\SnowStoreContext.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\SnowStoreContext.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Models\\SnowStoreContext.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwCEAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T16:34:14.544Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "ProductImage.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Models\\ProductImage.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\ProductImage.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Models\\ProductImage.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Models\\ProductImage.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAgwBgAAAAAAAAAAAAAAA==",
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\Product.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\Product.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Models\\Product.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAA8wCMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T04:30:48.334Z"
+              "WhenOpened": "2025-09-05T03:41:31.928Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\User.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\User.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\User.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T17:02:52.057Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Category.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\Category.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\Category.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Models\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T17:55:23.213Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\ProductController.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAAOQAAAAAAAAAAAAAAP0AAAABAAAAAAAAAA==",
+              "Title": "Brand.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\Brand.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\Brand.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\Brand.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Models\\Brand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T16:43:14.759Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-17T14:00:27.092Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Index.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Product\\Index.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Index.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\Product\\Index.cshtml",
-              "ViewState": "AgIAACwCAAAAAAAAAAAjwD0CAAA6AAAAAAAAAA==",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminBrand\\Index.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminBrand\\Index.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminBrand\\Index.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminBrand\\Index.cshtml",
+              "ViewState": "AgIAAAUDAAAAAAAAAAAmwCIDAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T16:44:04.243Z",
+              "WhenOpened": "2025-09-17T14:18:58.547Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\appsettings.json",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\appsettings.json",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\appsettings.json",
+              "RelativeToolTip": "SnowStoreWeb\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-04T16:34:29.684Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Details.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminProducts\\Details.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Details.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminProducts\\Details.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAABgAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:26:23.861Z",
-              "EditorCaption": ""
+              "Title": "AdminBrandController.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminBrandController.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\Admin\\AdminBrandController.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminBrandController.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Controllers\\Admin\\AdminBrandController.cs",
+              "ViewState": "AgIAACgBAAAAAAAAAAAIwEABAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T14:15:51.046Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAUwJAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T17:09:14.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Shared\\_Layout.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "SnowStoreWeb\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAjAAAAAAAAAA==",
+              "ViewState": "AgIAAKYBAAAAAAAAAAAcwLABAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-04T16:44:38.584Z"
             },
             {
               "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Search.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Search.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Product\\Search.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Search.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\Product\\Search.cshtml",
+              "ViewState": "AgIAAJoDAAAAAAAAAAAUwKUDAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T14:15:27.224Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "productIndex.css",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\productIndex.css",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\css\\productIndex.css",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\productIndex.css",
+              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\css\\productIndex.css",
+              "ViewState": "AgIAABkFAAAAAAAAAAAwwP0EAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-09-18T16:26:04.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Index.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Product\\Index.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Index.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\Product\\Index.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABgAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T16:44:04.243Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAGICAAAAAAAAAAAswHMCAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T16:43:14.759Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 14,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Details.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Product\\Details.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Product\\Details.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\Product\\Details.cshtml",
+              "ViewState": "AgIAAGwBAAAAAAAAAAAcwHUBAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T16:44:28.227Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAABTAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T17:03:43.159Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwBQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T04:11:23.926Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAABAAAAAAAAAAAAAcwCUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-17T16:16:24.932Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "SnowStoreWeb.csproj",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\SnowStoreWeb.csproj",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj",
+              "RelativeToolTip": "SnowStoreWeb\\SnowStoreWeb.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-21T08:49:03.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAOsBAAAAAAAAAADwv/0BAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-05T10:06:01.381Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "site.css",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\css\\site.css",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAANwAAAAAAAAAAAAAAPQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-09-05T13:25:57.548Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminPopupBanner\\Index.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminPopupBanner\\Index.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminPopupBanner\\Index.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminPopupBanner\\Index.cshtml",
+              "ViewState": "AgIAALAAAAAAAAAAAAAswLwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-22T19:00:47.322Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Index.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminUsers\\Index.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Index.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminUsers\\Index.cshtml",
+              "ViewState": "AgIAAPsCAAAAAAAAAAAAALMBAABnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T17:26:45.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 77,
+              "Title": "20250924080416_InitialCreate.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Migrations\\20250924080416_InitialCreate.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Migrations\\20250924080416_InitialCreate.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Migrations\\20250924080416_InitialCreate.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Migrations\\20250924080416_InitialCreate.cs",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-24T08:04:17.231Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Program.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Program.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Program.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Program.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAIwCwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T16:34:48.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "AdminPopupBannerController.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminPopupBannerController.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\Admin\\AdminPopupBannerController.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminPopupBannerController.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Controllers\\Admin\\AdminPopupBannerController.cs",
+              "ViewState": "AgIAADMBAAAAAAAAAAAQwFkBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T18:40:31.81Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "AdminProductsController.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminProductsController.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\Admin\\AdminProductsController.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminProductsController.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Controllers\\Admin\\AdminProductsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T17:14:37.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminPopupBanner\\Details.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminPopupBanner\\Details.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminPopupBanner\\Details.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminPopupBanner\\Details.cshtml",
+              "ViewState": "AgIAADoAAAAAAAAAAAAswFQAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-22T19:00:44.477Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "productIndex.js",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\productIndex.js",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\js\\productIndex.js",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\productIndex.js",
+              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\js\\productIndex.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-18T16:26:26.196Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Details.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminUsers\\Details.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Details.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminUsers\\Details.cshtml",
+              "ViewState": "AgIAAPYAAAAAAAAAAAAAABYAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T17:26:39.236Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "AdminEditUserViewModel.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminEditUserViewModel.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\Admin\\AdminEditUserViewModel.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminEditUserViewModel.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Controllers\\Admin\\AdminEditUserViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-16T15:59:56.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "PopupBanner.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\PopupBanner.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\PopupBanner.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\PopupBanner.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Models\\PopupBanner.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAcwCoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-22T18:35:55.315Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminPopupBanner\\Create.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminPopupBanner\\Create.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminPopupBanner\\Create.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminPopupBanner\\Create.cshtml",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAYwJAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-22T18:58:06.331Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminPopupBanner\\Edit.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminPopupBanner\\Edit.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminPopupBanner\\Edit.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminPopupBanner\\Edit.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAADAAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-22T19:00:49.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminBrand\\Edit.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminBrand\\Edit.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminBrand\\Edit.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminBrand\\Edit.cshtml",
+              "ViewState": "AgIAAFYCAAAAAAAAAAAswGUCAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-17T14:19:43.482Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminPopupBanner\\Delete.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminPopupBanner\\Delete.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminPopupBanner\\Delete.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminPopupBanner\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-22T19:00:41.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "AdminCategoriesController.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminCategoriesController.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\Admin\\AdminCategoriesController.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminCategoriesController.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Controllers\\Admin\\AdminCategoriesController.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAkwIUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T03:42:11.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
               "Title": "_AdminLayout.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Shared\\_AdminLayout.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Shared\\_AdminLayout.cshtml",
               "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Shared\\_AdminLayout.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Shared\\_AdminLayout.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Shared\\_AdminLayout.cshtml",
               "RelativeToolTip": "SnowStoreWeb\\Views\\Shared\\_AdminLayout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABvAAAAAAAAAA==",
+              "ViewState": "AgIAAJoAAAAAAAAAAAAYwK0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-04T17:11:53.973Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "admin.css",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\admin.css",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\css\\admin.css",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\admin.css",
-              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\css\\admin.css",
-              "ViewState": "AgIAAEIEAAAAAAAAAAAAAFsEAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-09-05T10:00:40.724Z"
+              "DocumentIndex": 39,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Pages\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Pages\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Pages\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Pages\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-22T18:52:43.231Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 40,
+              "Title": "AdminUsersController.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminUsersController.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\Admin\\AdminUsersController.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminUsersController.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Controllers\\Admin\\AdminUsersController.cs",
+              "ViewState": "AgIAAKYAAAAAAAAAAAAqwFkBAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T17:14:25.595Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminBrand\\Create.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminBrand\\Create.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminBrand\\Create.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminBrand\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-17T14:19:20.75Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Index.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminCategories\\Index.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Index.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminCategories\\Index.cshtml",
+              "ViewState": "AgIAAJkDAAAAAAAAAAAswKoDAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T18:04:53.081Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Details.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminCategories\\Details.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Details.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminCategories\\Details.cshtml",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAcwEcAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T18:04:47.518Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminBrand\\Details.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminBrand\\Details.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminBrand\\Details.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminBrand\\Details.cshtml",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAcwKUAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-17T14:19:57.285Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Edit.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminUsers\\Edit.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Edit.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminUsers\\Edit.cshtml",
+              "ViewState": "AgIAADIBAAAAAAAAAAAswEkBAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T17:26:42.298Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
               "Title": "Delete.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Delete.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Delete.cshtml",
               "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminCategories\\Delete.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Delete.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Delete.cshtml",
               "RelativeToolTip": "SnowStoreWeb\\Views\\AdminCategories\\Delete.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -372,119 +902,227 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 47,
               "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Create.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Create.cshtml",
               "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminCategories\\Create.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Create.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Create.cshtml",
               "RelativeToolTip": "SnowStoreWeb\\Views\\AdminCategories\\Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADgAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAUwEoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-04T18:04:42.145Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 45,
               "Title": "admin.js",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\admin.js",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\admin.js",
               "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\js\\admin.js",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\admin.js",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\admin.js",
               "RelativeToolTip": "SnowStoreWeb\\wwwroot\\js\\admin.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAswGUAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-09-05T10:00:09.847Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "site.js",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\site.js",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\js\\site.js",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\site.js",
-              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\js\\site.js",
-              "ViewState": "AgIAAEoAAAAAAAAAAAAuwGIAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-09-05T13:26:06.241Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Edit.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminUsers\\Edit.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Edit.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminUsers\\Edit.cshtml",
-              "ViewState": "AgIAABgAAAAAAAAAAAAUwDQAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 48,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Index.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminProducts\\Index.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Index.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminProducts\\Index.cshtml",
+              "ViewState": "AgIAAJcBAAAAAAAAAAAAAKQBAABXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:26:42.298Z"
+              "WhenOpened": "2025-09-04T17:25:42.022Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "AdminCategoriesController.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminCategoriesController.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\Admin\\AdminCategoriesController.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminCategoriesController.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Controllers\\Admin\\AdminCategoriesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 49,
+              "Title": "admin.css",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\admin.css",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\css\\admin.css",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\admin.css",
+              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\css\\admin.css",
+              "ViewState": "AgIAAC0AAAAAAAAAAAApwD4AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-09-05T10:00:40.724Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Details.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminProducts\\Details.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Details.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminProducts\\Details.cshtml",
+              "ViewState": "AgIAAOABAAAAAAAAAAAgwO8BAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T17:26:23.861Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Delete.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminProducts\\Delete.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Delete.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminProducts\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T17:26:20.415Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "create-product-enhanced.js",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\productAdmin\\create-product-enhanced.js",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\js\\productAdmin\\create-product-enhanced.js",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\productAdmin\\create-product-enhanced.js",
+              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\js\\productAdmin\\create-product-enhanced.js",
+              "ViewState": "AgIAAFUCAAAAAAAAAAAgwF4CAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-20T15:42:20.981Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "product-list-enhanced.js",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\productAdmin\\product-list-enhanced.js",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\js\\productAdmin\\product-list-enhanced.js",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\productAdmin\\product-list-enhanced.js",
+              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\js\\productAdmin\\product-list-enhanced.js",
+              "ViewState": "AgIAADgCAAAAAAAAAAAqwEkCAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-20T04:46:36.836Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "HtmlExtensions.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Extensions\\HtmlExtensions.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Extensions\\HtmlExtensions.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Extensions\\HtmlExtensions.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Extensions\\HtmlExtensions.cs",
+              "ViewState": "AgIAAF4AAAAAAAAAAAAQwHoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T03:42:11.419Z"
+              "WhenOpened": "2025-09-22T03:35:34.255Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 55,
               "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Create.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Create.cshtml",
               "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminProducts\\Create.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Create.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Create.cshtml",
               "RelativeToolTip": "SnowStoreWeb\\Views\\AdminProducts\\Create.cshtml",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAowHwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAnwFoAAABHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-04T17:26:08.929Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 57,
+              "Title": "site.js",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\js\\site.js",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\js\\site.js",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwGAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-05T13:26:06.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "create-product-enhanced.css",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\productAdmin\\create-product-enhanced.css",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\css\\productAdmin\\create-product-enhanced.css",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\productAdmin\\create-product-enhanced.css",
+              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\css\\productAdmin\\create-product-enhanced.css",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAuwGgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-09-20T15:41:39.043Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "BrandDto.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\DTO\\BrandDto.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\DTO\\BrandDto.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\DTO\\BrandDto.cs",
+              "RelativeToolTip": "SnowStoreWeb\\DTO\\BrandDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T14:47:45.959Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminBrand\\Delete.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminBrand\\Delete.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminBrand\\Delete.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminBrand\\Delete.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-17T14:20:10.282Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "product-list-enhanced.css",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\productAdmin\\product-list-enhanced.css",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\wwwroot\\css\\productAdmin\\product-list-enhanced.css",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\wwwroot\\css\\productAdmin\\product-list-enhanced.css",
+              "RelativeToolTip": "SnowStoreWeb\\wwwroot\\css\\productAdmin\\product-list-enhanced.css",
+              "ViewState": "AgIAAHEEAAAAAAAAAAAYwH8EAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-09-20T04:45:34.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "ProductListViewModel.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\ViewModels\\admin\\ProductListViewModel.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\ViewModels\\admin\\ProductListViewModel.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\ViewModels\\admin\\ProductListViewModel.cs",
+              "RelativeToolTip": "SnowStoreWeb\\ViewModels\\admin\\ProductListViewModel.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAcwCIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T07:39:45.696Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
               "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Edit.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Edit.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminCategories\\Edit.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Edit.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminCategories\\Edit.cshtml",
+              "ViewState": "AgIAADEAAAAAAAAAAAAcwFoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T18:04:50.314Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Edit.cshtml",
               "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminProducts\\Edit.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Edit.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Edit.cshtml",
               "RelativeToolTip": "SnowStoreWeb\\Views\\AdminProducts\\Edit.cshtml",
-              "ViewState": "AgIAAIQBAAAAAAAAAAAqwKYBAAABAAAAAAAAAA==",
+              "ViewState": "AgIAABQCAAAAAAAAAAAUwDACAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-04T17:26:26.604Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Program.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Program.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Program.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Program.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAuwCgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T16:34:48.255Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Category.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Models\\Category.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\Category.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Models\\Category.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Models\\Category.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwBYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T17:55:23.213Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 64,
               "Title": "Products.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Products.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Products.cshtml",
               "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Admin\\Products.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Products.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Products.cshtml",
               "RelativeToolTip": "SnowStoreWeb\\Views\\Admin\\Products.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
@@ -492,251 +1130,59 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Index.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Admin\\Index.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Index.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\Admin\\Index.cshtml",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAmwCwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:09:49.061Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 65,
               "Title": "Delete.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Delete.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminProducts\\Delete.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Delete.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminProducts\\Delete.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:26:20.415Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Models\\Product.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\Product.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Models\\Product.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Models\\Product.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAkwDAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-05T03:41:31.928Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 32,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Index.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminUsers\\Index.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Index.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminUsers\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:26:45.637Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Index.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminCategories\\Index.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Index.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminCategories\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T18:04:53.081Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Details.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminCategories\\Details.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Details.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminCategories\\Details.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T18:04:47.518Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Edit.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminCategories\\Edit.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminCategories\\Edit.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminCategories\\Edit.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T18:04:50.314Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\AccountController.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAowG0AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T17:03:43.159Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\AdminController.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Controllers\\AdminController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T17:09:14.873Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "AdminUsersController.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminUsersController.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Controllers\\Admin\\AdminUsersController.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Controllers\\Admin\\AdminUsersController.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Controllers\\Admin\\AdminUsersController.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAkwBgAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T17:14:25.595Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Details.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminUsers\\Details.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Details.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminUsers\\Details.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:26:39.236Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "Delete.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Delete.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Delete.cshtml",
               "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminUsers\\Delete.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Delete.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Delete.cshtml",
               "RelativeToolTip": "SnowStoreWeb\\Views\\AdminUsers\\Delete.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-04T17:26:36.626Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 66,
               "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Create.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Create.cshtml",
               "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminUsers\\Create.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Create.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminUsers\\Create.cshtml",
               "RelativeToolTip": "SnowStoreWeb\\Views\\AdminUsers\\Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-09-04T17:26:33.713Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Index.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\AdminProducts\\Index.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\AdminProducts\\Index.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\AdminProducts\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:25:42.022Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 37,
-              "Title": "Users.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Users.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Admin\\Users.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Users.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\Admin\\Users.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:10:53.944Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 38,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Account\\Login.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:06:15.445Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\Register.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Account\\Register.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\Register.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\Account\\Register.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:05:59.174Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "User.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Models\\User.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\User.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Models\\User.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "DocumentIndex": 67,
+              "Title": "AdminEditUserViewModel.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\ViewModels\\admin\\AdminEditUserViewModel.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\ViewModels\\admin\\AdminEditUserViewModel.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\ViewModels\\admin\\AdminEditUserViewModel.cs",
+              "RelativeToolTip": "SnowStoreWeb\\ViewModels\\admin\\AdminEditUserViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T17:02:52.057Z"
+              "WhenOpened": "2025-09-12T15:52:01.302Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
-              "Title": "RegisterViewModel.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\ViewModels\\RegisterViewModel.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\ViewModels\\RegisterViewModel.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\ViewModels\\RegisterViewModel.cs",
-              "RelativeToolTip": "SnowStoreWeb\\ViewModels\\RegisterViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAyAAAAAAAAAA==",
+              "DocumentIndex": 68,
+              "Title": "AdminCreateUserViewModel.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\ViewModels\\admin\\AdminCreateUserViewModel.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\ViewModels\\admin\\AdminCreateUserViewModel.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\ViewModels\\admin\\AdminCreateUserViewModel.cs",
+              "RelativeToolTip": "SnowStoreWeb\\ViewModels\\admin\\AdminCreateUserViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T17:38:20.016Z"
+              "WhenOpened": "2025-09-12T15:51:41.601Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "AccessDenied.cshtml",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\AccessDenied.cshtml",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Account\\AccessDenied.cshtml",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\AccessDenied.cshtml",
-              "RelativeToolTip": "SnowStoreWeb\\Views\\Account\\AccessDenied.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-09-04T17:08:09.578Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 69,
               "Title": "AuthorizeUserAttribute.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Attributes\\AuthorizeUserAttribute.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Attributes\\AuthorizeUserAttribute.cs",
               "RelativeDocumentMoniker": "SnowStoreWeb\\Attributes\\AuthorizeUserAttribute.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Attributes\\AuthorizeUserAttribute.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Attributes\\AuthorizeUserAttribute.cs",
               "RelativeToolTip": "SnowStoreWeb\\Attributes\\AuthorizeUserAttribute.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAQwAQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -744,27 +1190,87 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\appsettings.json",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\appsettings.json",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\appsettings.json",
-              "RelativeToolTip": "SnowStoreWeb\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-09-04T16:34:29.684Z"
+              "DocumentIndex": 70,
+              "Title": "20250917140139_AddBrandTable.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Migrations\\20250917140139_AddBrandTable.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\SnowStoreWeb\\SnowStoreWeb\\Migrations\\20250917140139_AddBrandTable.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Migrations\\20250917140139_AddBrandTable.cs",
+              "RelativeToolTip": "..\\..\\..\\SnowStoreWeb\\SnowStoreWeb\\Migrations\\20250917140139_AddBrandTable.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-17T14:01:39.338Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "SnowStoreContext.cs",
-              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Models\\SnowStoreContext.cs",
-              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\SnowStoreContext.cs",
-              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\SnowStoreWeb\\SnowStoreWeb\\Models\\SnowStoreContext.cs",
-              "RelativeToolTip": "SnowStoreWeb\\Models\\SnowStoreContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 71,
+              "Title": "ProductImage.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\ProductImage.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Models\\ProductImage.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Models\\ProductImage.cs",
+              "RelativeToolTip": "SnowStoreWeb\\Models\\ProductImage.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAkwBgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-04T16:34:14.544Z"
+              "WhenOpened": "2025-09-05T04:30:48.334Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 72,
+              "Title": "Users.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Users.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Admin\\Users.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Admin\\Users.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\Admin\\Users.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T17:10:53.944Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 73,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Account\\Login.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T17:06:15.445Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 74,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Account\\Register.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T17:05:59.174Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 75,
+              "Title": "RegisterViewModel.cs",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\ViewModels\\RegisterViewModel.cs",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\ViewModels\\RegisterViewModel.cs",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\ViewModels\\RegisterViewModel.cs",
+              "RelativeToolTip": "SnowStoreWeb\\ViewModels\\RegisterViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-04T17:38:20.016Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 76,
+              "Title": "AccessDenied.cshtml",
+              "DocumentMoniker": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeDocumentMoniker": "SnowStoreWeb\\Views\\Account\\AccessDenied.cshtml",
+              "ToolTip": "D:\\D\u1EF1 \u00C1n ri\u00EAng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeToolTip": "SnowStoreWeb\\Views\\Account\\AccessDenied.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-04T17:08:09.578Z"
             }
           ]
         },

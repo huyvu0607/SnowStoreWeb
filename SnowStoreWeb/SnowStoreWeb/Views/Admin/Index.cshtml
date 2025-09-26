@@ -2,43 +2,368 @@
     ViewData["Title"] = "Admin Dashboard";
     Layout = "_AdminLayout";
     var hotProducts = ViewBag.HotProducts as List<SnowStoreWeb.Models.Product>;
+    var bestSellers = ViewBag.BestSellers as List<SnowStoreWeb.Models.Product>;
+    var categoryStats = ViewBag.CategoryStats as List<object>;
+    var brandStats = ViewBag.BrandStats as List<object>;
+    var highestPriceProduct = ViewBag.HighestPriceProduct as SnowStoreWeb.Models.Product;
+    var lowestPriceProduct = ViewBag.LowestPriceProduct as SnowStoreWeb.Models.Product;
 }
 
-<h2>📊 Admin Dashboard</h2>
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h2>
+        <small class="text-muted">Cập nhật: @DateTime.Now.ToString("dd/MM/yyyy HH:mm")</small>
+    </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="card text-white bg-primary mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Tổng sản phẩm</h5>
-                <p class="card-text fs-4">@ViewBag.ProductCount</p>
+    <!-- Thống kê tổng quan -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text text-uppercase mb-1">Tổng sản phẩm</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.ProductCount</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-box fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Người dùng</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.UserCount</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Danh mục</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.CategoryCount</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Thương hiệu</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">@ViewBag.BrandCount</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-tags fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card text-white bg-success mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Tổng người dùng</h5>
-                <p class="card-text fs-4">@ViewBag.UserCount</p>
+
+    <!-- Thống kê chi tiết sản phẩm -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="text-white-50 small">Sản phẩm HOT</div>
+                            <div class="text-lg font-weight-bold">@ViewBag.HotProductsCount</div>
+                        </div>
+                        <div><i class="fas fa-fire fa-2x"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="card bg-success text-white shadow">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="text-white-50 small">Best Seller</div>
+                            <div class="text-lg font-weight-bold">@ViewBag.BestSellerCount</div>
+                        </div>
+                        <div><i class="fas fa-trophy fa-2x"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="card bg-warning text-white shadow">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="text-white-50 small">Sắp hết hàng</div>
+                            <div class="text-lg font-weight-bold">@ViewBag.LowStockCount</div>
+                        </div>
+                        <div><i class="fas fa-exclamation-triangle fa-2x"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="card bg-dark text-white shadow">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="text-white-50 small">Hết hàng</div>
+                            <div class="text-lg font-weight-bold">@ViewBag.OutOfStockCount</div>
+                        </div>
+                        <div><i class="fas fa-times-circle fa-2x"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thống kê theo thời gian -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text" style="color:white">Thống kê gần đây</h6>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <div class="text-xs text-muted">Người dùng mới (7 ngày)</div>
+                            <div class="h4 text-success">@ViewBag.NewUsersLast7Days</div>
+                        </div>
+                        <div class="col-6 text-center">
+                            <div class="text-xs text-muted">Sản phẩm mới (30 ngày)</div>
+                            <div class="h4 text-info">@ViewBag.NewProductsLast30Days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text" style="color:white">Giá sản phẩm</h6>
+                </div>
+                <div class="card-body">
+                    @if (highestPriceProduct != null)
+                    {
+                        <div class="mb-3">
+                            <small class="text-muted">Giá cao nhất</small>
+                            <div class="font-weight-bold">@highestPriceProduct.Name</div>
+                            <span class="text-success">@highestPriceProduct.Price.ToString("C0")</span>
+                        </div>
+                    }
+                    @if (lowestPriceProduct != null)
+                    {
+                        <div>
+                            <small class="text-muted">Giá thấp nhất</small>
+                            <div class="font-weight-bold">@lowestPriceProduct.Name</div>
+                            <span class="text" style="color: orangered">@lowestPriceProduct.Price.ToString("C0")</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Sản phẩm HOT -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text" style="color:white">
+                        <i class="fas fa-fire text-danger" ></i> Top Sản phẩm HOT
+                    </h6>
+                </div>
+                <div class="card-body">
+                    @if (hotProducts != null && hotProducts.Any())
+                    {
+                        @foreach (var product in hotProducts)
+                        {
+                            <div class="d-flex align-items-center py-2 border-bottom">
+                                @if (!string.IsNullOrEmpty(product.ImageUrl))
+                                {
+                                    <img src="@product.ImageUrl" alt="@product.Name" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+                                }
+                                else
+                                {
+                                    <div class="bg-light rounded d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                        <i class="fas fa-image text-muted"></i>
+                                    </div>
+                                }
+                                <div class="ml-3 flex-grow-1">
+                                    <div class="font-weight-bold">@product.Name</div>
+                                    <small class="text-muted">
+                                        @(product.Category?.Name ?? "N/A") | @(product.Brand?.Name ?? "N/A")
+                                    </small>
+                                    <div class="text-success font-weight-bold">@product.Price.ToString("C0")</div>
+                                </div>
+                                <span class="badge badge-danger">HOT</span>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted text-center py-4">Chưa có sản phẩm HOT nào</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Sản phẩm Best Seller -->
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text" style="color:white">
+                        <i class="fas fa-trophy text-warning"></i> Top Best Seller
+                    </h6>
+                </div>
+                <div class="card-body">
+                    @if (bestSellers != null && bestSellers.Any())
+                    {
+                        @foreach (var product in bestSellers)
+                        {
+                            <div class="d-flex align-items-center py-2 border-bottom">
+                                @if (!string.IsNullOrEmpty(product.ImageUrl))
+                                {
+                                    <img src="@product.ImageUrl" alt="@product.Name" class="rounded" style="width: 50px; height: 50px; object-fit: cover;">
+                                }
+                                else
+                                {
+                                    <div class="bg-light rounded d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                        <i class="fas fa-image text-muted"></i>
+                                    </div>
+                                }
+                                <div class="ml-3 flex-grow-1">
+                                    <div class="font-weight-bold">@product.Name</div>
+                                    <small class="text-muted">
+                                        @(product.Category?.Name ?? "N/A") | @(product.Brand?.Name ?? "N/A")
+                                    </small>
+                                    <div class="text-success font-weight-bold">@product.Price.ToString("C0")</div>
+                                </div>
+                                <span class="badge badge-success">Best</span>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted text-center py-4">Chưa có sản phẩm Best Seller nào</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thống kê theo danh mục và thương hiệu -->
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text" style="color:white">Top Danh mục</h6>
+                </div>
+                <div class="card-body">
+                    @if (categoryStats != null && categoryStats.Any())
+                    {
+                        @foreach (dynamic stat in categoryStats)
+                        {
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold">@stat.CategoryName</span>
+                                    <span class="text">@stat.ProductCount sản phẩm</span>
+                                </div>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-primary" role="progressbar"
+                                         style="width: @(Math.Min(100, (int)stat.ProductCount * 100 / (int)ViewBag.ProductCount))%">
+                                    </div>
+                                </div>
+                                <small class="text-muted">
+                                    HOT: @stat.HotProductCount | Best: @stat.BestSellerCount
+                                </small>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted">Chưa có dữ liệu danh mục</p>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 mb-4">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text" style="color:white">Top Thương hiệu</h6>
+                </div>
+                <div class="card-body">
+                    @if (brandStats != null && brandStats.Any())
+                    {
+                        @foreach (dynamic stat in brandStats)
+                        {
+                            <div class="mb-3">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="font-weight-bold">@stat.BrandName</span>
+                                    <span class="text-success">@stat.ProductCount sản phẩm</span>
+                                </div>
+                                <div class="progress" style="height: 20px;">
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                         style="width: @(Math.Min(100, (int)stat.ProductCount * 100 / (int)ViewBag.ProductCount))%">
+                                    </div>
+                                </div>
+                                <small class="text-muted">
+                                    HOT: @stat.HotProductCount | Best: @stat.BestSellerCount
+                                </small>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p class="text-muted">Chưa có dữ liệu thương hiệu</p>
+                    }
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<h3>Sản phẩm HOT</h3>
-@if (hotProducts != null && hotProducts.Any())
-{
-    <ul class="list-group">
-        @foreach (var p in hotProducts)
-        {
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                @p.Name
-                <span class="badge bg-danger">HOT</span>
-            </li>
-        }
-    </ul>
-}
-else
-{
-    <p>Chưa có sản phẩm HOT nào</p>
-}
+<style>
+    .d-flex.align-items-center.py-2.border-bottom{
+        gap: 20px
+    }
+    .border-left-primary {
+        border-left: 0.25rem solid #4e73df !important;
+    }
+    .border-left-success {
+        border-left: 0.25rem solid #1cc88a !important;
+    }
+    .border-left-info {
+        border-left: 0.25rem solid #36b9cc !important;
+    }
+    .border-left-warning {
+        border-left: 0.25rem solid #f6c23e !important;
+    }
+</style>

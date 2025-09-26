@@ -16,7 +16,27 @@ namespace SnowStoreWeb.Controllers
             _context = context;
             _passwordHasher = new PasswordHasher<User>();
         }
+        public async Task<IActionResult> CreateAdmin()
+        {
+            if (!await _context.Users.AnyAsync(u => u.Role == "Admin"))
+            {
+                var admin = new User
+                {
+                    Name = "Admin",
+                    Email = "admin@snowstore.com",
+                    Role = "Admin",
+                    CreatedDate = DateTime.Now
+                };
 
+                admin.PasswordHash = _passwordHasher.HashPassword(admin, "Admin@123");
+
+                _context.Users.Add(admin);
+                await _context.SaveChangesAsync();
+
+                return Content("✅ Tài khoản Admin đã được tạo: admin@snowstore.com / Admin@123");
+            }
+            return Content("⚠️ Admin đã tồn tại!");
+        }
         // GET: /Account/Register
         public IActionResult Register()
         {

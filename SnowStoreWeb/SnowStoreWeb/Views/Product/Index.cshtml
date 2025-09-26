@@ -2,834 +2,1460 @@
 @{
     ViewData["Title"] = "Danh sách sản phẩm";
     var categories = ViewBag.Categories as List<SnowStoreWeb.Models.Category> ?? new List<SnowStoreWeb.Models.Category>();
+    var brands = ViewBag.Brands as List<SnowStoreWeb.Models.Brand> ?? new List<SnowStoreWeb.Models.Brand>();
     var currentPage = ViewBag.CurrentPage ?? 1;
     var totalPages = ViewBag.TotalPages ?? 1;
+    var totalProducts = ViewBag.TotalProducts ?? 0;
     var currentCategory = ViewBag.CurrentCategory as string;
+    var currentBrand = ViewBag.CurrentBrand as string;
     var currentSort = ViewBag.CurrentSort as string;
-}
-
-<style>
-.products-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.page-header {
-    text-align: center;
-    margin-bottom: 40px;
-    padding: 40px 0;
-    background: linear-gradient(135deg, #5DADE2 0%, #3498db 100%);
-    border-radius: 20px;
-    color: white;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.page-header h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.page-header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    margin: 0;
-}
-
-/* Search and Filter Section */
-.search-filter-section {
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    border: 2px solid rgba(0,0,0,0.05);
-}
-
-.search-filter-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-    gap: 12px;
-}
-
-.search-filter-header h4 {
-    margin: 0;
-    color: #2c3e50;
-    font-weight: 700;
-    font-size: 1.4rem;
-}
-
-.search-filter-header i {
-    color: #5DADE2;
-    font-size: 1.5rem;
-}
-
-.filter-form {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr auto;
-    gap: 20px;
-    align-items: end;
-}
-
-.search-group {
-    position: relative;
-}
-
-.search-input {
-    width: 100%;
-    padding: 15px 20px 15px 50px;
-    border: 2px solid #e1e8ed;
-    border-radius: 25px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: #f8f9fa;
-}
-
-.search-input:focus {
-    outline: none;
-    border-color: #5DADE2;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.1);
-}
-
-.search-icon {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #95a5a6;
-    font-size: 1.1rem;
-}
-
-.filter-select {
-    padding: 15px 20px;
-    border: 2px solid #e1e8ed;
-    border-radius: 15px;
-    font-size: 1rem;
-    background: #f8f9fa;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.filter-select:focus {
-    outline: none;
-    border-color: #5DADE2;
-    background: white;
-    box-shadow: 0 0 0 3px rgba(93, 173, 226, 0.1);
-}
-
-.search-btn {
-    padding: 15px 25px;
-    background: linear-gradient(135deg, #5DADE2 0%, #3498db 100%);
-    color: white;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.search-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(93, 173, 226, 0.3);
-}
-
-.clear-filters-btn {
-    padding: 15px 25px;
-    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-    color: white;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-}
-
-.clear-filters-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
-    color: white;
-}
-
-/* Quick Search Suggestions */
-.search-suggestions {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    border: 2px solid #e1e8ed;
-    border-top: none;
-    border-radius: 0 0 15px 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    max-height: 300px;
-    overflow-y: auto;
-    z-index: 1000;
-    display: none;
-}
-
-.suggestion-item {
-    padding: 12px 20px;
-    cursor: pointer;
-    border-bottom: 1px solid #f1f1f1;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: background 0.2s ease;
-}
-
-.suggestion-item:hover {
-    background: #f8f9fa;
-}
-
-.suggestion-item img {
-    width: 40px;
-    height: 40px;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.suggestion-content {
-    flex: 1;
-}
-
-.suggestion-name {
-    font-weight: 600;
-    color: #2c3e50;
-    margin-bottom: 2px;
-}
-
-.suggestion-details {
-    font-size: 0.85rem;
-    color: #7f8c8d;
-}
-
-/* Results Info */
-.results-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    padding: 15px 0;
-    border-bottom: 2px solid #ecf0f1;
-}
-
-.results-count {
-    color: #7f8c8d;
-    font-weight: 600;
-}
-
-.sort-options {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.sort-label {
-    color: #7f8c8d;
-    font-weight: 600;
-}
-
-.sort-select {
-    padding: 8px 15px;
-    border: 2px solid #e1e8ed;
-    border-radius: 10px;
-    background: white;
-    cursor: pointer;
-}
 
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 20px 0;
-}
-
-.product-card {
-    background: white;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    border: 2px solid rgba(0,0,0,0.05);
-    aspect-ratio: 5/7;
-    width: 100%;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
-
-.product-image-container {
-    position: relative;
-    overflow: hidden;
-    height: 100%;
-    background: linear-gradient(45deg, #f8f9fa, #e9ecef);
-}
-
-.product-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.product-card:hover .product-image-container img {
-    transform: scale(1.05);
-}
-
-.product-badges {
-    position: absolute;
-    top: 15px;
-    left: -6px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    z-index: 5;
-}
-
-.product-badges .badge {
-    font-size: 0.7rem;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-
-.badge.bg-danger {
-    background: #ff4444 !important;
-    color: white !important;
-}
-
-.badge.bg-success {
-    background: #ff6b35 !important;
-    color: white !important;
-}
-
-.card-body {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 15px;
-    backdrop-filter: blur(8px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
-    height: auto;
-    max-height: 60px;
-    overflow: hidden;
-}
-
-.product-card:hover .card-body {
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(5px);
-    padding: 15px;
-    max-height: 150px;
-    transform: translateY(0px);
-}
-
-.card-title {
-    font-size: 1.45rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, #FFD700, #FF8C00, #FF6347);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0;
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    text-align: left;
-    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.7)) drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
-}
-
-.product-card:hover .card-title {
-    background: linear-gradient(135deg, #fff, #f0f0f0);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    transform: translateY(-5px);
-    filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.8));
-}
-
-.product-price {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #ff6b6b;
-    margin-bottom: 5px;
-    transition: all 0.4s ease;
-    opacity: 0;
-    transform: translateY(10px);
-}
-
-.product-card:hover .product-price {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.1s;
-}
-
-.product-category {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 5px;
-    transition: all 0.4s ease;
-    opacity: 0;
-    transform: translateY(10px);
-}
-
-.product-card:hover .product-category {
-    opacity: 1;
-    transform: translateY(0);
-    transition-delay: 0.2s;
-}
-
-.product-category i {
-    color: #5DADE2;
-}
-
-.hover-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: all 0.3s ease;
-    background: linear-gradient(135deg, #5DADE2 0%, #3498db 100%);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(93, 173, 226, 0.3);
-    z-index: 3;
-    white-space: nowrap; 
-}
-
-.product-card:hover .hover-button {
-    opacity: 1;
-}
-
-.hover-button:hover {
-    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-    color: white;
-    transform: translate(-50%, -50%) translateY(-2px);
-    box-shadow: 0 6px 20px rgba(93, 173, 226, 0.4);
-}
-
-/* Pagination */
-.pagination-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 40px 0;
-    gap: 20px;
-}
-
-.pagination {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-.pagination a, .pagination span {
-    padding: 12px 16px;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    min-width: 45px;
-    text-align: center;
-}
-
-.pagination a {
-    background: white;
-    color: #5DADE2;
-    border: 2px solid #e1e8ed;
-}
-
-.pagination a:hover {
-    background: #5DADE2;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(93, 173, 226, 0.3);
-}
-
-.pagination .current {
-    background: linear-gradient(135deg, #5DADE2 0%, #3498db 100%);
-    color: white;
-    border: 2px solid #5DADE2;
-}
-
-.pagination-info {
-    color: #7f8c8d;
-    font-weight: 600;
-}
-
-.empty-state {
-    text-align: center;
-    padding: 80px 20px;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    margin: 40px 0;
-    grid-column: 1 / -1;
-}
-
-.empty-state i {
-    font-size: 4rem;
-    color: #bdc3c7;
-    margin-bottom: 20px;
-    display: block;
-}
-
-.empty-state h4 {
-    color: #7f8c8d;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
+    // ✅ Giá tối thiểu và tối đa cố định
+    var minPrice = 0;
+    var maxPrice = 1000000;
 
-.empty-state p {
-    color: #95a5a6;
-    font-size: 1rem;
-    margin: 0;
-}
+    // ✅ Chỉ set giá trị khi có filter từ ViewBag, không thì để null
+    var currentMinPrice = ViewBag.CurrentMinPrice;
+    var currentMaxPrice = ViewBag.CurrentMaxPrice;
 
-/* Responsive Design */
-@@media (max-width: 768px) {
-    .filter-form {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .results-info {
-        flex-direction: column;
-        gap: 15px;
-        align-items: flex-start;
-    }
-    
-    .search-filter-section {
-        padding: 20px;
-    }
-    
-    .search-input, .filter-select {
-        padding: 12px 15px;
-        padding-left: 45px;
-    }
-    
-    .search-btn, .clear-filters-btn {
-        width: 100%;
-        padding: 12px 20px;
-    }
+    // ✅ Nếu không có filter thì dùng giá trị mặc định cho hiển thị
+    var displayMinPrice = currentMinPrice ?? minPrice;
+    var displayMaxPrice = currentMaxPrice ?? maxPrice;
 }
-</style>
+<link rel="stylesheet" href="~/css/productIndex.css" asp-append-version="true" />
 
-<div class="products-container">
-    <div class="page-header">
-        <h2><i class="fas fa-boxes me-3"></i>Danh sách sản phẩm</h2>
-        <p>Khám phá bộ sưu tập thời trang chất lượng cao của chúng tôi</p>
+<!-- Hero Section với Background Image -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>The Merch Vault</h1>
+        <p>Every shirt holds a rhythm, every drop plays a note.</p>
     </div>
-    
-    <!-- Search and Filter Section -->
-    <div class="search-filter-section">
-        <div class="search-filter-header">
-            <i class="fas fa-search"></i>
-            <h4>Tìm kiếm & Lọc sản phẩm</h4>
-        </div>
-        
-        <form asp-action="Search" method="get" class="filter-form" id="searchForm">
-            <div class="search-group">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" name="query" id="searchInput" class="search-input" 
-                       placeholder="Nhập tên sản phẩm cần tìm..." 
-                       value="@ViewBag.SearchQuery" autocomplete="off">
-                <div class="search-suggestions" id="searchSuggestions"></div>
-            </div>
-            
-            <select name="category" class="filter-select">
-                <option value="">Tất cả danh mục</option>
-                @foreach (var category in categories)
-                {
-                    @if (currentCategory == category.Name)
-                    {
-                        <option value="@category.Name" selected>@category.Name</option>
-                    }
-                    else
-                    {
-                        <option value="@category.Name">@category.Name</option>
-                    }
-                }
-            </select>
-            
-            <select name="sortBy" class="filter-select">
-                <option value="">Sắp xếp mặc định</option>
-                @if (currentSort == "name_asc")
-                {
-                    <option value="name_asc" selected>Tên A-Z</option>
-                }
-                else
-                {
-                    <option value="name_asc">Tên A-Z</option>
-                }
-                
-                @if (currentSort == "name_desc")
-                {
-                    <option value="name_desc" selected>Tên Z-A</option>
-                }
-                else
-                {
-                    <option value="name_desc">Tên Z-A</option>
-                }
-                
-                @if (currentSort == "price_asc")
-                {
-                    <option value="price_asc" selected>Giá thấp đến cao</option>
-                }
-                else
-                {
-                    <option value="price_asc">Giá thấp đến cao</option>
-                }
-                
-                @if (currentSort == "price_desc")
-                {
-                    <option value="price_desc" selected>Giá cao đến thấp</option>
-                }
-                else
-                {
-                    <option value="price_desc">Giá cao đến thấp</option>
-                }
-                
-                @if (currentSort == "newest")
-                {
-                    <option value="newest" selected>Mới nhất</option>
-                }
-                else
-                {
-                    <option value="newest">Mới nhất</option>
-                }
-            </select>
-            
-            <div style="display: flex; gap: 10px;">
-                <button type="submit" class="search-btn">
-                    <i class="fas fa-search me-2"></i>Tìm kiếm
-                </button>
-                
-                <a asp-action="Index" class="clear-filters-btn">
-                    <i class="fas fa-times me-2"></i>Xóa bộ lọc
-                </a>
-            </div>
-        </form>
+
+    <div class="scroll-indicator" onclick="scrollToProducts()">
+        <i class="fas fa-chevron-down fa-2x"></i>
     </div>
-    
-    <!-- Results Info -->
-    <div class="results-info">
-        <div class="results-count">
-            Hiển thị <strong>@Model.Count()</strong> sản phẩm
-            @if (!string.IsNullOrEmpty(currentCategory))
-            {
-                <span> trong danh mục "<strong>@currentCategory</strong>"</span>
-            }
-        </div>
-    </div>
-    
-    <div class="product-grid">
-        @foreach (var item in Model)
-        {
-            <div class="product-card">
-                <div class="product-badges">
-                    @if (item.IsHot == true)
-                    {
-                        <span class="badge bg-danger">
-                            <i class="fas fa-fire me-1"></i>HOT
-                        </span>
-                    }
-                    @if (item.IsBestSeller == true)
-                    {
-                        <span class="badge bg-success">
-                            <i class="fas fa-star me-1"></i>Bán chạy
-                        </span>
-                    }
+</section>
+
+<!-- Products Section (Overlay lên background) -->
+<section class="products-section" id="products-section">
+    <div class="products-container">
+        <div class="main-layout">
+            <!-- Left Price Filter Sidebar -->
+            <div class="price-filter-sidebar">
+                <div class="filter-header">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h4>Lọc theo giá</h4>
                 </div>
-                <div class="product-image-container">
-                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" />
+
+                <div class="price-range-container">
+                    <div class="price-inputs">
+                        <div class="price-input">
+                            <label>Giá tối thiểu</label>
+                            <input type="number" id="minPriceInput" value="@displayMinPrice" min="@minPrice" max="@maxPrice">
+                        </div>
+                        <div class="price-input">
+                            <label>Giá tối đa</label>
+                            <input type="number" id="maxPriceInput" value="@displayMaxPrice" min="@minPrice" max="@maxPrice">
+                        </div>
+                    </div>
+
+                    <!-- Updated Single Range Slider -->
+                    <div class="single-range-slider">
+                        <div class="slider-track"></div>
+                        <div class="slider-range" id="sliderRange"></div>
+                        <input type="range" id="minRange" class="range-input" min="@minPrice" max="@maxPrice" value="@displayMinPrice" step="10000">
+                        <input type="range" id="maxRange" class="range-input" min="@minPrice" max="@maxPrice" value="@displayMaxPrice" step="10000">
+                    </div>
+
+                    <div class="price-display">
+                        <span id="minPriceDisplay">@displayMinPrice.ToString("N0") VND</span>
+                        <span id="maxPriceDisplay">@displayMaxPrice.ToString("N0") VND</span>
+                    </div>
+
+                    <button type="button" class="search-btn" style="width: 100%; margin-top: 15px;" onclick="applyPriceFilter()">
+                        <i class="fas fa-filter me-2"></i>Áp dụng
+                    </button>
                 </div>
-                
-                <a asp-action="Details" asp-route-id="@item.ProductId" class="hover-button">
-                    <i class="fas fa-eye me-2"></i>Xem chi tiết
-                </a>
-                
-                <div class="card-body">
-                    <h5 class="card-title">@item.Name</h5>
-                    <div class="product-price">@item.Price.ToString("N0") đ</div>
-                    <div class="product-category">
-                        <i class="fas fa-tag"></i> @(item.Category?.Name ?? "Không phân loại")
+            </div>
+
+            <!-- Central Content Area -->
+            <div class="content-area">
+                <!-- Mobile Filter Toggle Buttons -->
+                <div class="mobile-filter-toggles">
+                    <button type="button" class="mobile-filter-btn" id="openPriceFilter">
+                        <i class="fas fa-dollar-sign"></i>
+                        Lọc giá
+                    </button>
+                    <button type="button" class="mobile-filter-btn" id="openBrandFilter">
+                        <i class="fas fa-tags"></i>
+                        Lọc nghệ sĩ
+                    </button>
+                </div>
+
+                <!-- Search and Filter Section -->
+                <div class="search-filter-section">
+                    <div class="search-filter-header">
+                        <i class="fas fa-search"></i>
+                        <h4>Tìm kiếm & Lọc sản phẩm</h4>
+                    </div>
+
+                    <form asp-action="Search" method="get" class="filter-form" id="searchForm">
+                        <!-- ✅ Chỉ gửi giá trị khi thực sự có filter -->
+                        <input type="hidden" name="minPrice" id="minPriceFilter" value="@(currentMinPrice?.ToString() ?? "")">
+                        <input type="hidden" name="maxPrice" id="maxPriceFilter" value="@(currentMaxPrice?.ToString() ?? "")">
+                        <input type="hidden" name="brands" id="brandsFilter" value="@ViewBag.CurrentBrands">
+
+                        <div class="search-group">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" name="query" id="searchInput" class="search-input"
+                                   placeholder="Nhập tên sản phẩm cần tìm..."
+                                   value="@ViewBag.SearchQuery" autocomplete="off">
+                        </div>
+
+                        <select name="category" class="filter-select">
+                            <option value="">Tất cả danh mục</option>
+                            @foreach (var category in categories)
+                            {
+                                @if (currentCategory == category.Name)
+                                {
+                                    <option value="@category.Name" selected>@category.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@category.Name">@category.Name</option>
+                                }
+                            }
+                        </select>
+
+                        <div style="display: flex; gap: 10px;">
+                            <button type="submit" class="search-btn">
+                                <i class="fas fa-search me-2"></i>Tìm kiếm
+                            </button>
+
+                            <!-- ✅ Thêm onclick để reset giá -->
+                            <a asp-action="Index" class="clear-filters-btn" onclick="clearAllFilters(event)">
+                                <i class="fas fa-times me-2"></i>Xóa bộ lọc
+                            </a>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Results Info -->
+                <div class="results-info">
+                    <div class="results-count">
+                        Hiển thị <strong id="displayedCount">@Model.Count()</strong> / <strong>@totalProducts</strong> sản phẩm
+                        @if (!string.IsNullOrEmpty(currentCategory))
+                        {
+                            <span> trong danh mục "<strong>@currentCategory</strong>"</span>
+                        }
+                    </div>
+
+                    <div class="active-filters" id="activeFilters">
+                        <!-- Active filters will be populated by JavaScript -->
                     </div>
                 </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid" id="productGrid">
+                    @foreach (var item in Model)
+                    {
+                        @if (item.StockQuantity == 0)
+                        {
+                            <div class="product-card out-of-stock">
+                                <div class="product-badges">
+                                    @if (item.IsHot == true)
+                                    {
+                                        <span class="badge bg-danger">
+                                            <i class="fas fa-fire me-1"></i>HOT
+                                        </span>
+                                    }
+                                    @if (item.IsBestSeller == true)
+                                    {
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-star me-1"></i>Bán chạy
+                                        </span>
+                                    }
+                                </div>
+                                <div class="product-image-container">
+                                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" />
+                                    <div class="out-of-stock-overlay">
+                                        <div class="out-of-stock-text">Chưa mở bán</div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <h4 class="card-title">@item.Name</h4>
+                                    <div class="product-category">
+                                        <i class="fas fa-tag"></i> @(item.Category?.Name ?? "Không phân loại")
+                                    </div>
+                                    <div class="product-price">@item.Price.ToString("N0") VND</div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <a asp-action="Details" asp-route-id="@item.ProductId" class="product-card">
+                                <div class="product-badges">
+                                    @if (item.IsHot == true)
+                                    {
+                                        <span class="badge bg-danger">
+                                            <i class="fas fa-fire me-1"></i>HOT
+                                        </span>
+                                    }
+                                    @if (item.IsBestSeller == true)
+                                    {
+                                        <span class="badge bg-success">
+                                            <i class="fas fa-star me-1"></i>Bán chạy
+                                        </span>
+                                    }
+                                </div>
+                                <div class="product-image-container">
+                                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" />
+                                </div>
+
+                                <div class="card-body">
+                                    <h4 class="card-title">@item.Name</h4>
+                                    <div class="product-category">
+                                        <i class="fas fa-tag"></i> @(item.Category?.Name ?? "Không phân loại")
+                                    </div>
+                                    <div class="product-price">@item.Price.ToString("N0") VND</div>
+                                </div>
+                            </a>
+                        }
+                    }
+                </div>
+
+                @if (!Model.Any())
+                {
+                    <div class="empty-state">
+                        <i class="fas fa-box-open"></i>
+                        <h4>Không tìm thấy sản phẩm</h4>
+                        <p>Không có sản phẩm nào phù hợp với tiêu chí tìm kiếm của bạn.</p>
+                    </div>
+                }
+
+                <!-- Load More Section (Thay thế Pagination) -->
+                @if (Model.Any())
+                {
+                    <div class="load-more-section" id="loadMoreSection">
+                        @if (currentPage < totalPages)
+                        {
+                            <button type="button" class="load-more-btn" id="loadMoreBtn" onclick="loadMoreProducts()">
+                                <div class="spinner"></div>
+                                <span class="btn-text">
+                                    <i class="fas fa-plus me-2"></i>Xem thêm
+                                </span>
+                            </button>
+                            <div class="load-more-info">
+                                Đang hiển thị @Model.Count() / @totalProducts sản phẩm
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="no-more-products">
+                                <i class="fas fa-check-circle"></i>
+                                Đã hiển thị tất cả @totalProducts sản phẩm
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+
+            <!-- Right Brand Filter Sidebar -->
+            <div class="brand-filter-sidebar">
+                <div class="filter-header">
+                    <i class="fas fa-tags"></i>
+                    <h4>Lọc theo nghệ sĩ </h4>
+                </div>
+
+                <div class="search-group" style="margin-bottom: 15px;">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="brandSearch" class="search-input"
+                           placeholder="Tìm thương hiệu..." style="padding: 12px 15px 12px 40px;">
+                </div>
+
+                <div class="brand-list" id="brandList">
+                    <!-- All Brands Button -->
+                    <a href="javascript:void(0);"
+                       class="brand-item @(string.IsNullOrEmpty(currentBrand) ? "active" : "")"
+                       data-brand=""
+                       onclick="selectBrand('', event)">
+                        <span class="brand-name">All</span>
+                    </a>
+
+                    @foreach (var brand in brands)
+                    {
+                        var productCount = Model.Count(p => p.BrandId == brand.BrandId);
+
+                        <a href="javascript:void(0);"
+                           class="brand-item @(currentBrand == brand.Name ? "active" : "")"
+                           data-brand="@brand.Name"
+                           onclick="selectBrand('@brand.Name', event)">
+                            @if (!string.IsNullOrEmpty(brand.LogoUrl))
+                            {
+                                <img src="@brand.LogoUrl" class="brand-logo" alt="@brand.Name">
+                            }
+                            else
+                            {
+                                <div class="brand-logo" style="background: #5DADE2; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 0.8rem;">
+                                    @brand.Name.Substring(0, 1).ToUpper()
+                                </div>
+                            }
+                            <span class="brand-name">@brand.Name</span>
+                            
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+
+        @section MobileSidebars {
+            <!-- Mobile Overlay -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+            <!-- Mobile Price Filter Sidebar -->
+            <div class="mobile-sidebar left" id="mobilePriceFilter">
+                <div class="mobile-sidebar-header">
+                    <h3><i class="fas fa-dollar-sign"></i> Lọc theo giá</h3>
+                    <button class="mobile-close-btn" id="closePriceFilter">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="price-range-container">
+                    <div class="price-inputs">
+                        <div class="price-input">
+                            <label>Giá tối thiểu</label>
+                            <input type="number" id="minPriceInputMobile" value="@displayMinPrice" min="@minPrice" max="@maxPrice" step="10000">
+                        </div>
+                        <div class="price-input">
+                            <label>Giá tối đa</label>
+                            <input type="number" id="maxPriceInputMobile" value="@displayMaxPrice" min="@minPrice" max="@maxPrice" step="10000">
+                        </div>
+                    </div>
+
+                    <div class="single-range-slider">
+                        <div class="slider-track"></div>
+                        <div class="slider-range" id="sliderRangeMobile"></div>
+                        <input type="range" id="minRangeMobile" class="range-input" min="@minPrice" max="@maxPrice" value="@displayMinPrice" step="10000">
+                        <input type="range" id="maxRangeMobile" class="range-input" min="@minPrice" max="@maxPrice" value="@displayMaxPrice" step="10000">
+                    </div>
+
+                    <div class="price-display">
+                        <span id="minPriceDisplayMobile">@displayMinPrice.ToString("N0") VND</span>
+                        <span id="maxPriceDisplayMobile">@displayMaxPrice.ToString("N0") VND</span>
+                    </div>
+
+                    <button type="button" class="search-btn" style="width: 100%; margin-top: 15px;" onclick="applyPriceFilterMobile()">
+                        <i class="fas fa-filter me-2"></i>Áp dụng
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Brand Filter Sidebar -->
+            <div class="mobile-sidebar right" id="mobileBrandFilter">
+                <div class="mobile-sidebar-header">
+                    <h3><i class="fas fa-tags"></i> Lọc theo nghệ sĩ</h3>
+                    <button class="mobile-close-btn" id="closeBrandFilter">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="search-group" style="margin-bottom: 15px;">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="brandSearchMobile" class="search-input"
+                           placeholder="Tìm nghệ sĩ..." style="padding: 12px 15px 12px 40px;">
+                </div>
+
+                <div class="brand-list" id="brandListMobile">
+                    <!-- Brand items will be cloned from desktop version -->
+                </div>
             </div>
         }
     </div>
-    
-    @if (!Model.Any())
-    {
-        <div class="empty-state">
-            <i class="fas fa-box-open"></i>
-            <h4>Không tìm thấy sản phẩm</h4>
-            <p>Không có sản phẩm nào phù hợp với tiêu chí tìm kiếm của bạn.</p>
-        </div>
-    }
-    
-    <!-- Pagination -->
-    @if (totalPages > 1)
-    {
-        <div class="pagination-section">
-            <div class="pagination">
-                @if (currentPage > 1)
-                {
-                    <a asp-action="Index" 
-                       asp-route-page="@(currentPage - 1)"
-                       asp-route-category="@currentCategory"
-                       asp-route-sortBy="@currentSort">
-                        <i class="fas fa-chevron-left"></i>
-                    </a>
-                }
-                
-                @for (int i = Math.Max(1, currentPage - 2); i <= Math.Min(totalPages, currentPage + 2); i++)
-                {
-                    @if (i == currentPage)
-                    {
-                        <span class="current">@i</span>
-                    }
-                    else
-                    {
-                        <a asp-action="Index" 
-                           asp-route-page="@i"
-                           asp-route-category="@currentCategory"
-                           asp-route-sortBy="@currentSort">@i</a>
-                    }
-                }
-                
-                @if (currentPage < totalPages)
-                {
-                    <a asp-action="Index" 
-                       asp-route-page="@(currentPage + 1)"
-                       asp-route-category="@currentCategory"
-                       asp-route-sortBy="@currentSort">
-                        <i class="fas fa-chevron-right"></i>
-                    </a>
-                }
-            </div>
-            
-            <div class="pagination-info">
-                Trang @currentPage của @totalPages
-            </div>
-        </div>
-    }
-</div>
+</section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    const searchSuggestions = document.getElementById('searchSuggestions');
-    let searchTimeout;
-    
-    // Search suggestions
-    searchInput.addEventListener('input', function(e) {
-        const term = e.target.value.trim();
-        
-        clearTimeout(searchTimeout);
-        
-        if (term.length >= 2) {
-            searchTimeout = setTimeout(() => {
-                fetchSuggestions(term);
-            }, 300);
-        } else {
-            hideSuggestions();
+@section Scripts {
+    <script>
+        // Global variables for load more functionality
+        let currentPageNumber = @currentPage;
+        let totalPagesCount = @totalPages;
+        let totalProductsCount = @totalProducts;
+        let currentDisplayedCount = @Model.Count();
+        let isLoading = false;
+
+        // Get current filter parameters
+        function getCurrentFilters() {
+            return {
+                query: '@ViewBag.SearchQuery' || '',
+                category: '@currentCategory' || '',
+                brands: '@ViewBag.CurrentBrands' || '',
+                minPrice: '@(currentMinPrice?.ToString() ?? "")',
+                maxPrice: '@(currentMaxPrice?.ToString() ?? "")',
+                sortBy: '@currentSort' || ''
+            };
         }
-    });
-    
-    // Hide suggestions when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!searchInput.contains(e.target) && !searchSuggestions.contains(e.target)) {
-            hideSuggestions();
+
+        // Load more products function
+        function loadMoreProducts() {
+            if (isLoading || currentPageNumber >= totalPagesCount) {
+                return;
+            }
+
+            isLoading = true;
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const btnText = loadMoreBtn.querySelector('.btn-text');
+            
+            // Show loading state
+            loadMoreBtn.classList.add('loading');
+            loadMoreBtn.disabled = true;
+            btnText.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang tải...';
+
+            const nextPage = currentPageNumber + 1;
+            const filters = getCurrentFilters();
+            
+            // Build URL with current filters
+            const params = new URLSearchParams();
+            params.append('page', nextPage);
+            
+            if (filters.query) params.append('query', filters.query);
+            if (filters.category) params.append('category', filters.category);
+            if (filters.brands) params.append('brands', filters.brands);
+            if (filters.minPrice) params.append('minPrice', filters.minPrice);
+            if (filters.maxPrice) params.append('maxPrice', filters.maxPrice);
+            if (filters.sortBy) params.append('sortBy', filters.sortBy);
+
+            const url = filters.query ? 
+                '/Product/Search?' + params.toString() : 
+                '/Product/GetMoreProducts?' + params.toString();
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.products && data.products.length > 0) {
+                        // Add new products to grid
+                        appendProductsToGrid(data.products);
+                        
+                        // Update counters
+                        currentPageNumber = nextPage;
+                        currentDisplayedCount += data.products.length;
+                        
+                        // Update display count
+                        updateDisplayCount();
+                        
+                        // Update load more section
+                        updateLoadMoreSection();
+                    } else {
+                        // No more products
+                        showNoMoreProducts();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading more products:', error);
+                    showLoadMoreError();
+                })
+                .finally(() => {
+                    isLoading = false;
+                    loadMoreBtn.classList.remove('loading');
+                    loadMoreBtn.disabled = false;
+                    btnText.innerHTML = '<i class="fas fa-plus me-2"></i>Xem thêm sản phẩm';
+                });
         }
-    });
-    
-    // Fetch search suggestions
-    function fetchSuggestions(term) {
-        fetch(`/Product/Suggestions?term=${encodeURIComponent(term)}`)
-            .then(response => response.json())
-            .then(data => {
-                displaySuggestions(data);
-            })
-            .catch(error => {
-                console.error('Error fetching suggestions:', error);
-                hideSuggestions();
+
+        // Append new products to grid with animation
+        function appendProductsToGrid(products) {
+            const productGrid = document.getElementById('productGrid');
+            const newCards = [];
+            
+            products.forEach((product, index) => {
+                const productCard = createProductCard(product);
+                
+                // Add loading class for initial state
+                productCard.classList.add('loading-new');
+                
+                // Append to grid
+                productGrid.appendChild(productCard);
+                newCards.push(productCard);
             });
-    }
-    
-    // Display suggestions
-    function displaySuggestions(suggestions) {
-        if (!suggestions || suggestions.length === 0) {
-            hideSuggestions();
-            return;
+
+            // Trigger animation after a short delay to ensure DOM is updated
+            setTimeout(() => {
+                newCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.remove('loading-new');
+                        card.classList.add('fade-in');
+                    }, index * 100); // Stagger animation by 100ms for each card
+                });
+            }, 50);
+
+            // Smooth scroll to first new product after animation starts
+            if (newCards.length > 0) {
+                setTimeout(() => {
+                    const firstNewCard = newCards[0];
+                    const offsetTop = firstNewCard.offsetTop - 100; // 100px offset from top
+                    
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }, 200);
+            }
         }
-        
-        searchSuggestions.innerHTML = '';
-        
-        suggestions.forEach(item => {
-            const suggestionDiv = document.createElement('div');
-            suggestionDiv.className = 'suggestion-item';
-            suggestionDiv.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" onerror="this.src='/images/placeholder.jpg'">
-                <div class="suggestion-content">
-                    <div class="suggestion-name">${item.name}</div>
-                    <div class="suggestion-details">${item.category} - ${item.price}đ</div>
+
+        // Create product card HTML
+        function createProductCard(product) {
+            const cardDiv = document.createElement('div');
+            
+            if (product.stockQuantity === 0) {
+                cardDiv.className = 'product-card out-of-stock';
+                cardDiv.innerHTML = `
+                    <div class="product-badges">
+                        ${product.isHot ? '<span class="badge bg-danger"><i class="fas fa-fire me-1"></i>HOT</span>' : ''}
+                        ${product.isBestSeller ? '<span class="badge bg-success"><i class="fas fa-star me-1"></i>Bán chạy</span>' : ''}
+                    </div>
+                    <div class="product-image-container">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}" />
+                        <div class="out-of-stock-overlay">
+                            <div class="out-of-stock-text">Chưa mở bán</div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">${product.name}</h4>
+                        <div class="product-category">
+                            <i class="fas fa-tag"></i> ${product.category}
+                        </div>
+                        <div class="product-price">${product.price} VND</div>
+                    </div>
+                `;
+            } else {
+                const linkElement = document.createElement('a');
+                linkElement.href = product.url;
+                linkElement.className = 'product-card';
+                linkElement.innerHTML = `
+                    <div class="product-badges">
+                        ${product.isHot ? '<span class="badge bg-danger"><i class="fas fa-fire me-1"></i>HOT</span>' : ''}
+                        ${product.isBestSeller ? '<span class="badge bg-success"><i class="fas fa-star me-1"></i>Bán chạy</span>' : ''}
+                    </div>
+                    <div class="product-image-container">
+                        <img src="${product.image}" class="card-img-top" alt="${product.name}" />
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">${product.name}</h4>
+                        <div class="product-category">
+                            <i class="fas fa-tag"></i> ${product.category}
+                        </div>
+                        <div class="product-price">${product.price} VND</div>
+                    </div>
+                `;
+                return linkElement;
+            }
+            
+            return cardDiv;
+        }
+
+        // Update display count
+        function updateDisplayCount() {
+            const displayedCountElement = document.getElementById('displayedCount');
+            if (displayedCountElement) {
+                displayedCountElement.textContent = currentDisplayedCount;
+            }
+        }
+
+        // Update load more section
+        function updateLoadMoreSection() {
+            const loadMoreSection = document.getElementById('loadMoreSection');
+            const loadMoreInfo = loadMoreSection.querySelector('.load-more-info');
+            
+            if (currentPageNumber >= totalPagesCount) {
+                showNoMoreProducts();
+            } else if (loadMoreInfo) {
+                loadMoreInfo.textContent = `Đang hiển thị ${currentDisplayedCount} / ${totalProductsCount} sản phẩm`;
+            }
+        }
+
+        // Show no more products message
+        function showNoMoreProducts() {
+            const loadMoreSection = document.getElementById('loadMoreSection');
+            loadMoreSection.innerHTML = `
+                <div class="no-more-products">
+                    <i class="fas fa-check-circle"></i>
+                    Đã hiển thị tất cả ${totalProductsCount} sản phẩm
                 </div>
             `;
+        }
+
+        // Show load more error
+        function showLoadMoreError() {
+            const loadMoreSection = document.getElementById('loadMoreSection');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
             
-            suggestionDiv.addEventListener('click', function() {
-                window.location.href = `/Product/Details/${item.id}`;
+            if (loadMoreBtn) {
+                loadMoreBtn.innerHTML = `
+                    <i class="fas fa-exclamation-triangle me-2"></i>Lỗi tải dữ liệu - Thử lại
+                `;
+                loadMoreBtn.onclick = loadMoreProducts;
+            }
+        }
+
+        // Reset load more when filters change
+        function resetLoadMore() {
+            currentPageNumber = 1;
+            currentDisplayedCount = 0;
+            isLoading = false;
+        }
+
+        // Override existing filter functions to reset load more
+        const originalApplyPriceFilter = window.applyPriceFilter;
+        window.applyPriceFilter = function() {
+            resetLoadMore();
+            if (originalApplyPriceFilter) {
+                originalApplyPriceFilter();
+            }
+        };
+
+        const originalSelectBrand = window.selectBrand;
+        window.selectBrand = function(brandName, event) {
+            resetLoadMore();
+            if (originalSelectBrand) {
+                originalSelectBrand(brandName, event);
+            }
+        };
+
+        const originalClearAllFilters = window.clearAllFilters;
+        window.clearAllFilters = function(event) {
+            resetLoadMore();
+            if (originalClearAllFilters) {
+                originalClearAllFilters(event);
+            }
+        };
+
+        // Mobile Sidebar Controller
+        function initializeMobileSidebar() {
+            // Mobile sidebar elements
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const mobilePriceFilter = document.getElementById('mobilePriceFilter');
+            const mobileBrandFilter = document.getElementById('mobileBrandFilter');
+            const openPriceFilter = document.getElementById('openPriceFilter');
+            const openBrandFilter = document.getElementById('openBrandFilter');
+            const closePriceFilter = document.getElementById('closePriceFilter');
+            const closeBrandFilter = document.getElementById('closeBrandFilter');
+
+            // Check if mobile elements exist
+            if (!sidebarOverlay || !mobilePriceFilter || !mobileBrandFilter) {
+                console.log('Mobile sidebar elements not found - mobile functionality disabled');
+                return;
+            }
+
+            // Clone desktop brand list to mobile
+            cloneBrandListToMobile();
+
+            // Initialize mobile price sliders
+            initializeMobilePriceSliders();
+
+            // Event listeners for mobile sidebar
+            if (openPriceFilter) {
+                openPriceFilter.addEventListener('click', () => openSidebar('price'));
+            }
+
+            if (openBrandFilter) {
+                openBrandFilter.addEventListener('click', () => openSidebar('brand'));
+            }
+
+            if (closePriceFilter) {
+                closePriceFilter.addEventListener('click', closeSidebar);
+            }
+
+            if (closeBrandFilter) {
+                closeBrandFilter.addEventListener('click', closeSidebar);
+            }
+
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', closeSidebar);
+            }
+
+            // Mobile brand search
+            const brandSearchMobile = document.getElementById('brandSearchMobile');
+            if (brandSearchMobile) {
+                brandSearchMobile.addEventListener('input', function () {
+                    filterMobileBrands(this.value);
+                });
+            }
+        }
+
+        function openSidebar(type) {
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const mobilePriceFilter = document.getElementById('mobilePriceFilter');
+            const mobileBrandFilter = document.getElementById('mobileBrandFilter');
+
+            if (!sidebarOverlay) return;
+
+            // Show overlay
+            sidebarOverlay.classList.add('active');
+
+            // Show appropriate sidebar
+            if (type === 'price' && mobilePriceFilter) {
+                mobilePriceFilter.classList.add('active');
+                syncDesktopToMobilePrices();
+            } else if (type === 'brand' && mobileBrandFilter) {
+                mobileBrandFilter.classList.add('active');
+                syncBrandStates();
+            }
+
+            // Prevent body scroll
+            document.body.classList.add('sidebar-open');
+        }
+
+        function closeSidebar() {
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            const mobilePriceFilter = document.getElementById('mobilePriceFilter');
+            const mobileBrandFilter = document.getElementById('mobileBrandFilter');
+
+            if (!sidebarOverlay) return;
+
+            // Hide overlay và sidebars
+            sidebarOverlay.classList.remove('active');
+
+            if (mobilePriceFilter) {
+                mobilePriceFilter.classList.remove('active');
+            }
+            if (mobileBrandFilter) {
+                mobileBrandFilter.classList.remove('active');
+            }
+
+            // Restore body scroll
+            document.body.classList.remove('sidebar-open');
+        }
+
+        function cloneBrandListToMobile() {
+            const desktopBrandList = document.getElementById('brandList');
+            const mobileBrandList = document.getElementById('brandListMobile');
+
+            if (desktopBrandList && mobileBrandList) {
+                mobileBrandList.innerHTML = desktopBrandList.innerHTML;
+
+                // Add mobile-specific event listeners
+                const mobileBrandItems = mobileBrandList.querySelectorAll('.brand-item');
+                mobileBrandItems.forEach(item => {
+                    item.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const brandName = this.dataset.brand || '';
+                        selectBrandMobile(brandName);
+                        closeSidebar();
+                    });
+                });
+            }
+        }
+
+        function selectBrandMobile(brandName) {
+            // Update desktop brand selection
+            selectBrand(brandName, null);
+        }
+
+        function syncBrandStates() {
+            const desktopBrandItems = document.querySelectorAll('#brandList .brand-item');
+            const mobileBrandItems = document.querySelectorAll('#brandListMobile .brand-item');
+
+            desktopBrandItems.forEach((desktopItem, index) => {
+                const mobileItem = mobileBrandItems[index];
+                if (mobileItem) {
+                    if (desktopItem.classList.contains('active')) {
+                        mobileItem.classList.add('active');
+                    } else {
+                        mobileItem.classList.remove('active');
+                    }
+                }
             });
-            
-            searchSuggestions.appendChild(suggestionDiv);
+        }
+
+        function filterMobileBrands(searchTerm) {
+            const mobileBrandItems = document.querySelectorAll('#brandListMobile .brand-item');
+            const searchTermLower = searchTerm.toLowerCase().trim();
+
+            mobileBrandItems.forEach(item => {
+                const brandName = item.dataset.brand ? item.dataset.brand.toLowerCase() : 'tất cả thương hiệu';
+                const brandText = item.querySelector('.brand-name');
+                const brandDisplayText = brandText ? brandText.textContent.toLowerCase() : '';
+
+                const matches = brandName.includes(searchTermLower) ||
+                    brandDisplayText.includes(searchTermLower) ||
+                    searchTermLower === '';
+
+                item.style.display = matches ? 'flex' : 'none';
+            });
+        }
+
+        function initializeMobilePriceSliders() {
+            const minRangeMobile = document.getElementById('minRangeMobile');
+            const maxRangeMobile = document.getElementById('maxRangeMobile');
+            const minPriceInputMobile = document.getElementById('minPriceInputMobile');
+            const maxPriceInputMobile = document.getElementById('maxPriceInputMobile');
+            const minPriceDisplayMobile = document.getElementById('minPriceDisplayMobile');
+            const maxPriceDisplayMobile = document.getElementById('maxPriceDisplayMobile');
+            const sliderRangeMobile = document.getElementById('sliderRangeMobile');
+
+            if (!minRangeMobile || !maxRangeMobile) return;
+
+            const minPrice = 0;
+            const maxPrice = 1000000;
+
+            function updateMobileSliderRange() {
+                const minVal = parseInt(minRangeMobile.value);
+                const maxVal = parseInt(maxRangeMobile.value);
+
+                // Ensure min doesn't exceed max
+                if (minVal > maxVal - 10000) {
+                    if (document.activeElement === minRangeMobile) {
+                        minRangeMobile.value = maxVal - 10000;
+                    } else {
+                        maxRangeMobile.value = minVal + 10000;
+                    }
+                }
+
+                const minPercent = ((parseInt(minRangeMobile.value) - minPrice) / (maxPrice - minPrice)) * 100;
+                const maxPercent = ((parseInt(maxRangeMobile.value) - minPrice) / (maxPrice - minPrice)) * 100;
+
+                if (sliderRangeMobile) {
+                    sliderRangeMobile.style.left = minPercent + '%';
+                    sliderRangeMobile.style.width = (maxPercent - minPercent) + '%';
+                }
+
+                // Update displays
+                if (minPriceDisplayMobile) {
+                    minPriceDisplayMobile.textContent = parseInt(minRangeMobile.value).toLocaleString() + ' VND';
+                }
+                if (maxPriceDisplayMobile) {
+                    maxPriceDisplayMobile.textContent = parseInt(maxRangeMobile.value).toLocaleString() + ' VND';
+                }
+                if (minPriceInputMobile) {
+                    minPriceInputMobile.value = minRangeMobile.value;
+                }
+                if (maxPriceInputMobile) {
+                    maxPriceInputMobile.value = maxRangeMobile.value;
+                }
+            }
+
+            // Event listeners
+            minRangeMobile.addEventListener('input', updateMobileSliderRange);
+            maxRangeMobile.addEventListener('input', updateMobileSliderRange);
+
+            if (minPriceInputMobile) {
+                minPriceInputMobile.addEventListener('input', function () {
+                    let value = parseInt(this.value) || 0;
+                    if (value < minPrice) value = minPrice;
+                    if (value > parseInt(maxRangeMobile.value)) value = parseInt(maxRangeMobile.value);
+
+                    minRangeMobile.value = value;
+                    updateMobileSliderRange();
+                });
+            }
+
+            if (maxPriceInputMobile) {
+                maxPriceInputMobile.addEventListener('input', function () {
+                    let value = parseInt(this.value) || 0;
+                    if (value > maxPrice) value = maxPrice;
+                    if (value < parseInt(minRangeMobile.value)) value = parseInt(minRangeMobile.value);
+
+                    maxRangeMobile.value = value;
+                    updateMobileSliderRange();
+                });
+            }
+
+            // Initialize
+            updateMobileSliderRange();
+        }
+
+        function syncDesktopToMobilePrices() {
+            const minPriceInput = document.getElementById('minPriceInput');
+            const maxPriceInput = document.getElementById('maxPriceInput');
+            const minPriceInputMobile = document.getElementById('minPriceInputMobile');
+            const maxPriceInputMobile = document.getElementById('maxPriceInputMobile');
+            const minRangeMobile = document.getElementById('minRangeMobile');
+            const maxRangeMobile = document.getElementById('maxRangeMobile');
+
+            if (minPriceInput && minPriceInputMobile && minRangeMobile) {
+                const minValue = minPriceInput.value || 0;
+                minPriceInputMobile.value = minValue;
+                minRangeMobile.value = minValue;
+            }
+
+            if (maxPriceInput && maxPriceInputMobile && maxRangeMobile) {
+                const maxValue = maxPriceInput.value || 1000000;
+                maxPriceInputMobile.value = maxValue;
+                maxRangeMobile.value = maxValue;
+            }
+
+            // Update mobile slider display
+            const updateEvent = new Event('input');
+            if (minRangeMobile) minRangeMobile.dispatchEvent(updateEvent);
+        }
+
+        // Scroll to products function
+        function scrollToProducts() {
+            const productsSection = document.getElementById('products-section');
+            if (productsSection) {
+                productsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const backToTop = document.querySelector(".back-to-top");
+
+            if (backToTop) {
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > 300) {
+                        backToTop.classList.add("show");
+                    } else {
+                        backToTop.classList.remove("show");
+                    }
+                });
+
+                backToTop.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                });
+            }
+
+            // Initialize mobile sidebar
+            initializeMobileSidebar();
         });
-        
-        searchSuggestions.style.display = 'block';
-    }
-    
-    // Hide suggestions
-    function hideSuggestions() {
-        searchSuggestions.style.display = 'none';
-    }
-    
-    // Auto-submit form on filter change (optional)
-    const filterSelects = document.querySelectorAll('.filter-select');
-    filterSelects.forEach(select => {
-        select.addEventListener('change', function() {
-            // Uncomment if you want auto-submit on filter change
-            // document.getElementById('searchForm').submit();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Debug: Log current brand info
+            console.log('Current Brand from Server:', '@currentBrand');
+            console.log('URL Brand from ViewBag:', '@ViewBag.CurrentBrands');
+
+            // Single Price Range Slider Logic
+            const minRange = document.getElementById('minRange');
+            const maxRange = document.getElementById('maxRange');
+            const minPriceInput = document.getElementById('minPriceInput');
+            const maxPriceInput = document.getElementById('maxPriceInput');
+            const minPriceDisplay = document.getElementById('minPriceDisplay');
+            const maxPriceDisplay = document.getElementById('maxPriceDisplay');
+            const sliderRange = document.getElementById('sliderRange');
+
+            const minPrice = @minPrice;
+            const maxPrice = @maxPrice;
+
+            // ✅ Kiểm tra xem có filter giá hay không
+            const hasCurrentMinPrice = @(currentMinPrice?.ToString() ?? "null");
+            const hasCurrentMaxPrice = @(currentMaxPrice?.ToString() ?? "null");
+
+            console.log('Has price filter:', hasCurrentMinPrice !== null && hasCurrentMaxPrice !== null);
+
+            function updateSliderRange() {
+                const minRange = document.getElementById('minRange');
+                const maxRange = document.getElementById('maxRange');
+                const minPriceInput = document.getElementById('minPriceInput');
+                const maxPriceInput = document.getElementById('maxPriceInput');
+                const minPriceDisplay = document.getElementById('minPriceDisplay');
+                const maxPriceDisplay = document.getElementById('maxPriceDisplay');
+                const sliderRange = document.getElementById('sliderRange');
+
+                const minPrice = 0; // Giá trị cố định
+                const maxPrice = 1000000; // Giá trị cố định
+
+                const minVal = parseInt(minRange.value);
+                const maxVal = parseInt(maxRange.value);
+
+                // Ensure min doesn't exceed max
+                if (minVal > maxVal - 10000) {
+                    if (this === minRange) {
+                        minRange.value = maxVal - 10000;
+                    } else {
+                        maxRange.value = minVal + 10000;
+                    }
+                }
+
+                const minPercent = ((parseInt(minRange.value) - minPrice) / (maxPrice - minPrice)) * 100;
+                const maxPercent = ((parseInt(maxRange.value) - minPrice) / (maxPrice - minPrice)) * 100;
+
+                sliderRange.style.left = minPercent + '%';
+                sliderRange.style.width = (maxPercent - minPercent) + '%';
+
+                // Update displays
+                minPriceDisplay.textContent = parseInt(minRange.value).toLocaleString() + ' VND';
+                maxPriceDisplay.textContent = parseInt(maxRange.value).toLocaleString() + ' VND';
+                minPriceInput.value = minRange.value;
+                maxPriceInput.value = maxRange.value;
+            }
+
+            // Khi nhập giá tối thiểu
+            if (minPriceInput) {
+                minPriceInput.addEventListener("input", function () {
+                    let value = parseInt(this.value) || 0;
+                    if (value < parseInt(minRange.min)) value = parseInt(minRange.min);
+                    if (value > parseInt(maxRange.value)) value = parseInt(maxRange.value);
+
+                    minRange.value = value;
+                    minPriceDisplay.textContent = value.toLocaleString() + " đ";
+                    updateSliderRange();
+                });
+            }
+
+            // Khi nhập giá tối đa
+            if (maxPriceInput) {
+                maxPriceInput.addEventListener("input", function () {
+                    let value = parseInt(this.value) || 0;
+                    if (value > parseInt(maxRange.max)) value = parseInt(maxRange.max);
+                    if (value < parseInt(minRange.value)) value = parseInt(minRange.value);
+
+                    maxRange.value = value;
+                    maxPriceDisplay.textContent = value.toLocaleString() + " đ";
+                    updateSliderRange();
+                });
+            }
+
+            if (minRange && maxRange) {
+                minRange.addEventListener('input', updateSliderRange);
+                maxRange.addEventListener('input', updateSliderRange);
+
+                minPriceInput.addEventListener('change', function () {
+                    const value = Math.max(minPrice, Math.min(this.value, parseInt(maxRange.value) - 100000));
+                    this.value = value;
+                    minRange.value = value;
+                    updateSliderRange();
+                });
+
+                maxPriceInput.addEventListener('change', function () {
+                    const value = Math.min(maxPrice, Math.max(this.value, parseInt(minRange.value) + 100000));
+                    this.value = value;
+                    maxRange.value = value;
+                    updateSliderRange();
+                });
+
+                // Initialize slider
+                updateSliderRange();
+            }
+
+            // Brand Search Functionality
+            const brandSearch = document.getElementById('brandSearch');
+            if (brandSearch) {
+                const brandItems = document.querySelectorAll('.brand-item');
+
+                brandSearch.addEventListener('input', function () {
+                    const searchTerm = this.value.toLowerCase().trim();
+
+                    brandItems.forEach(item => {
+                        const brandName = item.dataset.brand ? item.dataset.brand.toLowerCase() : 'tất cả thương hiệu';
+                        const brandText = item.querySelector('.brand-name');
+                        const brandDisplayText = brandText ? brandText.textContent.toLowerCase() : '';
+
+                        const matches = brandName.includes(searchTerm) ||
+                            brandDisplayText.includes(searchTerm) ||
+                            searchTerm === '';
+
+                        if (matches) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Brand Filter - Event Delegation Method
+            const brandList = document.getElementById('brandList');
+            if (brandList) {
+                brandList.addEventListener('click', function (event) {
+                    const brandItem = event.target.closest('.brand-item');
+
+                    if (brandItem) {
+                        event.preventDefault();
+                        event.stopPropagation();
+
+                        const brandName = brandItem.dataset.brand || '';
+                        console.log('Clicked Brand:', brandName); // Debug log
+
+                        // Remove active from all brand items
+                        const allBrandItems = document.querySelectorAll('.brand-item');
+                        allBrandItems.forEach(item => {
+                            item.classList.remove('active');
+                            console.log('Removed active from:', item.dataset.brand); // Debug log
+                        });
+
+                        // Add active to clicked item
+                        brandItem.classList.add('active');
+                        console.log('Added active to:', brandName); // Debug log
+
+                        // Update hidden input
+                        const brandsFilter = document.getElementById('brandsFilter');
+                        if (brandsFilter) {
+                            brandsFilter.value = brandName;
+                            console.log('Updated brandsFilter value:', brandName); // Debug log
+                        }
+
+                        // Update active filters display
+                        updateActiveFilters();
+
+                        // Submit form
+                        const searchForm = document.getElementById('searchForm');
+                        if (searchForm) {
+                            searchForm.submit();
+                        }
+                    }
+                });
+            }
+
+            // Enhanced function to maintain brand active state
+            maintainBrandActiveState();
+
+            // Update active filters display
+            updateActiveFilters();
         });
-    });
-});
-</script>
+
+        // Enhanced function to maintain brand active state
+        function maintainBrandActiveState() {
+            // Get current brand from multiple sources
+            const serverBrand = '@currentBrand' || '';
+            const urlBrands = '@ViewBag.CurrentBrands' || '';
+
+            // Use URL parameter if server brand is empty
+            const currentBrand = serverBrand || urlBrands || '';
+
+            console.log('Server Brand:', serverBrand);
+            console.log('URL Brands:', urlBrands);
+            console.log('Final Current Brand:', currentBrand);
+
+            // Remove all active classes first
+            const allBrandItems = document.querySelectorAll('.brand-item');
+            allBrandItems.forEach(item => {
+                item.classList.remove('active');
+                console.log('Brand item found:', item.dataset.brand); // Debug: list all brands
+            });
+
+            // Find and activate the correct item
+            let targetItem = null;
+
+            if (!currentBrand || currentBrand === '' || currentBrand === 'null') {
+                // Activate "All brands" option
+                targetItem = document.querySelector('.brand-item[data-brand=""]');
+                console.log('Activating all brands');
+            } else {
+                // Try exact match first
+                targetItem = document.querySelector(`.brand-item[data-brand="${currentBrand}"]`);
+
+                // If no exact match, try case-insensitive search
+                if (!targetItem) {
+                    console.log('No exact match found, trying case-insensitive search');
+                    allBrandItems.forEach(item => {
+                        const itemBrand = item.dataset.brand || '';
+                        if (itemBrand.toLowerCase().trim() === currentBrand.toLowerCase().trim()) {
+                            targetItem = item;
+                            console.log('Found case-insensitive match:', itemBrand);
+                        }
+                    });
+                }
+
+                // If still no match, try partial match
+                if (!targetItem) {
+                    console.log('No case-insensitive match, trying partial match');
+                    allBrandItems.forEach(item => {
+                        const itemBrand = item.dataset.brand || '';
+                        if (itemBrand.toLowerCase().includes(currentBrand.toLowerCase().trim()) ||
+                            currentBrand.toLowerCase().includes(itemBrand.toLowerCase())) {
+                            targetItem = item;
+                            console.log('Found partial match:', itemBrand);
+                        }
+                    });
+                }
+            }
+
+            if (targetItem) {
+                targetItem.classList.add('active');
+                console.log('Successfully activated brand item:', targetItem.dataset.brand);
+
+                // Make sure it's visible if hidden by search
+                if (targetItem.style.display === 'none') {
+                    targetItem.style.display = 'flex';
+                }
+
+                // Scroll into view if needed
+                targetItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                console.log('No matching brand item found for:', currentBrand);
+                // Fallback to "All brands"
+                const allBrandsItem = document.querySelector('.brand-item[data-brand=""]');
+                if (allBrandsItem) {
+                    allBrandsItem.classList.add('active');
+                    console.log('Fallback: activated all brands');
+                }
+            }
+        }
+
+        // Get brand name from URL parameters (alternative method)
+        function getBrandFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('brands') || '';
+        }
+
+        // Enhanced selectBrand function
+        window.selectBrand = function (brandName, event) {
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            console.log('selectBrand called with:', brandName);
+
+            // Lấy tất cả các mục thương hiệu
+            const allBrandItems = document.querySelectorAll('.brand-item');
+
+            // Đảm bảo tất cả các mục đều hiển thị
+            allBrandItems.forEach(item => {
+                item.classList.remove('active');
+                item.style.display = 'flex'; // Hiển thị tất cả các mục
+            });
+
+            // Tìm và kích hoạt mục được chọn
+            let selectedItem = null;
+            if (brandName === "" || brandName === null || brandName === undefined) {
+                selectedItem = document.querySelector('.brand-item[data-brand=""]');
+            } else {
+                selectedItem = document.querySelector(`.brand-item[data-brand="${brandName}"]`);
+            }
+
+            if (selectedItem) {
+                selectedItem.classList.add('active');
+                selectedItem.style.display = 'flex'; // Đảm bảo mục được chọn hiển thị
+                console.log('Successfully selected brand:', brandName);
+            } else {
+                console.log('Could not find brand item for:', brandName);
+            }
+
+            // Cập nhật giá trị ô ẩn brandsFilter
+            const brandsFilter = document.getElementById('brandsFilter');
+            if (brandsFilter) {
+                brandsFilter.value = brandName || '';
+            }
+
+            // Đặt lại ô tìm kiếm thương hiệu
+            const brandSearch = document.getElementById('brandSearch');
+            if (brandSearch) {
+                brandSearch.value = ''; // Xóa nội dung tìm kiếm
+                const inputEvent = new Event('input', { bubbles: true });
+                brandSearch.dispatchEvent(inputEvent); // Làm mới danh sách thương hiệu
+            }
+
+            // Cập nhật bộ lọc đang hoạt động
+            updateActiveFilters();
+
+            // Reset load more
+            resetLoadMore();
+
+            // Gửi biểu mẫu
+            const searchForm = document.getElementById('searchForm');
+            if (searchForm) {
+                searchForm.submit();
+            }
+        };
+
+        // Price Filter Functions
+        function applyPriceFilter() {
+            const minPrice = document.getElementById('minPriceInput').value;
+            const maxPrice = document.getElementById('maxPriceInput').value;
+
+            document.getElementById('minPriceFilter').value = minPrice;
+            document.getElementById('maxPriceFilter').value = maxPrice;
+
+            resetLoadMore();
+            document.getElementById('searchForm').submit();
+        }
+
+        function applyPriceFilterMobile() {
+            const minPriceInputMobile = document.getElementById('minPriceInputMobile');
+            const maxPriceInputMobile = document.getElementById('maxPriceInputMobile');
+
+            if (minPriceInputMobile && maxPriceInputMobile) {
+                const minPrice = minPriceInputMobile.value;
+                const maxPrice = maxPriceInputMobile.value;
+
+                document.getElementById('minPriceFilter').value = minPrice;
+                document.getElementById('maxPriceFilter').value = maxPrice;
+
+                // Close mobile sidebar
+                closeSidebar();
+
+                // Reset load more
+                resetLoadMore();
+
+                // Submit form
+                document.getElementById('searchForm').submit();
+            }
+        }
+
+        // ✅ Hàm xóa tất cả bộ lọc
+        function clearAllFilters(event) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            // Sử dụng giá trị cố định
+            const minPrice = 0;
+            const maxPrice = 1000000;
+
+            // Reset desktop inputs
+            const minPriceInput = document.getElementById('minPriceInput');
+            const maxPriceInput = document.getElementById('maxPriceInput');
+            const minRange = document.getElementById('minRange');
+            const maxRange = document.getElementById('maxRange');
+
+            if (minPriceInput) minPriceInput.value = minPrice;
+            if (maxPriceInput) maxPriceInput.value = maxPrice;
+            if (minRange) minRange.value = minPrice;
+            if (maxRange) maxRange.value = maxPrice;
+
+            // Reset mobile price inputs nếu có
+            const minPriceInputMobile = document.getElementById('minPriceInputMobile');
+            const maxPriceInputMobile = document.getElementById('maxPriceInputMobile');
+            const minRangeMobile = document.getElementById('minRangeMobile');
+            const maxRangeMobile = document.getElementById('maxRangeMobile');
+            if (minPriceInputMobile) minPriceInputMobile.value = minPrice;
+            if (maxPriceInputMobile) maxPriceInputMobile.value = maxPrice;
+            if (minRangeMobile) minRangeMobile.value = minPrice;
+            if (maxRangeMobile) maxRangeMobile.value = maxPrice;
+
+            // Reset hidden form fields
+            const minPriceFilter = document.getElementById('minPriceFilter');
+            const maxPriceFilter = document.getElementById('maxPriceFilter');
+            const brandsFilter = document.getElementById('brandsFilter');
+            if (minPriceFilter) minPriceFilter.value = '';
+            if (maxPriceFilter) maxPriceFilter.value = '';
+            if (brandsFilter) brandsFilter.value = '';
+
+            // Reset search input
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                searchInput.value = '';
+            }
+
+            // Reset category select
+            const categorySelect = document.querySelector('select[name="category"]');
+            if (categorySelect) {
+                categorySelect.value = '';
+            }
+
+            // Reset brand selection (both desktop and mobile)
+            const allBrandItems = document.querySelectorAll('.brand-item');
+            allBrandItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            const allBrandsItems = document.querySelectorAll('.brand-item[data-brand=""]');
+            allBrandsItems.forEach(item => {
+                item.classList.add('active');
+            });
+
+            // Reset price display
+            const minPriceDisplay = document.getElementById('minPriceDisplay');
+            const maxPriceDisplay = document.getElementById('maxPriceDisplay');
+            const minPriceDisplayMobile = document.getElementById('minPriceDisplayMobile');
+            const maxPriceDisplayMobile = document.getElementById('maxPriceDisplayMobile');
+
+            if (minPriceDisplay) minPriceDisplay.textContent = minPrice.toLocaleString() + ' VND';
+            if (maxPriceDisplay) maxPriceDisplay.textContent = maxPrice.toLocaleString() + ' VND';
+            if (minPriceDisplayMobile) minPriceDisplayMobile.textContent = minPrice.toLocaleString() + ' VND';
+            if (maxPriceDisplayMobile) maxPriceDisplayMobile.textContent = maxPrice.toLocaleString() + ' VND';
+
+            // Update slider ranges
+            const sliderRange = document.getElementById('sliderRange');
+            const sliderRangeMobile = document.getElementById('sliderRangeMobile');
+            if (sliderRange) {
+                sliderRange.style.left = '0%';
+                sliderRange.style.width = '100%';
+            }
+            if (sliderRangeMobile) {
+                sliderRangeMobile.style.left = '0%';
+                sliderRangeMobile.style.width = '100%';
+            }
+
+            // Close any open mobile sidebars
+            closeSidebar();
+
+            // Reset load more
+            resetLoadMore();
+
+            // Submit form to reset all filters
+            const searchForm = document.getElementById('searchForm');
+            if (searchForm) {
+                // Remove all filter parameters from URL
+                const url = new URL(window.location.href);
+                url.searchParams.delete('minPrice');
+                url.searchParams.delete('maxPrice');
+                url.searchParams.delete('brands');
+                url.searchParams.delete('category');
+                url.searchParams.delete('query');
+                url.searchParams.delete('page');
+                window.location.href = url.pathname;
+            }
+        }
+
+        // Active Filters Display
+        function updateActiveFilters() {
+            const activeFiltersContainer = document.getElementById('activeFilters');
+            if (!activeFiltersContainer) return;
+
+            activeFiltersContainer.innerHTML = '';
+
+            // Price filter
+            const minPrice = 0; // Giá trị cố định
+            const maxPrice = 1000000; // Giá trị cố định
+            const currentMinPrice = @(currentMinPrice?.ToString() ?? "null");
+            const currentMaxPrice = @(currentMaxPrice?.ToString() ?? "null");
+
+            if (currentMinPrice !== null && currentMaxPrice !== null &&
+                (parseInt(currentMinPrice) > minPrice || parseInt(currentMaxPrice) < maxPrice)) {
+                const priceTag = document.createElement('div');
+                priceTag.className = 'filter-tag';
+                priceTag.innerHTML = `Giá: ${parseInt(currentMinPrice).toLocaleString()} - ${parseInt(currentMaxPrice).toLocaleString()} đ <i class="fas fa-times" onclick="clearPriceFilter()"></i>`;
+                activeFiltersContainer.appendChild(priceTag);
+            }
+
+            // Brand filter
+            const serverBrand = '@currentBrand' || '';
+            const urlBrand = getBrandFromUrl();
+            const currentBrand = serverBrand || urlBrand || '';
+
+            if (currentBrand && currentBrand !== 'null' && currentBrand !== '') {
+                const brandTag = document.createElement('div');
+                brandTag.className = 'filter-tag';
+                brandTag.innerHTML = `${currentBrand} <i class="fas fa-times" onclick="clearBrandFilter()"></i>`;
+                activeFiltersContainer.appendChild(brandTag);
+            }
+
+            // Category filter
+            const currentCategory = '@currentCategory' || '';
+            if (currentCategory && currentCategory !== 'null' && currentCategory !== '') {
+                const categoryTag = document.createElement('div');
+                categoryTag.className = 'filter-tag';
+                categoryTag.innerHTML = `${currentCategory} <i class="fas fa-times" onclick="clearCategoryFilter()"></i>`;
+                activeFiltersContainer.appendChild(categoryTag);
+            }
+        }
+
+        // Clear Filter Functions
+        function clearPriceFilter() {
+            document.getElementById('minPriceFilter').value = '';
+            document.getElementById('maxPriceFilter').value = '';
+            resetLoadMore();
+            document.getElementById('searchForm').submit();
+        }
+
+        function clearBrandFilter() {
+            const brandsFilter = document.getElementById('brandsFilter');
+            if (brandsFilter) {
+                brandsFilter.value = '';
+            }
+            resetLoadMore();
+            document.getElementById('searchForm').submit();
+        }
+
+        function clearCategoryFilter() {
+            const form = document.getElementById('searchForm');
+            const categorySelect = form.querySelector('select[name="category"]');
+            if (categorySelect) {
+                categorySelect.value = '';
+            }
+            resetLoadMore();
+            form.submit();
+        }
+    </script>
+}

@@ -1,42 +1,948 @@
-@model IEnumerable<SnowStoreWeb.Models.Category>
+﻿@model IEnumerable<SnowStoreWeb.Models.Category>
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "_AdminLayout";
+    ViewData["Title"] = "Categories Management";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+<div class="container-fluid">
+    <!-- Hero Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="hero-section bg-gradient-primary text-white rounded-4 p-4">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h2 class="mb-2">
+                            <i class="bi bi-tags me-3"></i>Categories Management
+                        </h2>
+                        <p class="mb-0 opacity-75">Organize your products into meaningful categories for better navigation and management</p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <a asp-action="Create" class="btn btn-light btn-lg shadow-sm hover-lift">
+                            <i class="bi bi-plus-lg me-2"></i>Create New Category
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.CategoryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CategoryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CategoryId">Delete</a>
-            </td>
-        </tr>
+    <!-- Statistics Dashboard -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="stats-card bg-white rounded-4 shadow-sm p-4 h-100">
+                <div class="d-flex align-items-center">
+                    <div class="stats-icon bg-primary bg-gradient rounded-3 p-3 me-3">
+                        <i class="bi bi-pie-chart text-white"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h3 class="stats-number mb-1">@ViewData["TotalCategories"]</h3>
+                        <p class="stats-label text-muted mb-0">Total Categories</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stats-card bg-white rounded-4 shadow-sm p-4 h-100">
+                <div class="d-flex align-items-center">
+                    <div class="stats-icon bg-info bg-gradient rounded-3 p-3 me-3">
+                        <i class="bi bi-search text-white"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h3 class="stats-number mb-1">@ViewData["SearchResultsCount"]</h3>
+                        <p class="stats-label text-muted mb-0">Search Results</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stats-card bg-white rounded-4 shadow-sm p-4 h-100">
+                <div class="d-flex align-items-center">
+                    <div class="stats-icon bg-success bg-gradient rounded-3 p-3 me-3">
+                        <i class="bi bi-funnel text-white"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h3 class="stats-number mb-1">
+                            @(String.IsNullOrEmpty(ViewData["CurrentFilter"]?.ToString()) ? "None" : "Active")
+                        </h3>
+                        <p class="stats-label text-muted mb-0">Filter Status</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="search-section bg-white rounded-4 shadow-sm p-4">
+                <form asp-action="Index" method="get" class="mb-0">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <label for="searchString" class="form-label fw-semibold text-dark mb-2">
+                                <i class="bi bi-search me-2 text-primary"></i>Search Categories
+                            </label>
+                            <div class="search-input-group">
+                                <i class="bi bi-search search-icon"></i>
+                                <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" 
+                                       class="form-control form-control-lg search-input" id="searchString" 
+                                       placeholder="Search by name or description...">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="sortOrder" class="form-label fw-semibold text-dark mb-2">
+                                <i class="bi bi-sort-down me-2 text-success"></i>Sort By
+                            </label>
+                            <select name="sortOrder" class="form-select form-select-lg modern-select" id="sortOrder">
+                                <option value="" selected="@(ViewData["CurrentSort"]?.ToString() == "")">Name (A-Z)</option>
+                                <option value="name_desc" selected="@(ViewData["CurrentSort"]?.ToString() == "name_desc")">Name (Z-A)</option>
+                                <option value="Id" selected="@(ViewData["CurrentSort"]?.ToString() == "Id")">ID (Low to High)</option>
+                                <option value="id_desc" selected="@(ViewData["CurrentSort"]?.ToString() == "id_desc")">ID (High to Low)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="btn-group w-100" role="group">
+                                <button type="submit" class="btn btn-primary btn-lg modern-btn">
+                                    <i class="bi bi-search me-2"></i>Search
+                                </button>
+                                <a asp-action="Index" class="btn btn-outline-secondary btn-lg modern-btn ms-2">
+                                    <i class="bi bi-arrow-clockwise me-2"></i>Reset
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-outline-info w-100 btn-lg modern-btn" onclick="toggleAdvancedSearch()">
+                                <i class="bi bi-gear me-2"></i>Advanced
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Advanced Search Panel -->
+                    <div id="advancedSearch" class="advanced-panel mt-4" style="display: none;">
+                        <div class="advanced-content p-4">
+                            <h6 class="advanced-title mb-3">
+                                <i class="bi bi-sliders me-2"></i>Advanced Search Options
+                            </h6>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="form-check custom-switch">
+                                        <input type="checkbox" class="form-check-input" id="searchNameOnly">
+                                        <label class="form-check-label" for="searchNameOnly">
+                                            Search in Name only
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check custom-switch">
+                                        <input type="checkbox" class="form-check-input" id="searchDescOnly">
+                                        <label class="form-check-label" for="searchDescOnly">
+                                            Search in Description only
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check custom-switch">
+                                        <input type="checkbox" class="form-check-input" id="caseSensitive">
+                                        <label class="form-check-label" for="caseSensitive">
+                                            Case sensitive search
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Categories Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="table-section bg-white rounded-4 shadow-sm overflow-hidden">
+                @if (Model.Any())
+                {
+                    <div class="table-responsive">
+                        <table class="table table-hover modern-table mb-0">
+                            <thead class="table-header">
+                                <tr>
+                                    <th class="sort-header">
+                                        <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]" 
+                                           asp-route-searchString="@ViewData["CurrentFilter"]" 
+                                           class="sort-link">
+                                            <i class="bi bi-hash me-2"></i>
+                                            ID
+                                            @if(ViewData["CurrentSort"]?.ToString() == "Id")
+                                            {
+                                                <i class="bi bi-chevron-up sort-icon"></i>
+                                            }
+                                            else if(ViewData["CurrentSort"]?.ToString() == "id_desc")
+                                            {
+                                                <i class="bi bi-chevron-down sort-icon"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="bi bi-chevron-expand sort-icon inactive"></i>
+                                            }
+                                        </a>
+                                    </th>
+                                    <th class="sort-header">
+                                        <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" 
+                                           asp-route-searchString="@ViewData["CurrentFilter"]" 
+                                           class="sort-link">
+                                            <i class="bi bi-tag me-2"></i>
+                                            CATEGORY
+                                            @if(String.IsNullOrEmpty(ViewData["CurrentSort"]?.ToString()) || ViewData["CurrentSort"]?.ToString() == "")
+                                            {
+                                                <i class="bi bi-chevron-up sort-icon"></i>
+                                            }
+                                            else if(ViewData["CurrentSort"]?.ToString() == "name_desc")
+                                            {
+                                                <i class="bi bi-chevron-down sort-icon"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="bi bi-chevron-expand sort-icon inactive"></i>
+                                            }
+                                        </a>
+                                    </th>
+                                    <th>
+                                        <i class="bi bi-align-left me-2"></i>
+                                        DESCRIPTION
+                                    </th>
+                                    <th class="text-center">
+                                        <i class="bi bi-gear me-2"></i>
+                                        ACTIONS
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="table-row">
+                                        <td class="align-middle">
+                                            <span class="category-id-badge">@Html.DisplayFor(modelItem => item.CategoryId)</span>
+                                        </td>
+                                        <td class="align-middle">
+                                            <div class="category-info">
+                                                <div class="category-avatar">
+                                                    <i class="bi bi-tag"></i>
+                                                </div>
+                                                <div class="category-details">
+                                                    <h6 class="category-name">@Html.DisplayFor(modelItem => item.Name)</h6>
+                                                    <small class="category-type">Product Category</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle">
+                                            <div class="category-description">
+                                                @if (!string.IsNullOrEmpty(item.Description))
+                                                {
+                                                    <span title="@item.Description">
+                                                        @(item.Description.Length > 60 ? item.Description.Substring(0, 60) + "..." : item.Description)
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="text-muted fst-italic">No description provided</span>
+                                                }
+                                            </div>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <div class="action-buttons">
+                                                <a asp-action="Details" asp-route-id="@item.CategoryId" 
+                                                   class="action-btn view-btn" title="View Details" data-bs-toggle="tooltip">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <a asp-action="Edit" asp-route-id="@item.CategoryId" 
+                                                   class="action-btn edit-btn" title="Edit Category" data-bs-toggle="tooltip">
+                                                    <i class="bi bi-pencil"></i>
+                                                </a>
+                                                <button type="button" class="action-btn delete-btn" title="Delete Category" 
+                                                        data-bs-toggle="tooltip" onclick="showDeleteConfirm(@item.CategoryId, '@item.Name')">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="empty-state text-center py-5">
+                        <div class="empty-icon mb-4">
+                            <i class="bi bi-folder2-open"></i>
+                        </div>
+                        <h5 class="empty-title">
+                            @if(!String.IsNullOrEmpty(ViewData["CurrentFilter"]?.ToString()))
+                            {
+                                <span>No categories found for "@ViewData["CurrentFilter"]"</span>
+                            }
+                            else
+                            {
+                                <span>No categories yet</span>
+                            }
+                        </h5>
+                        <p class="empty-subtitle">
+                            @if(!String.IsNullOrEmpty(ViewData["CurrentFilter"]?.ToString()))
+                            {
+                                <span>Try adjusting your search criteria or </span>
+                                <a asp-action="Index" class="text-decoration-none">clear the filter</a>
+                            }
+                            else
+                            {
+                                <span>Start by creating your first product category</span>
+                            }
+                        </p>
+                        @if(String.IsNullOrEmpty(ViewData["CurrentFilter"]?.ToString()))
+                        {
+                            <a asp-action="Create" class="btn btn-primary btn-lg mt-3">
+                                <i class="bi bi-plus-lg me-2"></i>Create Your First Category
+                            </a>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="customDeleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title text-danger fw-bold" id="deleteModalLabel">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    Confirm Delete
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body py-4">
+                <div class="text-center mb-4">
+                    <div class="delete-warning-icon mb-3">
+                        <i class="bi bi-trash3-fill text-danger"></i>
+                    </div>
+                    <p class="mb-3">Are you sure you want to delete the category:</p>
+                    <h6 class="text-dark fw-bold mb-3" id="categoryNameToDelete"></h6>
+                    <div class="alert alert-warning border-0 bg-light">
+                        <small>
+                            <i class="bi bi-info-circle me-2"></i>
+                            Products in this category will be moved to "No Category"
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle me-2"></i>Cancel
+                </button>
+                <button type="button" class="btn btn-danger" onclick="executeDelete()">
+                    <i class="bi bi-trash3 me-2"></i>Delete Category
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Hidden anti-forgery token for delete operations -->
+<form style="display: none;">
+    @Html.AntiForgeryToken()
+</form>
+
+<!-- Toast Container -->
+<div id="toastContainer" class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1100;"></div>
+
+<style>
+    .delete-warning-icon {
+        font-size: 4rem;
+        opacity: 0.7;
+    }
+
+    .modal-content {
+        border-radius: 16px;
+    }
+
+    .modal-header .btn-close {
+        border-radius: 50%;
+        padding: 0.5rem;
+        margin: 0;
+    }
+
+    .alert {
+        border-radius: 12px;
+    }
+/* Hero Section */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
-    </tbody>
-</table>
+
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+/* Stats Cards */
+.stats-card {
+    border: 1px solid #f0f0f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+}
+
+.stats-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.stats-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Search Section */
+.search-section {
+    border: 1px solid #f0f0f0;
+}
+
+.search-input-group {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    z-index: 10;
+}
+
+.search-input {
+    padding-left: 45px !important;
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.modern-select {
+    border: 2px solid #e9ecef;
+    border-radius: 12px;
+    transition: border-color 0.3s ease;
+}
+
+.modern-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.modern-btn {
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.modern-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Advanced Search Panel */
+.advanced-panel {
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.advanced-content {
+    color: white;
+}
+
+.advanced-title {
+    color: white;
+    font-weight: 600;
+}
+
+.custom-switch .form-check-input:checked {
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+/* Table Styling */
+.table-section {
+    border: 1px solid #f0f0f0;
+}
+
+.table-header {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+.table-header th {
+    border: none;
+    padding: 20px 16px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+.sort-header {
+    cursor: pointer;
+}
+
+.sort-link {
+    color: black !important;
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    transition: opacity 0.3s ease;
+}
+
+.sort-link:hover {
+    opacity: 0.8;
+}
+
+.sort-icon {
+    margin-left: auto;
+    font-size: 0.75rem;
+}
+
+.sort-icon.inactive {
+    opacity: 0.5;
+}
+
+.modern-table .table-row {
+    border-bottom: 1px solid #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.modern-table .table-row:hover {
+    background-color: #f8f9fa;
+}
+
+.modern-table td {
+    padding: 20px 16px;
+    vertical-align: middle;
+}
+
+/* Category ID Badge */
+.category-id-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+/* Category Info */
+.category-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.category-avatar {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.category-name {
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.category-type {
+    color: #6c757d;
+    font-size: 0.75rem;
+}
+
+.category-description {
+    color: #495057;
+    line-height: 1.5;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.action-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.view-btn {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.view-btn:hover {
+    background-color: #1976d2;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.edit-btn {
+    background-color: #fff3e0;
+    color: #f57c00;
+}
+
+.edit-btn:hover {
+    background-color: #f57c00;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.delete-btn {
+    background-color: #ffebee;
+    color: #d32f2f;
+}
+
+.delete-btn:hover {
+    background-color: #d32f2f;
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Empty State */
+.empty-state {
+    padding: 80px 20px;
+}
+
+.empty-icon {
+    font-size: 6rem;
+    color: #dee2e6;
+}
+
+.empty-title {
+    color: #6c757d;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.empty-subtitle {
+    color: #adb5bd;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+/* Toast Styling */
+.toast {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.toast-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+.toast-error {
+    background: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
+    color: white;
+}
+
+.toast-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+    color: #212529;
+}
+
+/* Responsive Design */
+@@media (max-width: 768px) {
+    .hero-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .stats-number {
+        font-size: 1.5rem;
+    }
+    
+    .category-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 8px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 4px;
+    }
+}
+</style>
+
+<script>
+// Advanced Search Toggle
+function toggleAdvancedSearch() {
+    const advancedSearch = document.getElementById('advancedSearch');
+    if (advancedSearch.style.display === 'none') {
+        advancedSearch.style.display = 'block';
+        advancedSearch.style.animation = 'slideDown 0.3s ease-out';
+    } else {
+        advancedSearch.style.display = 'none';
+    }
+}
+
+// Auto-submit form when sort order changes
+document.getElementById('sortOrder').addEventListener('change', function() {
+    this.form.submit();
+});
+
+// Delete Confirmation
+let currentDeleteId = null;
+
+
+    function showDeleteConfirm(categoryId, categoryName) {
+        currentDeleteId = categoryId;
+        document.getElementById('categoryNameToDelete').textContent = categoryName;
+        const modal = new bootstrap.Modal(document.getElementById('customDeleteModal'));
+        modal.show();
+        return false; // Ngăn chặn hành vi mặc định
+    }
+
+    function executeDelete() {
+        if (currentDeleteId) {
+            // Create form dynamically
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '@Url.Action("Delete", "AdminCategories")/' + currentDeleteId;
+
+            // Add anti-forgery token
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+            const tokenInput = document.createElement('input');
+            tokenInput.type = 'hidden';
+            tokenInput.name = '__RequestVerificationToken';
+            tokenInput.value = token;
+            form.appendChild(tokenInput);
+
+            // Add to body and submit
+            document.body.appendChild(form);
+            form.submit();
+
+            // Hide modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('customDeleteModal'));
+            if (modal) {
+                modal.hide();
+            }
+        }
+    }
+
+// Toast Notifications
+function showToast(message, type = 'success') {
+    const toastContainer = document.getElementById('toastContainer');
+    const toastId = 'toast_' + Date.now();
+    
+    const toastHTML = `
+        <div id="${toastId}" class="toast toast-${type}" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-body d-flex align-items-center p-3">
+                <i class="bi bi-${getToastIcon(type)} me-3 fs-5"></i>
+                <div class="flex-grow-1">${message}</div>
+                <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    `;
+    
+    toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+    
+    const toastElement = document.getElementById(toastId);
+    const toast = new bootstrap.Toast(toastElement, {
+        autohide: true,
+        delay: 5000
+    });
+    
+    toast.show();
+    
+    // Remove toast element after it's hidden
+    toastElement.addEventListener('hidden.bs.toast', function () {
+        toastElement.remove();
+    });
+}
+
+function getToastIcon(type) {
+    switch(type) {
+        case 'success': return 'check-circle-fill';
+        case 'error': return 'exclamation-circle-fill';
+        case 'warning': return 'exclamation-triangle-fill';
+        default: return 'info-circle-fill';
+    }
+}
+
+// Initialize tooltips
+document.addEventListener('DOMContentLoaded', function() {
+    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    const tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+    
+    // Show toasts for server messages
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <text>showToast('@TempData["SuccessMessage"]', 'success');</text>
+    }
+    
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <text>showToast('@TempData["ErrorMessage"]', 'error');</text>
+    }
+    
+    // Highlight search terms
+    highlightSearchTerms();
+});
+
+// Highlight search terms in results
+function highlightSearchTerms() {
+    const searchTerm = '@ViewData["CurrentFilter"]';
+    if (searchTerm && searchTerm.length > 0) {
+        const tableRows = document.querySelectorAll('.table-row');
+        tableRows.forEach(function(row) {
+            const nameCell = row.cells[1];
+            const descCell = row.cells[2];
+            
+            if (nameCell && nameCell.textContent) {
+                nameCell.innerHTML = highlightText(nameCell.innerHTML, searchTerm);
+            }
+            if (descCell && descCell.textContent && !descCell.textContent.includes('No description')) {
+                descCell.innerHTML = highlightText(descCell.innerHTML, searchTerm);
+            }
+        });
+    }
+}
+
+function highlightText(text, term) {
+    if (!term) return text;
+    const regex = new RegExp('(' + term + ')', 'gi');
+    return text.replace(regex, '<mark class="bg-warning bg-opacity-25 rounded">$1</mark>');
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    // Ctrl+K to focus search
+    if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
+        document.getElementById('searchString').focus();
+    }
+    
+    // Escape to clear search
+    if (e.key === 'Escape') {
+        const searchInput = document.getElementById('searchString');
+        if (searchInput.value) {
+            searchInput.value = '';
+            searchInput.form.submit();
+        }
+    }
+});
+
+// Smooth animations
+const style = document.createElement('style');
+style.textContent = `
+    @@keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .table-row {
+        animation: fadeInUp 0.3s ease-out;
+    }
+    
+    .stats-card {
+        animation: fadeInUp 0.4s ease-out;
+    }
+    
+    .search-section {
+        animation: fadeInUp 0.5s ease-out;
+    }
+`;
+document.head.appendChild(style);
+
+// Loading state for buttons
+function addLoadingState(button) {
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="bi bi-arrow-clockwise spin me-2"></i>Loading...';
+    button.disabled = true;
+    
+    setTimeout(() => {
+        button.innerHTML = originalText;
+        button.disabled = false;
+    }, 1000);
+}
+
+// Add spinning animation for loading
+const spinStyle = document.createElement('style');
+spinStyle.textContent = `
+    @@keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .spin {
+        animation: spin 1s linear infinite;
+    }
+`;
+document.head.appendChild(spinStyle);
+</script>

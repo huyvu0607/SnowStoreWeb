@@ -1,0 +1,1111 @@
+﻿@using System.Web
+@model IEnumerable<SnowStoreWeb.Models.Brand>
+
+@{
+    ViewData["Title"] = "Danh Sách Thương Hiệu";
+    Layout = "_AdminLayout";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<!-- Anti-forgery token for AJAX operations -->
+@Html.AntiForgeryToken()
+
+<!-- Toast Container -->
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;" id="toastContainer">
+    <!-- Success Toast -->
+    <div id="successToast" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-check-circle me-2"></i>
+                <span id="successMessage"></span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <!-- Error Toast -->
+    <div id="errorToast" class="toast align-items-center text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                <span id="errorMessage"></span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <!-- Warning Toast -->
+    <div id="warningToast" class="toast align-items-center text-bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <span id="warningMessage"></span>
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+
+    <!-- Info Toast -->
+    <div id="infoToast" class="toast align-items-center text-bg-info border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="fas fa-info-circle me-2"></i>
+                <span id="infoMessage"></span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid py-4">
+    <!-- Header Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm bg-primary text-white">
+                <div class="card-body py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="mb-1">
+                                <i class="fas fa-tags me-2"></i>
+                                Quản Lý Thương Hiệu
+                            </h4>
+                            <small class="opacity-75">Danh sách các thương hiệu sản phẩm</small>
+                        </div>
+                        <div>
+                            <a asp-action="Create" class="btn btn-light btn-sm">
+                                <i class="fas fa-plus me-1"></i>
+                                Tạo mới
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-gradient">
+                <div class="card-body text-center">
+                    <div class="d-flex align-items-center justify-content-center mb-2">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
+                            <i class="fas fa-tags fa-2x text-primary"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold text-primary mb-1">@Model.Count()</h5>
+                    <small class="text-muted">Tổng thương hiệu</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-gradient">
+                <div class="card-body text-center">
+                    <div class="d-flex align-items-center justify-content-center mb-2">
+                        <div class="bg-success bg-opacity-10 p-3 rounded-circle">
+                            <i class="fas fa-image fa-2x text-success"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold text-success mb-1">@Model.Count(b => !string.IsNullOrEmpty(b.LogoUrl))</h5>
+                    <small class="text-muted">Có logo</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-gradient">
+                <div class="card-body text-center">
+                    <div class="d-flex align-items-center justify-content-center mb-2">
+                        <div class="bg-warning bg-opacity-10 p-3 rounded-circle">
+                            <i class="fas fa-image-slash fa-2x text-warning"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold text-warning mb-1">@Model.Count(b => string.IsNullOrEmpty(b.LogoUrl))</h5>
+                    <small class="text-muted">Chưa có logo</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card border-0 shadow-sm bg-gradient">
+                <div class="card-body text-center">
+                    <div class="d-flex align-items-center justify-content-center mb-2">
+                        <div class="bg-info bg-opacity-10 p-3 rounded-circle">
+                            <i class="fas fa-chart-line fa-2x text-info"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold text-info mb-1">100%</h5>
+                    <small class="text-muted">Hoạt động</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body py-3">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="fas fa-search text-muted"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0" 
+                                       id="searchInput" placeholder="Tìm kiếm thương hiệu..." 
+                                       onkeyup="searchBrands()">
+                            </div>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="filterBrands('all')" id="filterAll">
+                                    <i class="fas fa-list me-1"></i>Tất cả
+                                </button>
+                                <button type="button" class="btn btn-outline-success btn-sm" onclick="filterBrands('with-logo')" id="filterWithLogo">
+                                    <i class="fas fa-image me-1"></i>Có logo
+                                </button>
+                                <button type="button" class="btn btn-outline-warning btn-sm" onclick="filterBrands('no-logo')" id="filterNoLogo">
+                                    <i class="fas fa-image-slash me-1"></i>Chưa có logo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Brands Table -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0">
+                            <i class="fas fa-list me-2"></i>
+                            Danh sách thương hiệu
+                        </h6>
+                        <div class="text-muted">
+                            <small>Tổng: <span id="totalCount">@Model.Count()</span> thương hiệu</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    @if (Model.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0" id="brandsTable">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="px-4 py-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="selectAll" onchange="toggleSelectAll()">
+                                                <label class="form-check-label fw-bold">ID</label>
+                                            </div>
+                                        </th>
+                                        <th class="py-3">Logo</th>
+                                        <th class="py-3">Tên thương hiệu</th>
+                                        <th class="py-3">URL Logo</th>
+                                        <th class="py-3">Trạng thái</th>
+                                        <th class="text-center py-3" style="width: 200px;">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var brand in Model)
+                                    {
+                                        <tr class="align-middle brand-row" data-brand-name="@brand.Name.ToLower()" data-has-logo="@(!string.IsNullOrEmpty(brand.LogoUrl))">
+                                            <td class="px-4">
+                                                <div class="form-check">
+                                                    <input class="form-check-input brand-checkbox" type="checkbox" value="@brand.BrandId">
+                                                    <label class="fw-bold text-primary">#@brand.BrandId</label>
+                                                </div>
+                                            </td>
+                                            <td class="py-3">
+                                                @if (!string.IsNullOrEmpty(brand.LogoUrl))
+                                                {
+                                                    <div class="brand-logo-container position-relative">
+                                                        <img src="@brand.LogoUrl" alt="@brand.Name Logo" 
+                                                             class="brand-logo-thumb cursor-pointer"
+                                                             onclick="showImageModal('@brand.LogoUrl', '@brand.Name')" />
+                                                        <div class="logo-overlay">
+                                                            <i class="fas fa-search-plus"></i>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <div class="no-logo-placeholder">
+                                                        <i class="fas fa-image text-muted"></i>
+                                                    </div>
+                                                }
+                                            </td>
+                                            <td class="py-3">
+                                                <div class="brand-info">
+                                                    <div class="brand-name fw-semibold">@brand.Name</div>
+                                                    <small class="text-muted">ID: @brand.BrandId</small>
+                                                </div>
+                                            </td>
+                                            <td class="py-3">
+                                                @if (!string.IsNullOrEmpty(brand.LogoUrl))
+                                                {
+                                                    <div class="logo-url">
+                                                        <small class="text-muted text-break">@brand.LogoUrl</small>
+                                                        <button class="btn btn-link btn-sm p-0 ms-2" onclick="copyToClipboard('@brand.LogoUrl')" title="Copy URL">
+                                                            <i class="fas fa-copy"></i>
+                                                        </button>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    <small class="text-muted fst-italic">Chưa có logo</small>
+                                                }
+                                            </td>
+                                            <td class="py-3">
+                                                @if (!string.IsNullOrEmpty(brand.LogoUrl))
+                                                {
+                                                    <span class="badge bg-success-subtle text-success">
+                                                        <i class="fas fa-check me-1"></i>Hoàn thiện
+                                                    </span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="badge bg-warning-subtle text-warning">
+                                                        <i class="fas fa-exclamation me-1"></i>Thiếu logo
+                                                    </span>
+                                                }
+                                            </td>
+                                            <td class="text-center py-3">
+                                                <div class="btn-group" role="group">
+                                                    <a asp-action="Details" asp-route-id="@brand.BrandId" 
+                                                       class="btn btn-info btn-sm" title="Xem chi tiết">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <a asp-action="Edit" asp-route-id="@brand.BrandId" 
+                                                       class="btn btn-warning btn-sm" title="Chỉnh sửa">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <button type="button" class="btn btn-danger btn-sm" 
+                                                            title="Xóa thương hiệu"
+                                                            onclick="confirmDelete(@brand.BrandId, '@brand.Name')">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Bulk Actions -->
+                        <div class="card-footer bg-light" id="bulkActions" style="display: none;">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted">
+                                    <span id="selectedCount">0</span> thương hiệu được chọn
+                                </span>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger btn-sm" onclick="bulkDelete()">
+                                        <i class="fas fa-trash me-1"></i>Xóa đã chọn
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5" id="emptyState">
+                            <i class="fas fa-tags fa-3x text-muted opacity-25 mb-3"></i>
+                            <h5 class="text-muted">Chưa có thương hiệu nào</h5>
+                            <p class="text-muted mb-3">Hãy tạo thương hiệu đầu tiên cho cửa hàng của bạn</p>
+                            <a asp-action="Create" class="btn btn-primary">
+                                <i class="fas fa-plus me-2"></i>
+                                Tạo thương hiệu mới
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalTitle">Logo Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" alt="" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0 bg-danger text-white">
+                <div class="d-flex align-items-center">
+                    <div class="bg-white bg-opacity-20 p-2 rounded-circle me-3">
+                        <i class="fas fa-exclamation-triangle fa-lg"></i>
+                    </div>
+                    <div>
+                        <h5 class="modal-title mb-0">Xác Nhận Xóa Thương Hiệu</h5>
+                        <small class="opacity-75">Hành động này không thể hoàn tác</small>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="text-center mb-4">
+                    <div class="bg-danger bg-opacity-10 p-4 rounded-circle d-inline-flex mb-3">
+                        <i class="fas fa-trash fa-2x text-danger"></i>
+                    </div>
+                    <h6 class="mb-2">Bạn có chắc chắn muốn xóa thương hiệu này?</h6>
+                    <div class="alert alert-warning border-0 bg-warning bg-opacity-10 text-start">
+                        <div class="d-flex">
+                            <i class="fas fa-info-circle text-warning me-2 mt-1"></i>
+                            <div class="flex-grow-1">
+                                <strong id="deleteBrandName" class="text-warning"></strong>
+                                <div class="small text-muted mt-1">
+                                    ID: <span id="deleteBrandId"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-light rounded p-3 mb-3">
+                    <h6 class="text-danger mb-2">
+                        <i class="fas fa-exclamation-circle me-1"></i>
+                        Lưu ý quan trọng:
+                    </h6>
+                    <ul class="small text-muted mb-0 ps-3">
+                        <li>Thương hiệu sẽ bị xóa vĩnh viễn</li>
+                        <li>Tất cả sản phẩm thuộc thương hiệu này sẽ không còn thông tin thương hiệu</li>
+                        <li>Logo của thương hiệu (nếu có) sẽ bị xóa khỏi server</li>
+                        <li>Hành động này không thể hoàn tác</li>
+                    </ul>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="confirmDelete">
+                    <label class="form-check-label small text-muted" for="confirmDelete">
+                        Tôi hiểu rằng hành động này không thể hoàn tác
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-1"></i>
+                    Hủy bỏ
+                </button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteBtn" disabled onclick="proceedDelete()">
+                    <i class="fas fa-trash me-1"></i>
+                    Xác nhận xóa
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bulk Delete Confirmation Modal -->
+<div class="modal fade" id="bulkDeleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header border-0 bg-danger text-white">
+                <div class="d-flex align-items-center">
+                    <div class="bg-white bg-opacity-20 p-2 rounded-circle me-3">
+                        <i class="fas fa-exclamation-triangle fa-lg"></i>
+                    </div>
+                    <div>
+                        <h5 class="modal-title mb-0">Xác Nhận Xóa Nhiều Thương Hiệu</h5>
+                        <small class="opacity-75">Hành động này không thể hoàn tác</small>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="text-center mb-4">
+                    <div class="bg-danger bg-opacity-10 p-4 rounded-circle d-inline-flex mb-3">
+                        <i class="fas fa-trash fa-2x text-danger"></i>
+                    </div>
+                    <h6 class="mb-2">Bạn có chắc chắn muốn xóa <span id="bulkDeleteCount" class="text-danger fw-bold"></span> thương hiệu đã chọn?</h6>
+                </div>
+                
+                <div class="bg-light rounded p-3 mb-3">
+                    <h6 class="text-danger mb-2">
+                        <i class="fas fa-exclamation-circle me-1"></i>
+                        Lưu ý quan trọng:
+                    </h6>
+                    <ul class="small text-muted mb-0 ps-3">
+                        <li>Tất cả thương hiệu đã chọn sẽ bị xóa vĩnh viễn</li>
+                        <li>Các sản phẩm thuộc những thương hiệu này sẽ không còn thông tin thương hiệu</li>
+                        <li>Tất cả logo sẽ bị xóa khỏi server</li>
+                        <li>Hành động này không thể hoàn tác</li>
+                    </ul>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="confirmBulkDelete">
+                    <label class="form-check-label small text-muted" for="confirmBulkDelete">
+                        Tôi hiểu rằng hành động này không thể hoàn tác
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times me-1"></i>
+                    Hủy bỏ
+                </button>
+                <button type="button" class="btn btn-danger" id="confirmBulkDeleteBtn" disabled onclick="proceedBulkDelete()">
+                    <i class="fas fa-trash me-1"></i>
+                    Xác nhận xóa tất cả
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Global variables for delete operations
+        let currentDeleteId = null;
+        let currentDeleteName = null;
+
+        // Toast function
+        function showToast(message, type = 'success') {
+            const toastContainer = document.getElementById('toastContainer');
+            const toastId = 'toast_' + Date.now();
+            const iconClass = getToastIcon(type);
+            const bgClass = getToastBgClass(type);
+
+            const toastHTML = `
+                <div id="${toastId}" class="toast align-items-center ${bgClass} border-0 mb-2" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="d-flex">
+                        <div class="toast-body">
+                            <i class="fas fa-${iconClass} me-2"></i>
+                            ${message}
+                        </div>
+                        <button type="button" class="btn-close ${type === 'warning' ? '' : 'btn-close-white'} me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                </div>
+            `;
+
+            toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+
+            const toastElement = document.getElementById(toastId);
+            const toast = new bootstrap.Toast(toastElement, {
+                autohide: true,
+                delay: 5000
+            });
+
+            toast.show();
+
+            toastElement.addEventListener('hidden.bs.toast', function () {
+                toastElement.remove();
+            });
+        }
+
+        // Helper function for toast icons
+        function getToastIcon(type) {
+            switch (type) {
+                case 'success': return 'check-circle';
+                case 'error': return 'exclamation-circle';
+                case 'warning': return 'exclamation-triangle';
+                case 'info': return 'info-circle';
+                default: return 'info-circle';
+            }
+        }
+
+        // Helper function for toast background classes
+        function getToastBgClass(type) {
+            switch (type) {
+                case 'success': return 'text-bg-success';
+                case 'error': return 'text-bg-danger';
+                case 'warning': return 'text-bg-warning';
+                case 'info': return 'text-bg-info';
+                default: return 'text-bg-info';
+            }
+        }
+
+        // Enhanced delete confirmation with modal
+        function confirmDelete(brandId, brandName) {
+            currentDeleteId = brandId;
+            currentDeleteName = brandName;
+            
+            // Update modal content
+            document.getElementById('deleteBrandName').textContent = brandName;
+            document.getElementById('deleteBrandId').textContent = brandId;
+            
+            // Reset checkbox and button
+            document.getElementById('confirmDelete').checked = false;
+            document.getElementById('confirmDeleteBtn').disabled = true;
+            
+            // Show modal
+            new bootstrap.Modal(document.getElementById('deleteModal')).show();
+        }
+
+        // Proceed with delete after confirmation
+        function proceedDelete() {
+            if (currentDeleteId) {
+                // Show loading state
+                const btn = document.getElementById('confirmDeleteBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Đang xóa...';
+                btn.disabled = true;
+                
+                // Create form and submit
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '@Url.Action("Delete")';
+                
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'id';
+                input.value = currentDeleteId;
+                form.appendChild(input);
+                
+                const token = document.querySelector('input[name="__RequestVerificationToken"]');
+                if (token) {
+                    const tokenInput = document.createElement('input');
+                    tokenInput.type = 'hidden';
+                    tokenInput.name = '__RequestVerificationToken';
+                    tokenInput.value = token.value;
+                    form.appendChild(tokenInput);
+                }
+                
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+
+        // Search functionality
+        function searchBrands() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('.brand-row');
+            let visibleCount = 0;
+            
+            rows.forEach(row => {
+                const brandName = row.getAttribute('data-brand-name');
+                if (brandName.includes(searchTerm)) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            updateTotalCount(visibleCount);
+            showEmptyState(visibleCount === 0 && searchTerm !== '');
+        }
+
+        // Filter functionality
+        function filterBrands(filter) {
+            const rows = document.querySelectorAll('.brand-row');
+            let visibleCount = 0;
+            
+            // Update active filter button
+            document.querySelectorAll('[id^="filter"]').forEach(btn => btn.classList.remove('active'));
+            
+            // Fix the capitalization for filter button IDs
+            let filterId;
+            switch (filter) {
+                case 'all':
+                    filterId = 'filterAll';
+                    break;
+                case 'with-logo':
+                    filterId = 'filterWithLogo';
+                    break;
+                case 'no-logo':
+                    filterId = 'filterNoLogo';
+                    break;
+            }
+            document.getElementById(filterId).classList.add('active');
+            
+            rows.forEach(row => {
+                const hasLogo = row.getAttribute('data-has-logo') === 'True';
+                let shouldShow = false;
+                
+                switch (filter) {
+                    case 'all':
+                        shouldShow = true;
+                        break;
+                    case 'with-logo':
+                        shouldShow = hasLogo;
+                        break;
+                    case 'no-logo':
+                        shouldShow = !hasLogo;
+                        break;
+                }
+                
+                if (shouldShow) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            
+            updateTotalCount(visibleCount);
+            showEmptyState(visibleCount === 0);
+        }
+
+        // Update total count
+        function updateTotalCount(count) {
+            document.getElementById('totalCount').textContent = count;
+        }
+
+        // Show/hide empty state
+        function showEmptyState(show) {
+            const emptyState = document.getElementById('emptyState');
+            const table = document.getElementById('brandsTable');
+            
+            if (show) {
+                if (!emptyState) {
+                    const emptyDiv = document.createElement('div');
+                    emptyDiv.id = 'emptyState';
+                    emptyDiv.className = 'text-center py-5';
+                    emptyDiv.innerHTML = `
+                        <i class="fas fa-search fa-3x text-muted opacity-25 mb-3"></i>
+                        <h5 class="text-muted">Không tìm thấy thương hiệu</h5>
+                        <p class="text-muted mb-3">Thử thay đổi từ khóa tìm kiếm hoặc bộ lọc</p>
+                    `;
+                    table.parentNode.appendChild(emptyDiv);
+                }
+                table.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                table.style.display = '';
+                if (emptyState) emptyState.style.display = 'none';
+            }
+        }
+
+        // Select all functionality
+        function toggleSelectAll() {
+            const selectAll = document.getElementById('selectAll');
+            const checkboxes = document.querySelectorAll('.brand-checkbox');
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox.closest('tr').style.display !== 'none') {
+                    checkbox.checked = selectAll.checked;
+                }
+            });
+            
+            updateBulkActions();
+        }
+
+        // Update bulk actions visibility
+        function updateBulkActions() {
+            const checkedBoxes = document.querySelectorAll('.brand-checkbox:checked');
+            const bulkActions = document.getElementById('bulkActions');
+            const selectedCount = document.getElementById('selectedCount');
+            
+            if (checkedBoxes.length > 0) {
+                bulkActions.style.display = 'block';
+                selectedCount.textContent = checkedBoxes.length;
+            } else {
+                bulkActions.style.display = 'none';
+            }
+        }
+
+        // Enhanced bulk delete
+        function bulkDelete() {
+            const checkedBoxes = document.querySelectorAll('.brand-checkbox:checked');
+            const count = checkedBoxes.length;
+            
+            if (count === 0) return;
+            
+            // Update modal content
+            document.getElementById('bulkDeleteCount').textContent = count;
+            
+            // Reset checkbox and button
+            document.getElementById('confirmBulkDelete').checked = false;
+            document.getElementById('confirmBulkDeleteBtn').disabled = true;
+            
+            // Show modal
+            new bootstrap.Modal(document.getElementById('bulkDeleteModal')).show();
+        }
+
+        // Proceed with bulk delete after confirmation
+        function proceedBulkDelete() {
+            const checkedBoxes = document.querySelectorAll('.brand-checkbox:checked');
+            const count = checkedBoxes.length;
+
+            if (count === 0) return;
+
+            // Get brand IDs
+            const brandIds = Array.from(checkedBoxes).map(checkbox => parseInt(checkbox.value));
+
+            // Show loading state
+            const btn = document.getElementById('confirmBulkDeleteBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<i class="fas fa-spinner fa-spin me-1"></i>Đang xóa ${count} thương hiệu...`;
+            btn.disabled = true;
+
+            // Show progress toast
+            showToast(`Đang xóa ${count} thương hiệu...`, 'info');
+
+            // Get anti-forgery token
+            const token = document.querySelector('input[name="__RequestVerificationToken"]').value;
+
+            // Send AJAX request to BulkDelete endpoint
+            fetch('@Url.Action("BulkDelete")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': token
+                },
+                body: JSON.stringify(brandIds)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Hide modal
+                    bootstrap.Modal.getInstance(document.getElementById('bulkDeleteModal')).hide();
+
+                    if (data.success) {
+                        showToast(data.message, 'success');
+
+                        // Remove rows from table
+                        checkedBoxes.forEach(checkbox => {
+                            checkbox.closest('tr').remove();
+                        });
+
+                        // Update statistics
+                        updateStatistics();
+                        updateTotalCount(document.querySelectorAll('.brand-row').length);
+                        updateBulkActions();
+
+                        // Uncheck select all
+                        document.getElementById('selectAll').checked = false;
+                    } else {
+                        showToast(data.message, 'error');
+
+                        // Show errors if any
+                        if (data.errors && data.errors.length > 0) {
+                            data.errors.forEach(error => {
+                                showToast(error, 'warning');
+                            });
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    bootstrap.Modal.getInstance(document.getElementById('bulkDeleteModal')).hide();
+                    showToast('Có lỗi xảy ra khi xóa thương hiệu!', 'error');
+                })
+                .finally(() => {
+                    // Reset button
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
+        }
+        function updateStatistics() {
+            const rows = document.querySelectorAll('.brand-row');
+            const totalCount = rows.length;
+            const withLogoCount = Array.from(rows).filter(row => row.getAttribute('data-has-logo') === 'True').length;
+            const noLogoCount = totalCount - withLogoCount;
+
+            // Update statistics cards
+            document.querySelector('.col-md-3:nth-child(1) .fw-bold').textContent = totalCount;
+            document.querySelector('.col-md-3:nth-child(2) .fw-bold').textContent = withLogoCount;
+            document.querySelector('.col-md-3:nth-child(3) .fw-bold').textContent = noLogoCount;
+        }
+        // Copy to clipboard
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('Đã sao chép URL vào clipboard!', 'success');
+            }).catch(() => {
+                showToast('Không thể sao chép URL!', 'error');
+            });
+        }
+
+        // Show image modal
+        function showImageModal(src, title) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('imageModalTitle').textContent = `Logo: ${title}`;
+            new bootstrap.Modal(document.getElementById('imageModal')).show();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[title]'));
+            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+
+            // Add event listeners to checkboxes
+            document.querySelectorAll('.brand-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', updateBulkActions);
+            });
+
+            // Set default filter
+            document.getElementById('filterAll').classList.add('active');
+
+            // Enable/disable delete buttons based on checkbox
+            document.getElementById('confirmDelete').addEventListener('change', function() {
+                document.getElementById('confirmDeleteBtn').disabled = !this.checked;
+            });
+            
+            document.getElementById('confirmBulkDelete').addEventListener('change', function() {
+                document.getElementById('confirmBulkDeleteBtn').disabled = !this.checked;
+            });
+
+            // Show toasts for TempData messages - Replace Alert with Toast
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <text>showToast('@HttpUtility.JavaScriptStringEncode(TempData["SuccessMessage"].ToString())', 'success');</text>
+            }
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <text>showToast('@HttpUtility.JavaScriptStringEncode(TempData["ErrorMessage"].ToString())', 'error');</text>
+            }
+        });
+    </script>
+
+    <style>
+        .brand-logo-thumb {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 6px;
+            border: 1px solid #dee2e6;
+            background: #f8f9fa;
+            padding: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .brand-logo-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .brand-logo-container:hover .brand-logo-thumb {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .logo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 6px;
+            color: white;
+        }
+
+        .brand-logo-container:hover .logo-overlay {
+            opacity: 1;
+        }
+
+        .no-logo-placeholder {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            background: #f8f9fa;
+        }
+
+        .brand-name {
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        .logo-url {
+            max-width: 200px;
+            word-break: break-all;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .btn-group .btn {
+            margin: 0 1px;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .card {
+            transition: transform 0.2s ease;
+        }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+
+        /* Enhanced Toast Styles */
+        .toast-container {
+            z-index: 1055;
+        }
+
+        .toast {
+            min-width: 300px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .toast-body {
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+        }
+
+        .toast .btn-close {
+            font-size: 0.75em;
+            padding: 0.5rem;
+        }
+
+        /* Toast Animation */
+        .toast.showing {
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .toast.hiding {
+            animation: slideOutRight 0.3s ease-in;
+        }
+
+        @@keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @@keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        .bg-gradient {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        /* Modal Styles */
+        .modal-content {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .modal-header.bg-danger {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%) !important;
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #c82333 0%, #a71e2a 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-danger:disabled {
+            background: #6c757d;
+            opacity: 0.6;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .alert {
+            border-radius: 8px;
+        }
+
+        .form-check-input:checked {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .modal-dialog {
+            max-width: 500px;
+        }
+
+        /* Animation for modal icons */
+        .modal-body .fa-trash {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @@keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px) rotate(-5deg); }
+            75% { transform: translateX(5px) rotate(5deg); }
+        }
+
+        /* Loading spinner animation */
+        .fa-spin {
+            animation: fa-spin 1s infinite linear;
+        }
+
+        @@keyframes fa-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(359deg); }
+        }
+
+        /* Responsive adjustments */
+        @@media (max-width: 768px) {
+            .logo-url {
+                max-width: 150px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .btn-group .btn {
+                margin: 1px 0;
+            }
+
+            .toast {
+                min-width: 250px;
+            }
+
+            .modal-dialog {
+                margin: 1rem;
+            }
+
+            .toast-container {
+                padding: 0.5rem;
+            }
+        }
+
+        /* Filter button active state */
+        .btn-outline-secondary.active,
+        .btn-outline-success.active,
+        .btn-outline-warning.active {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+}

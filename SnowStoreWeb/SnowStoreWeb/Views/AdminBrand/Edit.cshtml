@@ -1,0 +1,625 @@
+﻿@model SnowStoreWeb.Models.Brand
+
+@{
+    ViewData["Title"] = "Chỉnh Sửa Thương Hiệu";
+    Layout = "_AdminLayout";
+}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+<style>
+    .drag-drop-area {
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: #f8f9fa;
+    }
+
+    .drag-drop-area:hover {
+        border-color: #007bff;
+        background: #e7f3ff;
+    }
+
+    .drag-drop-area.dragover {
+        border-color: #28a745;
+        background: #d4edda;
+    }
+
+    .current-logo-img {
+        max-width: 100%;
+        max-height: 120px;
+        object-fit: contain;
+        border-radius: 8px;
+        border: 2px solid #28a745;
+        background: #f8f9fa;
+        padding: 10px;
+    }
+
+    .logo-preview-img {
+        max-width: 100%;
+        max-height: 150px;
+        object-fit: contain;
+        border-radius: 8px;
+        border: 2px solid #007bff;
+        background: #f8f9fa;
+        padding: 10px;
+    }
+
+    .compare-logo {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        border-radius: 4px;
+        border: 1px solid #dee2e6;
+        background: #f8f9fa;
+        padding: 4px;
+    }
+
+    .no-logo-preview {
+        padding: 40px 20px;
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        background: #f8f9fa;
+    }
+
+    .logo-error {
+        padding: 30px 20px;
+    }
+
+    .upload-progress {
+        display: none;
+    }
+
+    .file-input-hidden {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .image-actions {
+        margin-top: 15px;
+    }
+
+    .image-actions .btn {
+        margin: 0 5px;
+    }
+
+    .current-logo-info {
+        background: #f8f9fa;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+    }
+
+    .form-control:focus {
+        border-color: #86b7fe;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+    .form-control-lg {
+        padding: 0.75rem 1rem;
+        font-size: 1.1rem;
+    }
+
+    .card {
+        transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-2px);
+    }
+
+    .btn {
+        transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+    }
+
+    /* Responsive adjustments */
+    @@media (max-width: 768px) {
+        .d-flex.gap-2 {
+            flex-direction: column;
+        }
+
+        .current-logo-img,
+        .logo-preview-img {
+            max-height: 100px;
+        }
+
+        .no-logo-preview {
+            padding: 30px 15px;
+        }
+
+        .compare-logo {
+            width: 50px;
+            height: 50px;
+        }
+
+        .drag-drop-area {
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="container-fluid py-4">
+    <!-- Header Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm bg-warning text-dark">
+                <div class="card-body py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h4 class="mb-1">
+                                <i class="fas fa-edit me-2"></i>
+                                Chỉnh Sửa Thương Hiệu #@Model.BrandId
+                            </h4>
+                            <small class="opacity-75">Cập nhật thông tin thương hiệu: @Model.Name</small>
+                        </div>
+                        <div>
+                            <a asp-action="Details" asp-route-id="@Model.BrandId" class="btn btn-dark btn-sm me-2">
+                                <i class="fas fa-eye me-1"></i>
+                                Chi tiết
+                            </a>
+                            <a asp-action="Index" class="btn btn-dark btn-sm">
+                                <i class="fas fa-arrow-left me-1"></i>
+                                Danh sách
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Edit Form -->
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h6 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Chỉnh Sửa Thông Tin
+                    </h6>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Edit" method="post" enctype="multipart/form-data" id="editForm">
+                        <input asp-for="BrandId" type="hidden" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <!-- Brand ID (Read-only) -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                <i class="fas fa-hashtag text-muted me-2"></i>
+                                ID Thương Hiệu
+                            </label>
+                            <div class="form-control bg-light">
+                                <span class="badge bg-primary">#@Model.BrandId</span>
+                            </div>
+                        </div>
+
+                        <!-- Brand Name -->
+                        <div class="mb-4">
+                            <label asp-for="Name" class="form-label fw-semibold">
+                                <i class="fas fa-tag text-primary me-2"></i>
+                                Tên Thương Hiệu <span class="text-danger">*</span>
+                            </label>
+                            <input asp-for="Name" class="form-control form-control-lg"
+                                   placeholder="Nhập tên thương hiệu..."
+                                   maxlength="100" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Logo Upload Section -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                <i class="fas fa-image text-info me-2"></i>
+                                Cập Nhật Logo Thương Hiệu
+                            </label>
+                            
+                            <!-- Drag & Drop Area -->
+                            <div class="drag-drop-area" id="dragDropArea">
+                                <div id="uploadPrompt">
+                                    <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                    <h6 class="text-muted">Kéo thả ảnh mới vào đây</h6>
+                                    <p class="text-muted mb-3">hoặc</p>
+                                    <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('logoFile').click()">
+                                        <i class="fas fa-folder-open me-2"></i>Chọn file mới
+                                    </button>
+                                    <div class="mt-2">
+                                        <small class="text-muted">
+                                            Hỗ trợ: JPG, PNG, GIF (Max: 5MB)
+                                        </small>
+                                    </div>
+                                </div>
+
+                                <!-- Progress Bar -->
+                                <div class="upload-progress" id="uploadProgress">
+                                    <div class="progress mb-2">
+                                        <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+                                    </div>
+                                    <small class="text-muted">Đang tải lên...</small>
+                                </div>
+                            </div>
+
+                            <!-- Hidden File Input -->
+                            <input type="file" id="logoFile" name="logoFile" accept="image/*" class="file-input-hidden" />
+                            
+                            <!-- Logo URL Input (Alternative) -->
+                            <div class="mt-3">
+                                <label class="form-label">Hoặc nhập URL logo mới:</label>
+                                <input asp-for="LogoUrl" class="form-control"
+                                       placeholder="https://example.com/logo.png"
+                                       onkeyup="previewLogoFromUrl(this.value)" />
+                                <span asp-validation-for="LogoUrl" class="text-danger"></span>
+                                <div class="form-text">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    Để trống để giữ nguyên logo hiện tại, hoặc nhập URL mới để thay đổi
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="d-flex gap-2 pt-3 border-top">
+                            <button type="submit" class="btn btn-success" id="submitBtn">
+                                <i class="fas fa-save me-2"></i>Lưu thay đổi
+                            </button>
+                            <a asp-action="Details" asp-route-id="@Model.BrandId" class="btn btn-info">
+                                <i class="fas fa-eye me-2"></i>Xem chi tiết
+                            </a>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-times me-2"></i>Hủy
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logo Preview & Current Logo -->
+        <div class="col-lg-4">
+            <!-- Current Logo -->
+            @if (!string.IsNullOrEmpty(Model.LogoUrl))
+            {
+                <div class="card border-0 shadow-sm mb-4">
+                    <div class="card-header bg-white border-bottom">
+                        <h6 class="mb-0">
+                            <i class="fas fa-image me-2 text-success"></i>Logo Hiện Tại
+                        </h6>
+                    </div>
+                    <div class="card-body p-4 text-center">
+                        <img src="@Model.LogoUrl" alt="Current Logo" class="current-logo-img mb-3" />
+                        <div class="current-logo-info">
+                            <small class="text-muted d-block">URL hiện tại:</small>
+                            <small class="text-break">@Model.LogoUrl</small>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <!-- Logo Preview -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-bottom">
+                    <h6 class="mb-0">
+                        <i class="fas fa-eye me-2"></i>Xem Trước Logo Mới
+                    </h6>
+                </div>
+                <div class="card-body p-4">
+                    <div id="logoPreviewContainer" class="text-center">
+                        <div id="noLogoPreview" class="no-logo-preview">
+                            <i class="fas fa-image fa-3x text-muted opacity-25 mb-3"></i>
+                            <h6 class="text-muted">Chưa có thay đổi</h6>
+                            <p class="text-muted mb-0 small">
+                                Upload hoặc nhập URL mới để xem trước
+                            </p>
+                        </div>
+
+                        <div id="logoPreview" class="logo-preview" style="display: none;">
+                            <img id="previewImage" src="" alt="Logo Preview" class="logo-preview-img" />
+                            <div class="logo-preview-info mt-3">
+                                <small class="text-success">
+                                    <i class="fas fa-check-circle me-1"></i>
+                                    Logo mới hiển thị tốt
+                                </small>
+                                <div class="image-actions">
+                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeLogo()">
+                                        <i class="fas fa-trash me-1"></i>Xóa
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="logoError" class="logo-error" style="display: none;">
+                            <i class="fas fa-exclamation-triangle fa-2x text-warning mb-2"></i>
+                            <h6 class="text-warning">Không thể tải logo</h6>
+                            <p class="text-muted mb-0 small">
+                                Vui lòng kiểm tra lại URL
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Compare Section (when both logos exist) -->
+            <div id="compareSection" class="card border-0 shadow-sm mt-4" style="display: none;">
+                <div class="card-header bg-light border-bottom">
+                    <h6 class="mb-0">
+                        <i class="fas fa-exchange-alt me-2"></i>So Sánh
+                    </h6>
+                </div>
+                <div class="card-body p-3">
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <small class="text-muted d-block mb-2">Hiện tại</small>
+                            <img id="compareCurrentLogo" src="@Model.LogoUrl" alt="Current" class="compare-logo" />
+                        </div>
+                        <div class="col-6 text-center">
+                            <small class="text-success d-block mb-2">Mới</small>
+                            <img id="compareNewLogo" src="" alt="New" class="compare-logo" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Info Card -->
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-header bg-light border-bottom">
+                    <h6 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Thông tin
+                    </h6>
+                </div>
+                <div class="card-body p-3">
+                    <div class="small text-muted">
+                        <div class="mb-2">
+                            <strong>Kích thước khuyến nghị:</strong> 200x200px
+                        </div>
+                        <div class="mb-2">
+                            <strong>Định dạng hỗ trợ:</strong> JPG, PNG, GIF
+                        </div>
+                        <div class="mb-2">
+                            <strong>Kích thước tối đa:</strong> 5MB
+                        </div>
+                        <div class="text-warning">
+                            <i class="fas fa-exclamation-triangle me-1"></i>
+                            <strong>Lưu ý:</strong> Logo cũ sẽ bị thay thế
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        let previewTimeout;
+        let uploadedFile = null;
+        let hasUnsavedChanges = false;
+        const currentLogoUrl = '@Model.LogoUrl';
+
+        // Drag and Drop functionality
+        const dragDropArea = document.getElementById('dragDropArea');
+        const fileInput = document.getElementById('logoFile');
+
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dragDropArea.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        // Highlight drop area when item is dragged over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dragDropArea.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dragDropArea.addEventListener(eventName, unhighlight, false);
+        });
+
+        // Handle dropped files
+        dragDropArea.addEventListener('drop', handleDrop, false);
+
+        // Handle file input change
+        fileInput.addEventListener('change', function(e) {
+            handleFiles(e.target.files);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlight(e) {
+            dragDropArea.classList.add('dragover');
+        }
+
+        function unhighlight(e) {
+            dragDropArea.classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                
+                // Validate file type
+                if (!file.type.startsWith('image/')) {
+                    showAlert('Vui lòng chọn file ảnh!', 'warning');
+                    return;
+                }
+                
+                // Validate file size (5MB)
+                if (file.size > 5 * 1024 * 1024) {
+                    showAlert('File quá lớn! Vui lòng chọn file nhỏ hơn 5MB.', 'warning');
+                    return;
+                }
+                
+                uploadedFile = file;
+                previewFile(file);
+                hasUnsavedChanges = true;
+                
+                // Clear URL input when file is uploaded
+                document.querySelector('input[name="LogoUrl"]').value = '';
+            }
+        }
+
+        function previewFile(file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                showPreview(e.target.result);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function previewLogoFromUrl(url) {
+            clearTimeout(previewTimeout);
+
+            if (!url.trim() || url === currentLogoUrl) {
+                hidePreview();
+                return;
+            }
+
+            // Clear uploaded file when URL is entered
+            uploadedFile = null;
+            fileInput.value = '';
+            hasUnsavedChanges = true;
+
+            // Add debounce delay
+            previewTimeout = setTimeout(() => {
+                showLoadingPreview();
+
+                // Create new image to test if URL is valid
+                const testImg = new Image();
+
+                testImg.onload = function() {
+                    showPreview(url);
+                };
+
+                testImg.onerror = function() {
+                    showErrorPreview();
+                };
+
+                testImg.src = url;
+            }, 500);
+        }
+
+        function showPreview(src) {
+            document.getElementById('noLogoPreview').style.display = 'none';
+            document.getElementById('logoError').style.display = 'none';
+            document.getElementById('logoPreview').style.display = 'block';
+            document.getElementById('previewImage').src = src;
+
+            // Show comparison if current logo exists
+            if (currentLogoUrl && currentLogoUrl.trim() !== '') {
+                document.getElementById('compareNewLogo').src = src;
+                document.getElementById('compareSection').style.display = 'block';
+            }
+        }
+
+        function showLoadingPreview() {
+            document.getElementById('noLogoPreview').style.display = 'none';
+            document.getElementById('logoError').style.display = 'none';
+            document.getElementById('logoPreview').style.display = 'none';
+            document.getElementById('compareSection').style.display = 'none';
+        }
+
+        function showErrorPreview() {
+            document.getElementById('noLogoPreview').style.display = 'none';
+            document.getElementById('logoPreview').style.display = 'none';
+            document.getElementById('logoError').style.display = 'block';
+            document.getElementById('compareSection').style.display = 'none';
+        }
+
+        function hidePreview() {
+            document.getElementById('noLogoPreview').style.display = 'block';
+            document.getElementById('logoPreview').style.display = 'none';
+            document.getElementById('logoError').style.display = 'none';
+            document.getElementById('compareSection').style.display = 'none';
+        }
+
+        function removeLogo() {
+            uploadedFile = null;
+            fileInput.value = '';
+            document.querySelector('input[name="LogoUrl"]').value = '';
+            hidePreview();
+            hasUnsavedChanges = true;
+        }
+
+        // Form submission
+        document.getElementById('editForm').addEventListener('submit', function(e) {
+            const nameInput = document.querySelector('input[name="Name"]');
+            if (!nameInput.value.trim()) {
+                e.preventDefault();
+                nameInput.focus();
+                showAlert('Vui lòng nhập tên thương hiệu!', 'warning');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Đang lưu...';
+            submitBtn.disabled = true;
+            hasUnsavedChanges = false;
+        });
+
+        // Track changes for unsaved warning
+        document.querySelectorAll('#editForm input').forEach(input => {
+            const originalValue = input.value;
+            input.addEventListener('input', () => {
+                hasUnsavedChanges = input.value !== originalValue;
+            });
+        });
+
+        // Unsaved changes warning
+        window.addEventListener('beforeunload', (e) => {
+            if (hasUnsavedChanges) {
+                e.preventDefault();
+                e.returnValue = 'Bạn có thay đổi chưa lưu. Bạn có muốn rời khỏi trang?';
+            }
+        });
+
+        function showAlert(message, type) {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+            alert.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            alert.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.body.appendChild(alert);
+
+            setTimeout(() => {
+                if (alert.parentNode) {
+                    alert.remove();
+                }
+            }, 5000);
+        }
+
+        // Form validation
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+}

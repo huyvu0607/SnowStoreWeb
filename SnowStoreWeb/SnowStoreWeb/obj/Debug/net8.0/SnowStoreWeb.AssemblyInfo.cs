@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SnowStoreWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+85fe949435971207c29285a1b9a58706c8b0f594")]
 [assembly: System.Reflection.AssemblyProductAttribute("SnowStoreWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SnowStoreWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Chi tiết sản phẩm";
 }
-
 <style>
     :root {
     /* Bảng màu chính hài hòa với layout xanh dương */
@@ -29,11 +28,11 @@
     overflow: hidden;
     box-shadow: 0 4px 20px var(--shadow-light);  /* Shadow xanh nhạt */
     margin-bottom: 20px;
-    border: 1px solid var(--border-color);  /* Viền xanh nhạt */
+    /* border: 1px solid var(--border-color);  /* Viền xanh nhạt */ */
 }
 
 .product-header {
-        background: linear-gradient(135deg, rgba(74, 144, 226, 0.95), rgba(127, 179, 211, 0.95)) !important; /* Gradient xanh */
+        background: black; /* Gradient xanh */
     color: white;
     padding: 24px;                          /* Padding lớn hơn */
     text-align: center;
@@ -69,7 +68,7 @@
         position: relative;
         width: 100%;
         padding-top: 100%; /* Tạo tỷ lệ 1:1 (hình vuông) */
-        border: 2px solid var(--border-color);
+        /* border: 2px solid var(--border-color); */
         border-radius: 12px;
         background: #ffffff; /* Background trắng */
         overflow: hidden;
@@ -101,7 +100,7 @@
 
 .thumbnail-section h5 {
     font-size: 14px;
-    color: var(--primary-color);           /* Màu xanh thay vì đen */
+    color:black;           /* Màu xanh thay vì đen */
     margin-bottom: 10px;
     display: flex;
     align-items: center;
@@ -155,11 +154,11 @@
 }
 
 .price-section {
-    background: linear-gradient(135deg, #e6f7ff, #f0f9ff);  /* Gradient xanh nhạt */
+    /* background: linear-gradient(135deg, #e6f7ff, #f0f9ff);  /* Gradient xanh nhạt */ */
     padding: 24px;                          /* Padding lớn hơn */
     border-radius: 12px;                    /* Bo tròn nhiều hơn */
     margin-bottom: 20px;
-    border: 1px solid var(--border-color);  /* Viền xanh nhạt */
+    /* border: 1px solid var(--border-color);  /* Viền xanh nhạt */ */
 }
 
 .price-current {
@@ -190,14 +189,14 @@
     background: #fafcff;                    /* Nền xanh rất nhạt */
     border-radius: 12px;                    /* Bo tròn */
     padding: 16px;                          /* Padding */
-    border: 1px solid var(--border-color); /* Viền xanh nhạt */
+    /* border: 1px solid var(--border-color); /* Viền xanh nhạt */ */
 }
 
 .spec-row {
     display: flex;
     align-items: center;
     padding: 14px 0;                        /* Padding lớn hơn */
-    border-bottom: 1px solid var(--border-color);  /* Viền xanh nhạt */
+    /* border-bottom: 1px solid var(--border-color);  /* Viền xanh nhạt */ */
 }
 
 .spec-row:last-child {
@@ -207,7 +206,7 @@
 .spec-icon {
     width: 42px;                            /* Kích thước lớn hơn */
     height: 42px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));  /* Gradient xanh */
+    background: black;  /* Gradient xanh */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -287,10 +286,10 @@
 }
 
 .description-section {
-    background: linear-gradient(135deg, #e6f7ff, #f0f9ff);  /* Gradient xanh nhạt */
+        background: #EEEEEE; /* Gradient xanh nhạt */
     padding: 20px;                          /* Padding lớn hơn */
     border-radius: 12px;                    /* Bo tròn nhiều hơn */
-    border-left: 4px solid var(--primary-color);  /* Viền trái xanh */
+    /* border-left: 4px solid var(--primary-color);  /* Viền trái xanh */ */
     margin-bottom: 25px;
     box-shadow: 0 2px 8px var(--shadow-light);  /* Shadow xanh nhạt */
 }
@@ -304,7 +303,7 @@
     display: inline-flex;
     align-items: center;
     padding: 14px 28px;                     /* Padding lớn hơn */
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));  /* Gradient xanh */
+    background: linear-gradient(135deg, #5DADE2 0%, #3498db 100%); /* Gradient xanh */
     color: white;
     text-decoration: none;
     border-radius: 25px;                    /* Bo tròn nhiều hơn */
@@ -328,7 +327,7 @@
     border-radius: 12px;                    /* Bo tròn nhiều hơn */
     padding: 24px;                          /* Padding lớn hơn */
     box-shadow: 0 4px 20px var(--shadow-light);  /* Shadow xanh */
-    border: 1px solid var(--border-color);  /* Viền xanh nhạt */
+    /* border: 1px solid var(--border-color);  /* Viền xanh nhạt */ */
 }
 
 .section-header {
@@ -336,11 +335,11 @@
     align-items: center;
     margin-bottom: 24px;                    /* Margin lớn hơn */
     padding-bottom: 16px;                   /* Padding lớn hơn */
-    border-bottom: 2px solid var(--border-color);  /* Viền xanh nhạt */
+    border-bottom: 2px solid black;  /* Viền xanh nhạt */
 }
 
 .section-header .icon {
-    color: var(--primary-color);            /* Màu xanh */
+    color: black;            /* Màu xanh */
     font-size: 22px;                        /* Font lớn hơn */
     margin-right: 12px;                     /* Margin lớn hơn */
 }
@@ -365,13 +364,14 @@
 }
 
 .product-card {
-    border: 1px solid var(--border-color);  /* Viền xanh nhạt */
-    border-radius: 12px;                    /* Bo tròn nhiều hơn */
+    /* border: 1px solid var(--border-color);  /* Viền xanh nhạt */ */
+                        /* Bo tròn nhiều hơn */
     overflow: hidden;
     transition: all 0.3s ease;
     cursor: pointer;
     background: var(--snow-white);
     box-shadow: 0 2px 8px var(--shadow-light);  /* Shadow xanh nhạt */
+    border-radius: 8px;
 }
 
 .product-card:hover {
@@ -381,12 +381,11 @@
 }
 
 .product-card-image {
-        width: 100%;
-        height: auto;
-        object-fit: contain; /* Hiển thị toàn bộ ảnh, có thể có khoảng trống */
-        border-bottom: 1px solid var(--border-color);
-        display: block;
-        background: #f8f9fa; /* Viền xanh nhạt */
+    width: 100%;
+    aspect-ratio: 4/5; /* Tỷ lệ 4:5 (chiều rộng : chiều cao) */
+    object-fit: cover;
+    display: block;
+    background: #f8f9fa;
 }
 
 .product-card-info {
@@ -397,19 +396,22 @@
     font-size: 14px;
     color: var(--text-dark);
     margin-bottom: 10px;                    /* Margin lớn hơn */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    /* Bỏ display: -webkit-box để cho phép xuống dòng tự nhiên */
+    /* -webkit-line-clamp: 2; */
+    /* -webkit-box-orient: vertical; */
+    /* overflow: hidden; */
     line-height: 1.4;
-    font-weight: 500;                       /* Font đậm hơn */
+    font-weight: 700;                       /* Font đậm hơn (700 thay vì 500) */
+    word-wrap: break-word;                  /* Cho phép xuống dòng khi từ quá dài */
+    white-space: normal;                    /* Cho phép xuống dòng */
 }
 
 .product-card-price {
     font-size: 16px;
-    color: var(--primary-color);            /* Màu xanh thay vì đỏ */
+    color: orangered;            /* Màu xanh thay vì đỏ */
     font-weight: 600;                       /* Font đậm hơn */
     margin-bottom: 12px;                    /* Margin lớn hơn */
+    margin-top: auto;                       /* Đẩy price xuống dưới */
 }
 
 .product-card-badges {
@@ -426,7 +428,7 @@
 /* Lightbox Gallery Styles */
 .lightbox {
     display: none;
-    position: absolute;
+        position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -434,10 +436,12 @@
     background: rgba(0, 0, 0, 0.9);
     z-index: 9999;
     animation: fadeIn 0.3s ease;
+
 }
 
 .lightbox.show {
     display: block;
+
 }
 
 @@keyframes fadeIn {
@@ -631,9 +635,21 @@
     .lightbox-next {
         right: 15px;
     }
+
+    .product-card-image {
+        width: 100%;
+        aspect-ratio: 4/5; /* Tỷ lệ 4:5 (chiều rộng : chiều cao) */
+        object-fit: cover;
+        display: block;
+        background: #f8f9fa;
+    }
 }
 
 @@media (max-width: 480px) {
+    .product-card-name {
+            font-size: 12px;
+    }
+
     .product-header h1 {
         font-size: 1.5rem;                  /* Font lớn hơn */
     }
@@ -644,6 +660,14 @@
     
     .products-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .product-card-image {
+        width: 100%;
+        aspect-ratio: 4/5; /* Tỷ lệ 4:5 (chiều rộng : chiều cao) */
+        object-fit: cover;
+        display: block;
+        background: #f8f9fa;
     }
 }
 
@@ -658,25 +682,7 @@
 }
 </style>
 
-<!-- Lightbox Gallery HTML -->
-<div id="lightbox" class="lightbox">
-    <div class="lightbox-content">
-        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-        <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-        <img id="lightboxImage" class="lightbox-main-image" src="" alt="">
-        <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="lightbox-thumbnails" id="lightboxThumbnails">
-            <!-- Thumbnails will be generated here -->
-        </div>
-        <div class="lightbox-info" id="lightboxInfo">
-            <span id="imageCounter">1 / 1</span>
-        </div>
-    </div>
-</div>
+
 
 <div class="container">
     <div class="product-detail-wrapper">
@@ -695,7 +701,7 @@
                     @if (Model.ProductImages != null && Model.ProductImages.Any())
                     {
                         <div class="thumbnail-section">
-                            <h5><i class="fas fa-images"></i> Ảnh sản phẩm:</h5>
+                            
                             <div class="thumbnail-grid">
                                 <!-- Main image thumbnail -->
                                 <div class="thumbnail-item active" onclick="changeMainImage('@Model.ImageUrl', this)" data-lightbox-index="0">
@@ -718,7 +724,8 @@
                 <!-- Product Info Section -->
                 <div class="product-info">
                     <div class="price-section">
-                        <span class="price-current">@Model.Price.ToString("N0") đ</span>
+                        <span class="price-current">@Model.Price.ToString("N0") VND
+                        </span>
                         @* Có thể thêm giá gốc và discount nếu có *@
                     </div>
 
@@ -726,12 +733,14 @@
                     {
                         <div class="description-section">
                             <i class="spec-label">Mô tả:</i>
-                            @Model.Description
+                            <div style="white-space: pre-line; line-height: 1.6; margin-top: 8px;">
+                                @Model.Description
+                            </div>
                         </div>
                     }
 
                     <div class="product-specs">
-                        <div class="spec-row">
+                        @* <div class="spec-row">
                             <div class="spec-icon">
                                 <i class="fas fa-cubes"></i>
                             </div>
@@ -747,7 +756,7 @@
                                     <span>(Sắp hết)</span>
                                 }
                             </div>
-                        </div>
+                        </div> *@
                         
                         <div class="spec-row">
                             <div class="spec-icon">
@@ -756,13 +765,15 @@
                             <div class="spec-label">Danh mục:</div>
                             <div class="spec-value">@(Model.Category?.Name ?? "Không phân loại")</div>
                         </div>
-                        
+
+
+
                         <div class="spec-row">
                             <div class="spec-icon">
-                                <i class="fas fa-barcode"></i>
+                                <i class="fas fa-copyright"></i>
                             </div>
-                            <div class="spec-label">Mã sản phẩm:</div>
-                            <div class="spec-value">#@Model.ProductId.ToString("D6")</div>
+                            <div class="spec-label">Brand:</div>
+                            <div class="spec-value">@(Model.Brand?.Name ?? "Không có thương hiệu")</div>
                         </div>
                     </div>
 
@@ -808,7 +819,7 @@
     {
         <div class="other-products-section">
             <div class="section-header">
-                <i class="fas fa-star icon"></i>
+                <i class="fas fa-star icon" style="color: #5DADE2;"></i>
                 <h3>Những sản phẩm khác</h3>
                 <span class="subtitle">Khám phá thêm những sản phẩm tuyệt vời khác</span>
             </div>
@@ -816,7 +827,9 @@
             <div class="products-grid">
                 @foreach (var product in (List<SnowStoreWeb.Models.Product>)ViewBag.RelatedProducts)
                 {
-                    <div class="product-card" onclick="viewProduct(@product.ProductId)">
+                    @if(product.StockQuantity > 0)
+                    {
+                        <div class="product-card" onclick="viewProduct(@product.ProductId)">
                         <img src="@product.ImageUrl" alt="@product.Name" class="product-card-image" />
                         <div class="product-card-info">
                             <div class="product-card-name">@product.Name</div>
@@ -849,6 +862,8 @@
                             </div>
                         </div>
                     </div>
+                    }
+                    
                 }
             </div>
         </div>
@@ -1041,14 +1056,6 @@
             mainImageContainer.onclick = () => openLightbox(currentImageIndex);
         }
 
-        // function viewProduct(productId) {
-        //     Add loading effect
-        //     const card = event.currentTarget;
-        //     card.classList.add('loading');
-            
-        //     Navigate to product detail
-        //     window.location.href = `@Url.Action("Details", "Product")?id=${productId}`;
-        // }
         function viewProduct(productId) {
             try {
                 console.log('Navigating to product ID:', productId);
