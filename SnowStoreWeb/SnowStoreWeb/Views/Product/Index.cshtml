@@ -386,9 +386,11 @@
 
         // Get current filter parameters
         function getCurrentFilters() {
+            const categorySelect = document.querySelector('select[name="category"]');
+
             return {
                 query: '@ViewBag.SearchQuery' || '',
-                category: '@currentCategory' || '',
+                category: categorySelect ? categorySelect.value : '@currentCategory' || '', // Chỉ category lấy từ DOM
                 brands: '@ViewBag.CurrentBrands' || '',
                 minPrice: '@(currentMinPrice?.ToString() ?? "")',
                 maxPrice: '@(currentMaxPrice?.ToString() ?? "")',
@@ -405,7 +407,7 @@
             isLoading = true;
             const loadMoreBtn = document.getElementById('loadMoreBtn');
             const btnText = loadMoreBtn.querySelector('.btn-text');
-            
+
             // Show loading state
             loadMoreBtn.classList.add('loading');
             loadMoreBtn.disabled = true;
@@ -413,21 +415,25 @@
 
             const nextPage = currentPageNumber + 1;
             const filters = getCurrentFilters();
-            
+
             // Build URL with current filters
             const params = new URLSearchParams();
             params.append('page', nextPage);
-            
+
+            // Thêm tất cả các filter parameters
             if (filters.query) params.append('query', filters.query);
-            if (filters.category) params.append('category', filters.category);
+            if (filters.category) params.append('category', filters.category); // ✅ Đảm bảo category được thêm
             if (filters.brands) params.append('brands', filters.brands);
             if (filters.minPrice) params.append('minPrice', filters.minPrice);
             if (filters.maxPrice) params.append('maxPrice', filters.maxPrice);
             if (filters.sortBy) params.append('sortBy', filters.sortBy);
 
-            const url = filters.query ? 
-                '/Product/Search?' + params.toString() : 
+            // Xác định URL endpoint dựa trên có search query hay không
+            const url = filters.query ?
+                '/Product/GetMoreSearchResults?' + params.toString() :
                 '/Product/GetMoreProducts?' + params.toString();
+
+            console.log('Load More URL:', url); // Debug log để kiểm tra URL
 
             fetch(url)
                 .then(response => response.json())
@@ -435,14 +441,14 @@
                     if (data.success && data.products && data.products.length > 0) {
                         // Add new products to grid
                         appendProductsToGrid(data.products);
-                        
+
                         // Update counters
                         currentPageNumber = nextPage;
                         currentDisplayedCount += data.products.length;
-                        
+
                         // Update display count
                         updateDisplayCount();
-                        
+
                         // Update load more section
                         updateLoadMoreSection();
                     } else {
@@ -458,9 +464,10 @@
                     isLoading = false;
                     loadMoreBtn.classList.remove('loading');
                     loadMoreBtn.disabled = false;
-                    btnText.innerHTML = '<i class="fas fa-plus me-2"></i>Xem thêm sản phẩm';
+                    btnText.innerHTML = '<i class="fas fa-plus me-2"></i>Xem thêm';
                 });
         }
+
 
         // Append new products to grid with animation
         function appendProductsToGrid(products) {
@@ -1457,5 +1464,15 @@
             resetLoadMore();
             form.submit();
         }
+        document.addEventListener('DOMContentLoaded', function () {
+            const categorySelect = document.querySelector('select[name="category"]');
+            if (categorySelect) {
+                categorySelect.addEventListener('change', function () {
+                    // Reset load more khi category thay đổi
+                    resetLoadMore();
+                    console.log('Category changed to:', this.value);
+                });
+            }
+        });
     </script>
 }

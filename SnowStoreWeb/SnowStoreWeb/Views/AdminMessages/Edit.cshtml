@@ -1,0 +1,415 @@
+﻿@model SnowStoreWeb.Models.Message
+
+@{
+    ViewData["Title"] = "Edit Message";
+    Layout = "_AdminLayout";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Message
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" method="post" enctype="multipart/form-data" id="editForm">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="ImageUrl" id="currentImageUrl" />
+                        
+                        <!-- Current Image Display -->
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">
+                                    <i class="fas fa-image me-2"></i>Current Image
+                                </label>
+                                <div class="current-image-container" id="currentImageContainer">
+                                    <div class="current-image-wrapper">
+                                        <img src="@Model.ImageUrl" alt="Current Image" class="current-image" id="currentImage">
+                                        <div class="current-image-overlay">
+                                            <button type="button" class="btn btn-sm btn-light" onclick="showImageUpload()">
+                                                <i class="fas fa-edit me-1"></i>Change Image
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="mt-2">
+                                        <small class="text-muted">Click "Change Image" to upload a new image</small>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <!-- Image Upload Section -->
+                        <div class="mb-4" id="imageUploadSection" style="@(string.IsNullOrEmpty(Model.ImageUrl) ? "" : "display: none;")">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-image me-2"></i>@(string.IsNullOrEmpty(Model.ImageUrl) ? "Message Image" : "New Image")
+                            </label>
+                            <div class="image-upload-container">
+                                <div class="drop-zone" id="dropZone">
+                                    <div class="drop-zone-content" id="dropZoneContent">
+                                        <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                        <p class="text-muted mb-2">Drag & Drop your image here</p>
+                                        <p class="text-muted small">or</p>
+                                        <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('imageFile').click()">
+                                            <i class="fas fa-folder-open me-2"></i>Browse Files
+                                        </button>
+                                        <input type="file" id="imageFile" name="imageFile" accept="image/*" style="display: none;">
+                                        <div class="mt-3">
+                                            <small class="text-muted">Supported formats: JPG, PNG, GIF (Max: 5MB)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="image-preview mt-3" id="imagePreview" style="display: none;">
+                                    <div class="preview-container">
+                                        <img id="previewImg" class="preview-image" alt="Preview">
+                                        <div class="preview-overlay">
+                                            <button type="button" class="btn btn-sm btn-light" onclick="changeImage()">
+                                                <i class="fas fa-edit me-1"></i>Change
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-danger" onclick="removeNewImage()">
+                                                <i class="fas fa-trash me-1"></i>Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <div class="mt-3">
+                                    <button type="button" class="btn btn-sm btn-secondary" onclick="cancelImageChange()">
+                                        <i class="fas fa-times me-1"></i>Cancel Image Change
+                                    </button>
+                                </div>
+                            }
+                        </div>
+
+                        <!-- Description Field -->
+                        <div class="mb-4">
+                            <label asp-for="Description" class="form-label fw-bold">
+                                <i class="fas fa-align-left me-2"></i>Description
+                            </label>
+                            <textarea asp-for="Description" class="form-control" rows="4" 
+                                      placeholder="Enter message description..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Order Field -->
+                        <div class="mb-4">
+                            <label asp-for="Order" class="form-label fw-bold">
+                                <i class="fas fa-sort-numeric-up me-2"></i>Display Order
+                            </label>
+                            <input asp-for="Order" class="form-control" type="number" min="0" 
+                                   placeholder="Enter display order (0-999)">
+                            <span asp-validation-for="Order" class="text-danger small"></span>
+                            <div class="form-text">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Lower numbers appear first. Use 0 for highest priority.
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-info">
+                                    <i class="fas fa-eye me-2"></i>View Details
+                                </a>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <a asp-action="Index" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left me-2"></i>Back to List
+                                </a>
+                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                    <i class="fas fa-save me-2"></i>Update Message
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .image-upload-container {
+        position: relative;
+    }
+
+    .drop-zone {
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        padding: 40px 20px;
+        text-align: center;
+        background-color: #f8f9fa;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .drop-zone:hover,
+    .drop-zone.drag-over {
+        border-color: #0d6efd;
+        background-color: #e7f3ff;
+    }
+
+    .drop-zone-content {
+        pointer-events: none;
+    }
+
+    /* Current Image Styles - Made Smaller */
+    .current-image-container {
+        position: relative;
+        max-width: 300px; /* Reduced from full width */
+    }
+
+    .current-image-wrapper {
+        position: relative;
+        display: inline-block;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        max-width: 100%;
+    }
+
+    .current-image {
+        max-width: 100%;
+        max-height: 200px; /* Reduced from 300px */
+        object-fit: cover;
+        display: block;
+        border-radius: 8px;
+    }
+
+    .current-image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .current-image-wrapper:hover .current-image-overlay {
+        opacity: 1;
+    }
+
+    /* Preview Image Styles */
+    .preview-container {
+        position: relative;
+        display: inline-block;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        max-width: 300px; /* Match current image size */
+    }
+
+    .preview-image {
+        max-width: 100%;
+        max-height: 200px; /* Match current image height */
+        object-fit: cover;
+        display: block;
+    }
+
+    .preview-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .preview-container:hover .preview-overlay {
+        opacity: 1;
+    }
+
+    .loading {
+        pointer-events: none;
+    }
+
+    .loading .btn {
+        opacity: 0.6;
+    }
+
+    .loading .btn i {
+        animation: spin 1s linear infinite;
+    }
+
+    @@keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive adjustments */
+    @@media (max-width: 576px) {
+        .current-image-container,
+        .preview-container {
+            max-width: 100%;
+        }
+        
+        .current-image,
+        .preview-image {
+            max-height: 150px; /* Smaller on mobile */
+        }
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('imageFile');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImg = document.getElementById('previewImg');
+        const dropZoneContent = document.getElementById('dropZoneContent');
+        const imageUploadSection = document.getElementById('imageUploadSection');
+        const currentImageContainer = document.getElementById('currentImageContainer');
+
+        // Drag and Drop Events
+        if (dropZone) {
+            dropZone.addEventListener('dragover', handleDragOver);
+            dropZone.addEventListener('dragleave', handleDragLeave);
+            dropZone.addEventListener('drop', handleDrop);
+            dropZone.addEventListener('click', () => fileInput.click());
+        }
+
+        // File Input Change
+        if (fileInput) {
+            fileInput.addEventListener('change', handleFileSelect);
+        }
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        }
+
+        function handleFileSelect(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        }
+
+        function handleFile(file) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showAlert('Please select a valid image file.', 'danger');
+                return;
+            }
+
+            // Validate file size (5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                showAlert('File size should not exceed 5MB.', 'danger');
+                return;
+            }
+
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+                dropZone.style.display = 'none';
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function showImageUpload() {
+            if (imageUploadSection && currentImageContainer) {
+                imageUploadSection.style.display = 'block';
+                currentImageContainer.style.display = 'none';
+            }
+        }
+
+        function cancelImageChange() {
+            if (imageUploadSection && currentImageContainer) {
+                imageUploadSection.style.display = 'none';
+                currentImageContainer.style.display = 'block';
+                
+                // Reset file input and preview
+                if (fileInput) fileInput.value = '';
+                if (dropZone) dropZone.style.display = 'block';
+                if (imagePreview) imagePreview.style.display = 'none';
+                if (previewImg) previewImg.src = '';
+            }
+        }
+
+        function changeImage() {
+            if (fileInput) {
+                fileInput.click();
+            }
+        }
+
+        function removeNewImage() {
+            if (fileInput) fileInput.value = '';
+            if (dropZone) dropZone.style.display = 'block';
+            if (imagePreview) imagePreview.style.display = 'none';
+            if (previewImg) previewImg.src = '';
+        }
+
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+            alertDiv.innerHTML = `
+                <i class="fas fa-exclamation-triangle me-2"></i>${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+
+            const form = document.getElementById('editForm');
+            if (form) {
+                form.insertBefore(alertDiv, form.firstChild);
+
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (alertDiv.parentNode) {
+                        alertDiv.remove();
+                    }
+                }, 5000);
+            }
+        }
+
+        // Form submission loading state
+        const editForm = document.getElementById('editForm');
+        if (editForm) {
+            editForm.addEventListener('submit', function() {
+                const submitBtn = document.getElementById('submitBtn');
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Updating...';
+                    submitBtn.disabled = true;
+                }
+                document.body.classList.add('loading');
+            });
+        }
+    </script>
+}

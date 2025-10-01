@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dự Án riêng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj": {}
+    "D:\\Dự Án riêng\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj": {}
   },
   "projects": {
-    "D:\\Dự Án riêng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj": {
+    "D:\\Dự Án riêng\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dự Án riêng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj",
+        "projectUniqueName": "D:\\Dự Án riêng\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj",
         "projectName": "SnowStoreWeb",
-        "projectPath": "D:\\Dự Án riêng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj",
+        "projectPath": "D:\\Dự Án riêng\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb.csproj",
         "packagesPath": "C:\\Users\\Huywill\\.nuget\\packages\\",
-        "outputPath": "D:\\Dự Án riêng\\GITHUB\\SnowStoreWeb\\SnowStoreWeb\\SnowStoreWeb\\obj\\",
+        "outputPath": "D:\\Dự Án riêng\\SnowStoreWeb\\SnowStoreWeb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Huywill\\AppData\\Roaming\\NuGet\\NuGet.Config",

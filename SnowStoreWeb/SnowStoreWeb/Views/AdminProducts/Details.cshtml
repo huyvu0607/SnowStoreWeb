@@ -189,7 +189,13 @@
                             </div>
                         </div>
                         <div class="row g-2 mb-2">
-                            <div class="col-4 text-muted small">Giá bán:</div>
+                            <div class="col-4 text-muted small">Giá Ảo:</div>
+                            <div class="col-8">
+                                <strong class="text-success fs-5">@Html.DisplayFor(model => model.FakePrice, "{0:N0}") ₫</strong>
+                            </div>
+                        </div>
+                        <div class="row g-2 mb-2">
+                            <div class="col-4 text-muted small">Giá gốc:</div>
                             <div class="col-8">
                                 <strong class="text-success fs-5">@Html.DisplayFor(model => model.Price, "{0:N0}") ₫</strong>
                             </div>

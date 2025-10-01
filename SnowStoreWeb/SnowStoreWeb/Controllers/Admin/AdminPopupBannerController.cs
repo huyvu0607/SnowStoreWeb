@@ -342,5 +342,41 @@ namespace SnowStoreWeb.Controllers.Admin
                 // Log error if needed, but don't throw
             }
         }
+        // POST: AdminPopupBanner/UpdateOrder
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateOrder([FromBody] List<PopupBannerOrderUpdate> orderData)
+        {
+            if (orderData == null || !orderData.Any())
+            {
+                return BadRequest(new { message = "Không có dữ liệu thứ tự được cung cấp" });
+            }
+
+            try
+            {
+                foreach (var item in orderData)
+                {
+                    var banner = await _context.PopupBanners.FindAsync(item.Id);
+                    if (banner != null)
+                    {
+                        banner.DisplayOrder = item.DisplayOrder;
+                        banner.UpdatedAt = DateTime.Now;
+                        _context.Update(banner);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                return Ok(new { message = "Đã cập nhật thứ tự thành công" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Lỗi khi cập nhật thứ tự: " + ex.Message });
+            }
+        }
+    }
+    public class PopupBannerOrderUpdate
+    {
+        public int Id { get; set; }
+        public int DisplayOrder { get; set; }
     }
 }

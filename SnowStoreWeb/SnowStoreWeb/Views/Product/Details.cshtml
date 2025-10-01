@@ -167,7 +167,12 @@
     font-weight: 600;                       /* Font đậm hơn */
     margin-right: 15px;
 }
-
+.price-fake{
+        color: gray; 
+        text-decoration: line-through; 
+        margin-right:8px; 
+        font-size: 20px;
+}
 .price-original {
     font-size: 16px;
     color: var(--text-light);
@@ -590,7 +595,9 @@
     .price-current {
         font-size: 26px;                    /* Giảm font size trên mobile */
     }
-    
+    .price-fake{
+        font-size: 16.25px
+    }
     .products-grid {
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 15px;
@@ -657,7 +664,9 @@
     .price-current {
         font-size: 22px;                    /* Font lớn hơn */
     }
-    
+    .price-fake{
+        font-size: 13.75px;
+    }
     .products-grid {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
@@ -726,6 +735,12 @@
                     <div class="price-section">
                         <span class="price-current">@Model.Price.ToString("N0") VND
                         </span>
+                        @if (@Model.FakePrice.HasValue)
+                        {
+                            <span class="price-fake">
+                                @Model.FakePrice.Value.ToString("N0") VND
+                            </span>
+                        }
                         @* Có thể thêm giá gốc và discount nếu có *@
                     </div>
 

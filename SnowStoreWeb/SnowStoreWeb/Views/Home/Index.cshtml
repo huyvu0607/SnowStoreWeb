@@ -423,6 +423,24 @@
             height: 15px;
         }
     }
+    .message-image {
+    width: 90% !important;        /* Chiều rộng cố định */
+    height: 90% !important;       /* Chiều cao cố định (tỉ lệ 5:7) */
+    object-fit: cover !important;   /* Cắt ảnh để vừa khung, giữ tỷ lệ */
+    border-radius: 12px;           /* Bo góc đẹp */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* Đổ bóng */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng hover */
+    border: 3px solid #f8f9fa;     /* Viền trắng */
+}
+
+.message-image:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* Responsive cho mobile */
+/* Nếu muốn size khác với tỉ lệ 5:7 
+
 </style>
 
 <div class="container">
@@ -434,10 +452,12 @@
                     <i class="fas fa-star me-2"></i>
                     Some notes for you
                 </h2>
-                <div class="text-center">
-                    <img src="~/images/nengt2.jpg"
-                         alt="Sản phẩm Size"
-                         class="product-image"
+
+                <!-- Hiển thị ảnh theo ngày -->
+                <div class="text-center mb-4">
+                    <img id="dailyImage"
+                         class="message-image daily-rotating"
+                         alt="Daily Message"
                          onerror="this.src='https://via.placeholder.com/400x400/4A9CE8/ffffff?text=SnowStore+Product'">
                 </div>
             </div>
@@ -726,6 +746,85 @@
         // Cleanup function
         function closePopupSlider() {
             // Placeholder, sẽ được override
+        }
+    </script>
+    <script>
+        // Lấy danh sách ảnh từ ViewBag.Messages
+        const messages = @Html.Raw(Json.Serialize(ViewBag.Messages ?? new List<object>()));
+
+        function getDailyImage() {
+            if (!messages || messages.length === 0) {
+                console.log('No messages available');
+                return;
+            }
+
+            // Tính số ngày từ 1/1/2024 (có thể thay đổi ngày bắt đầu)
+            const startDate = new Date('2024-01-01');
+            const currentDate = new Date();
+            const daysDiff = Math.floor((currentDate - startDate) / (1000 * 60 * 60 * 24));
+
+            // Lấy index theo chu kỳ (quay lại từ đầu khi hết)
+            const currentIndex = daysDiff % messages.length;
+            const currentMessage = messages[currentIndex];
+
+            // Cập nhật ảnh và mô tả
+            const imageElement = document.getElementById('dailyImage');
+            const descriptionElement = document.getElementById('dailyDescription');
+            const dayElement = document.getElementById('currentDay');
+            const totalElement = document.getElementById('totalDays');
+
+            if (imageElement && currentMessage) {
+                imageElement.src = currentMessage.imageUrl || currentMessage.ImageUrl;
+                imageElement.alt = currentMessage.description || currentMessage.Description || 'Daily Message';
+            }
+
+            if (descriptionElement && currentMessage) {
+                descriptionElement.textContent = currentMessage.description || currentMessage.Description || '';
+            }
+
+            if (dayElement) {
+                dayElement.textContent = currentIndex + 1;
+            }
+
+            if (totalElement) {
+                totalElement.textContent = messages.length;
+            }
+
+            console.log(`Day ${daysDiff + 1}: Showing image ${currentIndex + 1} of ${messages.length}`);
+        }
+
+        // Chạy khi trang load
+        document.addEventListener('DOMContentLoaded', function () {
+            getDailyImage();
+
+            // Tùy chọn: Cập nhật mỗi phút để test (bỏ comment nếu muốn)
+            // setInterval(getDailyImage, 60000);
+        });
+
+        // Hàm test để xem ảnh của ngày khác (chỉ dùng để test)
+        function testDayImage(dayOffset = 0) {
+            if (!messages || messages.length === 0) return;
+
+            const testDate = new Date();
+            testDate.setDate(testDate.getDate() + dayOffset);
+
+            const startDate = new Date('2024-01-01');
+            const daysDiff = Math.floor((testDate - startDate) / (1000 * 60 * 60 * 24));
+            const currentIndex = daysDiff % messages.length;
+            const currentMessage = messages[currentIndex];
+
+            const imageElement = document.getElementById('dailyImage');
+            const descriptionElement = document.getElementById('dailyDescription');
+
+            if (imageElement && currentMessage) {
+                imageElement.src = currentMessage.imageUrl || currentMessage.ImageUrl;
+            }
+
+            if (descriptionElement && currentMessage) {
+                descriptionElement.textContent = currentMessage.description || currentMessage.Description || '';
+            }
+
+            console.log(`Test: Day ${daysDiff + 1} (${dayOffset >= 0 ? '+' : ''}${dayOffset}): Image ${currentIndex + 1}`);
         }
     </script>
 }

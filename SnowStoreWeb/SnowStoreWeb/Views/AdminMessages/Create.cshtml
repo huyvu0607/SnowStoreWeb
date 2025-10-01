@@ -1,0 +1,349 @@
+﻿@model SnowStoreWeb.Models.Message
+
+@{
+    ViewData["Title"] = "Create Message";
+    Layout = "_AdminLayout";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-plus-circle me-2"></i>Create New Message
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data" id="createForm">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                        <!-- Image Upload Section -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-image me-2"></i>Message Image <span class="text-danger">*</span>
+                            </label>
+                            <div class="image-upload-container">
+                                <div class="drop-zone" id="dropZone">
+                                    <div class="drop-zone-content" id="dropZoneContent">
+                                        <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                                        <p class="text-muted mb-2">Drag & Drop your image here</p>
+                                        <p class="text-muted small">or</p>
+                                        <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('imageFile').click()">
+                                            <i class="fas fa-folder-open me-2"></i>Browse Files
+                                        </button>
+                                        <input type="file" id="imageFile" name="imageFile" accept="image/*" style="display: none;" required>
+                                        <div class="mt-3">
+                                            <small class="text-muted">Supported formats: JPG, PNG, GIF (Max: 5MB)</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="image-preview mt-3" id="imagePreview" style="display: none;">
+                                    <div class="preview-container">
+                                        <img id="previewImg" class="preview-image" alt="Preview">
+                                        <div class="preview-overlay">
+                                            <button type="button" class="btn btn-sm btn-light" onclick="changeImage()">
+                                                <i class="fas fa-edit me-1"></i>Change
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-danger" onclick="removeImage()">
+                                                <i class="fas fa-trash me-1"></i>Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Description Field -->
+                        <div class="mb-4">
+                            <label asp-for="Description" class="form-label fw-bold">
+                                <i class="fas fa-align-left me-2"></i>Description <span class="text-danger">*</span>
+                            </label>
+                            <textarea asp-for="Description" class="form-control" rows="4"
+                                      placeholder="Enter message description..." required></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <!-- Order Field -->
+                        <div class="mb-4">
+                            <label asp-for="Order" class="form-label fw-bold">
+                                <i class="fas fa-sort-numeric-up me-2"></i>Display Order <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input asp-for="Order" class="form-control" type="number" min="0"
+                                       placeholder="Loading..." readonly id="orderInput" required>
+                                <button class="btn btn-outline-secondary" type="button" id="refreshOrderBtn" title="Refresh Order">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            </div>
+                            <span asp-validation-for="Order" class="text-danger small"></span>
+                            <div class="form-text">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Auto-assigned to next available order. Lower numbers appear first.
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-end gap-2">
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary" id="submitBtn">
+                                <i class="fas fa-save me-2"></i>Create Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .image-upload-container {
+        position: relative;
+    }
+
+    .drop-zone {
+        border: 2px dashed #dee2e6;
+        border-radius: 8px;
+        padding: 40px 20px;
+        text-align: center;
+        background-color: #f8f9fa;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .drop-zone:hover,
+    .drop-zone.drag-over {
+        border-color: #0d6efd;
+        background-color: #e7f3ff;
+    }
+
+    .drop-zone-content {
+        pointer-events: none;
+    }
+
+    .preview-container {
+        position: relative;
+        display: inline-block;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .preview-image {
+        max-width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .preview-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .preview-container:hover .preview-overlay {
+        opacity: 1;
+    }
+
+    .loading {
+        pointer-events: none;
+    }
+
+    .loading .btn {
+        opacity: 0.6;
+    }
+
+    .loading .btn i {
+        animation: spin 1s linear infinite;
+    }
+
+    @@keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('imageFile');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImg = document.getElementById('previewImg');
+        const dropZoneContent = document.getElementById('dropZoneContent');
+        const orderInput = document.getElementById('orderInput');
+        const refreshOrderBtn = document.getElementById('refreshOrderBtn');
+
+        // Load next order number on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadNextOrderNumber();
+        });
+
+        // Refresh order button
+        refreshOrderBtn.addEventListener('click', loadNextOrderNumber);
+
+        // Function to load next order number
+        async function loadNextOrderNumber() {
+            try {
+                const icon = refreshOrderBtn.querySelector('i');
+                icon.classList.add('fa-spin');
+                
+                const response = await fetch('@Url.Action("GetNextOrder", "AdminMessages")');
+                if (response.ok) {
+                    const data = await response.json();
+                    orderInput.value = data.nextOrder;
+                    orderInput.removeAttribute('readonly');
+                } else {
+                    orderInput.value = 0;
+                    orderInput.removeAttribute('readonly');
+                }
+                
+                icon.classList.remove('fa-spin');
+            } catch (error) {
+                console.error('Error loading order number:', error);
+                orderInput.value = 0;
+                orderInput.removeAttribute('readonly');
+            }
+        }
+
+        // Drag and Drop Events
+        dropZone.addEventListener('dragover', handleDragOver);
+        dropZone.addEventListener('dragleave', handleDragLeave);
+        dropZone.addEventListener('drop', handleDrop);
+        dropZone.addEventListener('click', () => fileInput.click());
+
+        // File Input Change
+        fileInput.addEventListener('change', handleFileSelect);
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            dropZone.classList.add('drag-over');
+        }
+
+        function handleDragLeave(e) {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            dropZone.classList.remove('drag-over');
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                // Manually set the files to the input
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(files[0]);
+                fileInput.files = dataTransfer.files;
+                handleFile(files[0]);
+            }
+        }
+
+        function handleFileSelect(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        }
+
+        function handleFile(file) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                showAlert('Please select a valid image file.', 'danger');
+                fileInput.value = '';
+                return;
+            }
+
+            // Validate file size (5MB)
+            if (file.size > 5 * 1024 * 1024) {
+                showAlert('File size should not exceed 5MB.', 'danger');
+                fileInput.value = '';
+                return;
+            }
+
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+                dropZone.style.display = 'none';
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function changeImage() {
+            fileInput.click();
+        }
+
+        function removeImage() {
+            fileInput.value = '';
+            dropZone.style.display = 'block';
+            imagePreview.style.display = 'none';
+            previewImg.src = '';
+        }
+
+        function showAlert(message, type) {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+            alertDiv.innerHTML = `
+                <i class="fas fa-exclamation-triangle me-2"></i>${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+
+            const form = document.getElementById('createForm');
+            form.insertBefore(alertDiv, form.firstChild);
+
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (alertDiv.parentNode) {
+                    alertDiv.remove();
+                }
+            }, 5000);
+        }
+
+        // Form submission loading state - FIXED VERSION
+        document.getElementById('createForm').addEventListener('submit', function(e) {
+            const form = e.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const originalContent = submitBtn.innerHTML;
+            
+            // Only show loading state if basic validations pass
+            if (!form.checkValidity()) {
+                return; // Let browser handle validation
+            }
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Creating...';
+            submitBtn.disabled = true;
+            document.body.classList.add('loading');
+            
+            // Safety reset in case of server-side validation errors
+            setTimeout(() => {
+                if (document.getElementById('submitBtn') && document.body.classList.contains('loading')) {
+                    // Check if there are validation errors
+                    const hasErrors = document.querySelector('.alert-danger, .field-validation-error, .text-danger');
+                    if (hasErrors) {
+                        submitBtn.innerHTML = originalContent;
+                        submitBtn.disabled = false;
+                        document.body.classList.remove('loading');
+                    }
+                }
+            }, 1000);
+        });
+    </script>
+}

@@ -23,6 +23,10 @@ namespace SnowStoreWeb.Controllers
                                          .OrderBy(b => b.DisplayOrder)
                                          .ToList();
 
+            var messages = _dbContext.Messages
+                            .OrderBy(m => m.Order) // sắp xếp theo thứ tự bạn định nghĩa
+                            .ToList();
+
             // Thêm dòng này để debug
             System.Diagnostics.Debug.WriteLine($"Active banners count: {activeBanners.Count}");
             foreach (var banner in activeBanners)
@@ -30,7 +34,14 @@ namespace SnowStoreWeb.Controllers
                 System.Diagnostics.Debug.WriteLine($"Banner: {banner.Title} - {banner.ImageUrl}");
             }
 
+            System.Diagnostics.Debug.WriteLine($"Messages count: {messages.Count}");
+            foreach (var msg in messages)
+            {
+                System.Diagnostics.Debug.WriteLine($"Message: {msg.Description} - {msg.ImageUrl}");
+            }
+
             ViewBag.ActiveBanners = activeBanners;
+            ViewBag.Messages = messages;
             return View();
         }
 

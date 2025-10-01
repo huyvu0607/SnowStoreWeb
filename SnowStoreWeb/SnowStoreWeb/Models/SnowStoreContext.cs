@@ -27,6 +27,9 @@ public partial class SnowStoreContext : DbContext
 
     public virtual DbSet<PopupBanner> PopupBanners { get; set; }
 
+    public virtual DbSet<Message> Messages { get; set; }
+
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=SnowStoreConnection");
 

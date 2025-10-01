@@ -209,7 +209,7 @@ namespace SnowStoreWeb.Controllers_Admin
         // POST: AdminProducts/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,BrandId,Name,Description,Price,StockQuantity,IsHot,IsBestSeller")] Product product, IFormFile MainImageFile, IFormFile[] AdditionalImageFiles)
+        public async Task<IActionResult> Create([Bind("CategoryId,BrandId,Name,Description,FakePrice,Price,StockQuantity,IsHot,IsBestSeller")] Product product, IFormFile MainImageFile, IFormFile[] AdditionalImageFiles)
         {
             if (ModelState.IsValid)
             {
@@ -433,6 +433,7 @@ namespace SnowStoreWeb.Controllers_Admin
                 existingProduct.Name = product.Name;
                 existingProduct.Description = product.Description;
                 existingProduct.Price = product.Price;
+                existingProduct.FakePrice = product.FakePrice;
                 existingProduct.StockQuantity = product.StockQuantity;
                 existingProduct.IsHot = product.IsHot;
                 existingProduct.IsBestSeller = product.IsBestSeller;
